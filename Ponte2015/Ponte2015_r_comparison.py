@@ -53,7 +53,7 @@ def drive(t):
 J_x = [[J_x_0, i, i+1] for i in range(L-1)]
 J_y = [[J_x_0, i, i+1] for i in range(L-1)]
 J_z = [[J_z_0, i, i+1] for i in range(L-1)]
-h_z = [[np.random.uniform(-0.5, 0.5), i] for i in range(L)]
+h_z = [[-0.1, i] for i in range(L)]
 pos_h = [[+h_0, L//2]]
 neg_h = [[-h_0, L//2]]
 static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z], ["z", pos_h]]
@@ -71,7 +71,7 @@ for i in range(1, len(E_1)-1):
 J_x = [[J_x_0, i, i+1] for i in range(L-1)]
 J_y = [[J_x_0, i, i+1] for i in range(L-1)]
 J_z = [[J_z_0, i, i+1] for i in range(L-1)]
-h_z = [[np.random.uniform(-8, 8), i] for i in range(L)]
+h_z = [[8, i] for i in range(L)]
 pos_h = [[+h_0, L//2]]
 neg_h = [[-h_0, L//2]]
 static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z], ["z", pos_h]]
@@ -92,11 +92,9 @@ gs = gridspec.GridSpec(1, 2, hspace=0, wspace=0)
 ax0 = plt.subplot(gs[0])
 ax1 = plt.subplot(gs[1], sharey=ax0)
 
-numb_bins = 10000
-
 # plot ergodic
 print(f"len(r_1)={len(r_1)}")
-ax0.hist(r_1, bins=numb_bins, density=True)
+ax0.hist(r_1, bins=np.arange(0, 5.1, 0.1), density=True)
 r_vals = np.arange(0, 100, 0.1)
 Poisson = [1/((1+r)**2) for r in r_vals]
 GOE = [(27/8)*((r+r**2)/(1+r+r**2)**(5/2)) for r in r_vals]
@@ -107,18 +105,18 @@ ax0.set_xlabel("$r$")
 ax0.set_xlim([0, 5])
 ax0.set_ylabel("$P(r)$")
 ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-ax0.set_title(f"Ergodic ($W=0.5$, $L={L}$, {numb_bins} bins)")
+ax0.set_title(f"Ergodic ($W=-0.1$, $L={L}$)")
 
 # plot MBL
 ax1.yaxis.set_visible(False)
 print(f"len(r_2)={len(r_2)}")
-ax1.hist(r_2, bins=numb_bins, density=True)
+ax1.hist(r_2, bins=np.arange(0, 5.1, 0.1), density=True)
 ax1.plot(r_vals, Poisson, c='r', label='Poisson')
 ax1.plot(r_vals, GOE, c='g', label='GOE')
 ax1.legend(loc='upper right')
 ax1.set_xlabel("$r$")
 ax1.set_xlim([0, 5])
-ax1.set_title(f"MBL ($W=8$, $L={L}$, {numb_bins} bins)")
+ax1.set_title(f"MBL ($W=8$, $L={L}$)")
 
-# plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
+plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
 plt.show()

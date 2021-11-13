@@ -14,7 +14,7 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 # system parameters
-L = 8
+L = 10
 basis = spin_basis_1d(L)
 # Hamiltonian parameters
 J_x_0 = 1
@@ -52,7 +52,7 @@ def drive(t):
         return 0
 
 
-def realization(itr, W_val):
+def realization_1(itr):
 
     print(f"Iteration {itr + 1} of {numb_itr}")
 
@@ -60,7 +60,32 @@ def realization(itr, W_val):
     J_x = [[J_x_0, i, i+1] for i in range(L-1)]
     J_y = [[J_x_0, i, i+1] for i in range(L-1)]
     J_z = [[J_z_0, i, i+1] for i in range(L-1)]
-    h_z = [[np.random.uniform(-W_val, W_val), i] for i in range(L)]
+    h_z = [[np.random.uniform(-0.5, 0.5), i] for i in range(L)]
+    pos_h = [[+h_0, L//2]]
+    neg_h = [[-h_0, L//2]]
+    static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z], ["z", pos_h]]
+    dynamic = [["xx", J_x, drive, drive_args], ["yy", J_y, drive, drive_args], ["zz", J_z, drive, drive_args],
+               ["z", h_z, drive, drive_args], ["z", neg_h, drive, drive_args]]
+    H = 0.5*hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
+    # eigenbasis of H_1
+    E, alpha = H.eigh(time=0)
+
+    r = []
+    for i in range(1, len(E)-1):
+        r.append((E[i+1]-E[i])/(E[i]-E[i-1]))
+
+    return r
+
+
+def realization_2(itr):
+
+    print(f"Iteration {itr + 1} of {numb_itr}")
+
+    # compute H_1
+    J_x = [[J_x_0, i, i+1] for i in range(L-1)]
+    J_y = [[J_x_0, i, i+1] for i in range(L-1)]
+    J_z = [[J_z_0, i, i+1] for i in range(L-1)]
+    h_z = [[np.random.uniform(8, 10), i] for i in range(L)]
     pos_h = [[+h_0, L//2]]
     neg_h = [[-h_0, L//2]]
     static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z], ["z", pos_h]]
@@ -86,15 +111,15 @@ if __name__ == '__main__':
     ax1 = plt.subplot(gs[1], sharey=ax0)
 
     t_0 = time.time()
-    r_1 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, 0.5) for i in range(numb_itr)))
-    r_2 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, 8) for i in range(numb_itr)))
+    r_1 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization_1)(i) for i in range(numb_itr)))
+    r_2 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization_2)(i) for i in range(numb_itr)))
     print(f"Total time (seconds): {int(time.time() - t_0)}")
 
-    numb_bins = 10000
+    r1_list = np.concatenate(r_1).ravel().tolist()
+    r2_list = np.concatenate(r_2).ravel().tolist()
 
     # plot ergodic
-    print(f"len(r_1)={len(r_1)}")
-    ax0.hist(np.mean(r_1, axis=0), bins=numb_bins, density=True)
+    ax0.hist(r1_list, bins=np.arange(0, 5.1, 0.1), density=True)
     r_vals = np.arange(0, 100, 0.1)
     Poisson = [1/((1+r)**2) for r in r_vals]
     GOE = [(27/8)*((r+r**2)/(1+r+r**2)**(5/2)) for r in r_vals]
@@ -105,18 +130,17 @@ if __name__ == '__main__':
     ax0.set_xlim([0, 5])
     ax0.set_ylabel("$P(r)$")
     ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-    ax0.set_title(f"Ergodic ($W=0.5$, $L={L}$, {numb_bins} bins, {numb_itr} iterations)")
+    ax0.set_title(f"Ergodic ($W=0.5$, $L={L}$, {numb_itr} disorders)")
 
     # plot MBL
     ax1.yaxis.set_visible(False)
-    print(f"len(r_2)={len(r_2)}")
-    ax1.hist(np.mean(r_2, axis=0), bins=numb_bins, density=True)
+    ax1.hist(r2_list, bins=np.arange(0, 5.1, 0.1), density=True)
     ax1.plot(r_vals, Poisson, c='r', label='Poisson')
     ax1.plot(r_vals, GOE, c='g', label='GOE')
     ax1.legend(loc='upper right')
     ax1.set_xlabel("$r$")
     ax1.set_xlim([0, 5])
-    ax1.set_title(f"MBL ($W=8$, $L={L}$, {numb_bins} bins, {numb_itr} iterations)")
+    ax1.set_title(f"MBL ($W=8$, $L={L}$, {numb_itr} disorders)")
 
-    # plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
+    plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
     plt.show()
