@@ -139,5 +139,5 @@ if __name__ == '__main__':
 
     ax1.yaxis.set_visible(False)
 
-    plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_absorbed.png", bbox_inches='tight', dpi=300)
+    plt.savefig("/home/bart/Documents/papers/MBF/Ponte2015/energy_absorbed/energy_absorbed.png", bbox_inches='tight', dpi=300)
     plt.show()

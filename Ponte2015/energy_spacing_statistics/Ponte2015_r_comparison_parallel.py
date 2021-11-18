@@ -142,5 +142,5 @@ if __name__ == '__main__':
     ax1.set_xlim([0, 5])
     ax1.set_title(f"MBL ($W=8$, $L={L}$, {numb_itr} disorders)")
 
-    plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
+    plt.savefig("/home/bart/Documents/papers/MBF/Ponte2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
     plt.show()

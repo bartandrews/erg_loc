@@ -19,8 +19,9 @@ basis = spin_basis_1d(L)
 # Hamiltonian parameters
 J_x_0 = 1
 J_z_0 = 1
-# W = 0.5  # W=0.5 for ergodic or W=8 for MBL
-h_0 = 2
+W_1 = 0.5
+W_2 = 8
+h_0 = 2  # 2
 # driving parameters
 T_0 = 7
 T_1 = 1.5
@@ -105,7 +106,7 @@ ax0.set_xlabel("$r$")
 ax0.set_xlim([0, 5])
 ax0.set_ylabel("$P(r)$")
 ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-ax0.set_title(f"Ergodic ($W=-0.1$, $L={L}$)")
+ax0.set_title(f"Ergodic ($W=-{W_1}$, $L={L}$)")
 
 # plot MBL
 ax1.yaxis.set_visible(False)
@@ -116,7 +117,7 @@ ax1.plot(r_vals, GOE, c='g', label='GOE')
 ax1.legend(loc='upper right')
 ax1.set_xlabel("$r$")
 ax1.set_xlim([0, 5])
-ax1.set_title(f"MBL ($W=8$, $L={L}$)")
+ax1.set_title(f"MBL ($W={W_2}$, $L={L}$)")
 
-plt.savefig("/home/bart/Documents/papers/MBF/Ponte_2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
+# plt.savefig("/home/bart/Documents/papers/MBF/Ponte2015/energy_spacing_statistics.png", bbox_inches='tight', dpi=300)
 plt.show()
