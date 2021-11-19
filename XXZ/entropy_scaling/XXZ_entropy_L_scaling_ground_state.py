@@ -18,8 +18,7 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 J_x_0 = 1
 J_z_0 = 0.2
 W_1, W_2 = 0.5, 8
-h_0 = 2
-L_list = [8, 10, 12, 14, 16, 18, 20, 22, 24]
+L_list = [8, 10, 12, 14, 16, 18]
 # iteration parameters
 numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
@@ -51,7 +50,7 @@ def realization(itr, W_val):
 
 
 fig = plt.figure(figsize=(10, 5))
-fig.suptitle(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^x_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$ and $J={J_z_0}$ (ground state)")
+fig.suptitle(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^z_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$ and $J={J_z_0}$ (ground state)")
 gs = gridspec.GridSpec(1, 2, hspace=0, wspace=0)
 ax0 = plt.subplot(gs[0])
 ax1 = plt.subplot(gs[1], sharey=ax0)

@@ -16,22 +16,25 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 # Hamiltonian parameters
 J_x_0 = 1
-J_z_0 = 1
+# J_z_0 = 0.2
+J_z_0_list = np.arange(0, 1.01, 0.1)
 W_1, W_2 = 0.5, 8
-L_list = [8, 10, 12, 14, 16, 18]
+h_0 = 2
+L = 8
 # iteration parameters
 numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
 
+print(len(J_z_0_list))
 
 # compute H
 def realization(itr, W_val):
 
     print(f"Iteration {itr + 1} of {numb_itr}")
 
-    S = []
+    E = np.zeros((len(J_z_0_list), 2**L))
 
-    for L in L_list:
+    for i, J_z_0 in enumerate(J_z_0_list):
 
         basis = spin_basis_1d(L)
 
@@ -43,46 +46,44 @@ def realization(itr, W_val):
         dynamic = []
         H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
 
-        E, psi = H.eigsh()
+        E[i] = H.eigvalsh()
 
-        E_mid = np.sort(E)[len(E)//2]
-        psi_mid = psi[:, np.argsort(E)[len(E)//2]]
-
-        S.append(basis.ent_entropy(psi_mid, sub_sys_A=range(basis.L//2))["Sent_A"])
-
-    return S
+    return E
 
 
 fig = plt.figure(figsize=(10, 5))
-fig.suptitle(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^z_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$ and $J={J_z_0}$ (mid state)")
+fig.suptitle(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^z_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$")
 gs = gridspec.GridSpec(1, 2, hspace=0, wspace=0)
 ax0 = plt.subplot(gs[0])
 ax1 = plt.subplot(gs[1], sharey=ax0)
 
 
 t_0 = time.time()
-S_av_1 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, W_1) for i in range(numb_itr)))
-S_av_2 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, W_2) for i in range(numb_itr)))
+E_1 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, W_1) for i in range(numb_itr)))
+E_2 = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, W_2) for i in range(numb_itr)))
 print(f"Total time (seconds): {int(time.time() - t_0)}")
 
-for itr in range(numb_itr):
-    ax0.plot(L_list, S_av_1[itr], '-', lw=0.1)
-ax0.plot(L_list, np.mean(S_av_1, axis=0), '.-', marker='x', c='k', lw=1)
-ax0.set_xlabel('$L$')
+# for itr in range(numb_itr):
+#     ax0.plot(L_list, S_av_1[itr], '-', lw=0.1)
+
+J_z_0_list_plotting = [val for val in J_z_0_list for _ in range(2**L)]
+
+ax0.plot(J_z_0_list_plotting, np.mean(E_1, axis=0).flatten(), '.', marker='_', c='k', lw=1)
+ax0.set_xlabel('$J$')
 ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-ax0.set_ylabel('$S$')
+ax0.set_ylabel('$E$')
 ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax0.set_title(f'Ergodic ($W={W_1}$, {numb_itr} disorders)')
 
 ax1.yaxis.set_visible(False)
-for itr in range(numb_itr):
-    ax1.plot(L_list, S_av_2[itr], '-', lw=0.1)
-ax1.plot(L_list, np.mean(S_av_2, axis=0), '.-', marker='x', c='k', lw=1)
-ax1.set_xlabel('$L$')
+# for itr in range(numb_itr):
+#     ax1.plot(L_list, S_av_2[itr], '-', lw=0.1)
+ax1.plot(J_z_0_list, np.mean(E_2, axis=0), '.', marker='_', c='k', lw=1)
+ax1.set_xlabel('$J$')
 ax1.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-ax1.set_ylabel('$S$')
+ax1.set_ylabel('$E$')
 ax1.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax1.set_title(f'MBL ($W={W_2}$, {numb_itr} disorders)')
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
+plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spectrum/XXZ_energy_spectrum.png", bbox_inches='tight', dpi=300)
 plt.show()

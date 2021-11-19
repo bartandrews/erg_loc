@@ -17,10 +17,9 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 # Hamiltonian parameters
 J_x_0 = 1
 J_z_0 = 0.2
-h_0 = 2
 W_list = np.arange(0.1, 8, 0.01)
 # iteration parameters
-numb_itr = 1000  # 20000 for L=8,10 or 1000 for L=12,14
+numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
 
 
@@ -51,9 +50,9 @@ def realization(itr, L_val):
 
 fig = plt.figure(figsize=(10, 5))
 ax0 = plt.subplot(111)
-ax0.set_title(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^x_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$ and $J={J_z_0}$ (ground state, {numb_itr} disorders)")
+ax0.set_title(f"$H=\sum_i \sigma^x_{{i}} \sigma^x_{{i+1}} +\sigma^y_i \sigma^y_{{i+1}} + J \sum_i \sigma^z_i \sigma^z_{{i+1}} + \sum_i h_i \sigma^z_i$ with $h_i\in[-W,W]$ and $J={J_z_0}$ (ground state, {numb_itr} disorders)")
 
-for L in [8, 10, 12]:
+for L in [8]:
     S_av = np.asarray(Parallel(n_jobs=numb_jobs)(delayed(realization)(i, L) for i in range(numb_itr)))
     # for itr in range(numb_itr):
     #     ax0.plot(W_list, S_av[itr], '-', lw=0.1)

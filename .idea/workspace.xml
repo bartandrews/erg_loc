@@ -2,30 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/XXZ_r_comparison.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ponte2015/entropy_scaling/Ponte2015_entropy_L_scaling_Hamiltonian.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ponte2015/entropy_scaling/Ponte2015_entropy_W_scaling_Hamiltonian.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_ground_state.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_mid_state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_hist.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_plot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/energy_spectrum/XXZ_energy_spectrum.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/entropy_arc/XXZ_entropy_arc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_ground_state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_mid_state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/floquet_eigenstate_structure/old/Ponte2015_A2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_A2_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/floquet_eigenstate_structure/Ponte2015_A2_comparison.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_L_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_L_scaling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_experiment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_mid_H0.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_mid_H0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_mid_H0_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/Ponte2015_QN_mid_H0_comparison.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_start_H0.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_H0.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_QN_start_V.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_V.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_r_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ponte2015/Ponte2015_r_comparison_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spin_model_A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/spin_model/floquet_eigenstate_structure/spin_model_A2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spin_model_QN.py" beforeDir="false" afterPath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spin_model_QN_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spin_model_QN_L_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN_L_scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_ground_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_ground_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_mid_state.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +42,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/XXZ/entropy_scaling" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/XXZ/entropy_spreading" />
     <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/XXZ/entropy_spreading" />
+      <recent name="$PROJECT_DIR$/XXZ/entropy_arc" />
+      <recent name="$PROJECT_DIR$/XXZ/energy_spacing_statistics" />
+      <recent name="$PROJECT_DIR$/XXZ/energy_spectrum" />
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
-      <recent name="$PROJECT_DIR$/XXZ" />
-      <recent name="$PROJECT_DIR$/Ponte_2015/entropy_scaling" />
-      <recent name="$PROJECT_DIR$/Ponte2015" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
@@ -74,74 +61,8 @@
       <recent name="$PROJECT_DIR$/Ponte2015/energy_absorbed/old" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.XXZ_entropy_W_scaling_mid_state">
-    <configuration name="Ponte2015_entropy_L_scaling_Hamiltonian" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="driven_systems" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Ponte_2015/entropy_scaling" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Ponte_2015/entropy_scaling/Ponte2015_entropy_L_scaling_Hamiltonian.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="XXZ_entropy_L_scaling_ground_state" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
-      <module name="driven_systems" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/XXZ/entropy_scaling" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="XXZ_entropy_L_scaling_mid_state" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
-      <module name="driven_systems" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/XXZ/entropy_scaling" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="XXZ_entropy_W_scaling_ground_state" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.XXZ_entropy_spreading_ground_state">
+    <configuration name="XXZ_entropy_W_scaling_ground_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="driven_systems" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -163,7 +84,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="XXZ_entropy_W_scaling_mid_state" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="XXZ_entropy_W_scaling_mid_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="driven_systems" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -185,20 +106,86 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="XXZ_entropy_arc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="driven_systems" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/XXZ/entropy_arc" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/XXZ/entropy_arc/XXZ_entropy_arc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="XXZ_entropy_spreading_ground_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="driven_systems" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/XXZ/entropy_spreading" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_ground_state.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="XXZ_entropy_spreading_mid_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="driven_systems" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/XXZ/entropy_spreading" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_mid_state.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.Ponte2015_entropy_L_scaling_Hamiltonian" />
-      <item itemvalue="Python.XXZ_entropy_L_scaling_ground_state" />
-      <item itemvalue="Python.XXZ_entropy_L_scaling_mid_state" />
       <item itemvalue="Python.XXZ_entropy_W_scaling_ground_state" />
       <item itemvalue="Python.XXZ_entropy_W_scaling_mid_state" />
+      <item itemvalue="Python.XXZ_entropy_arc" />
+      <item itemvalue="Python.XXZ_entropy_spreading_ground_state" />
+      <item itemvalue="Python.XXZ_entropy_spreading_mid_state" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.XXZ_entropy_spreading_ground_state" />
+        <item itemvalue="Python.XXZ_entropy_spreading_mid_state" />
+        <item itemvalue="Python.XXZ_entropy_arc" />
         <item itemvalue="Python.XXZ_entropy_W_scaling_mid_state" />
         <item itemvalue="Python.XXZ_entropy_W_scaling_ground_state" />
-        <item itemvalue="Python.XXZ_entropy_L_scaling_mid_state" />
-        <item itemvalue="Python.XXZ_entropy_L_scaling_ground_state" />
-        <item itemvalue="Python.Ponte2015_entropy_L_scaling_Hamiltonian" />
       </list>
     </recent_temporary>
   </component>
@@ -224,6 +211,7 @@
       <workItem from="1636675889932" duration="21965000" />
       <workItem from="1637004739141" duration="13444000" />
       <workItem from="1637103495303" duration="17744000" />
+      <workItem from="1637252753920" duration="20636000" />
     </task>
     <servers />
   </component>
@@ -245,17 +233,21 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_3_Parallel.coverage" NAME="Ponte2015_QN_L_scaling Coverage Results" MODIFIED="1635356464397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_A2.coverage" NAME="Ponte2015_A2 Coverage Results" MODIFIED="1635358586258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_energy_spacing_statistics_hist.coverage" NAME="XXZ_energy_spacing_statistics_hist Coverage Results" MODIFIED="1637275927852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/energy_spacing_statistics" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_energy_spacing_statistics.coverage" NAME="XXZ_energy_spacing_statistics Coverage Results" MODIFIED="1637265333505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0_comparison.coverage" NAME="Ponte2015_QN_mid_H0_comparison Coverage Results" MODIFIED="1636739053846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_A2_comparison.coverage" NAME="Ponte2015_A2_comparison Coverage Results" MODIFIED="1636742659795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
-    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_mid_state.coverage" NAME="XXZ_entropy_W_scaling_mid_state Coverage Results" MODIFIED="1637198510625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_mid_state.coverage" NAME="XXZ_entropy_W_scaling_mid_state Coverage Results" MODIFIED="1637277936019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_L_scaling.coverage" NAME="spin_model_L_scaling Coverage Results" MODIFIED="1635356414877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison.coverage" NAME="Ponte2015_r_comparison Coverage Results" MODIFIED="1637017666521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_energy_spectrum.coverage" NAME="XXZ_energy_spectrum Coverage Results" MODIFIED="1637259192221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/energy_spectrum" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model.coverage" NAME="spin_model Coverage Results" MODIFIED="1635353398752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$example1.coverage" NAME="example1 Coverage Results" MODIFIED="1634919636838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_Qinf.coverage" NAME="Ponte2015_Qinf Coverage Results" MODIFIED="1635207987208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$example2.coverage" NAME="example2 Coverage Results" MODIFIED="1634837013858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_r_comparison.coverage" NAME="XXZ_r_comparison Coverage Results" MODIFIED="1637104838358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_parallel_new__1_.coverage" NAME="Ponte2015_r_comparison_parallel_new (1) Coverage Results" MODIFIED="1637170108909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte_2015/energy_spacing_statistics" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_spreading_mid_state.coverage" NAME="XXZ_entropy_spreading_mid_state Coverage Results" MODIFIED="1637283631143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_spreading" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_QN_2.coverage" NAME="spin_model_QN_2 Coverage Results" MODIFIED="1635531141607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_new__1_.coverage" NAME="Ponte2015_r_comparison_new (1) Coverage Results" MODIFIED="1637168833714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte_2015/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_PR.coverage" NAME="Ponte2015_PR Coverage Results" MODIFIED="1635207989644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -264,6 +256,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0.coverage" NAME="Ponte2015_QN_mid_H0 Coverage Results" MODIFIED="1636736491546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$example0.coverage" NAME="example0 Coverage Results" MODIFIED="1634855393836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_S_comparison.coverage" NAME="Ponte2015_S_comparison Coverage Results" MODIFIED="1637110586081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_arc.coverage" NAME="XXZ_entropy_arc Coverage Results" MODIFIED="1637280415603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_arc" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_A2.coverage" NAME="spin_model_A2 Coverage Results" MODIFIED="1635371944735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_experiment.coverage" NAME="Ponte2015_QN_experiment Coverage Results" MODIFIED="1636677304549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling.coverage" NAME="XXZ_entropy_L_scaling_ground_state Coverage Results" MODIFIED="1637198390946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
@@ -273,11 +266,13 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_new.coverage" NAME="Ponte2015_r_comparison_new Coverage Results" MODIFIED="1637105932648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_start_H0.coverage" NAME="Ponte2015_QN_start_H0 Coverage Results" MODIFIED="1636564013425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_parallel_new.coverage" NAME="Ponte2015_r_comparison_parallel_new Coverage Results" MODIFIED="1637020935130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_spreading.coverage" NAME="XXZ_entropy_spreading_ground_state Coverage Results" MODIFIED="1637283698755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_spreading" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_ground_state.coverage" NAME="XXZ_entropy_L_scaling_ground_state Coverage Results" MODIFIED="1637253979747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2.coverage" NAME="Ponte2015_QN_Floquet_2 Coverage Results" MODIFIED="1635293288457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2_Parallel.coverage" NAME="Ponte2015_QN Coverage Results" MODIFIED="1635357229090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_mid_state.coverage" NAME="XXZ_entropy_L_scaling_mid_state Coverage Results" MODIFIED="1637198433898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_mid_state.coverage" NAME="XXZ_entropy_L_scaling_mid_state Coverage Results" MODIFIED="1637256162596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_2.coverage" NAME="Ponte2015_QN_start_V Coverage Results" MODIFIED="1636573194043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_QN.coverage" NAME="spin_model_QN Coverage Results" MODIFIED="1635521860097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_ground_state.coverage" NAME="XXZ_entropy_W_scaling_ground_state Coverage Results" MODIFIED="1637198473075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_ground_state.coverage" NAME="XXZ_entropy_W_scaling_ground_state Coverage Results" MODIFIED="1637277448991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
   </component>
 </project>
