@@ -18,9 +18,9 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 J_x_0 = 1
 J_z_0 = 1
 W_1, W_2 = 0.5, 8
-L_list = [8, 10, 12, 14, 16, 18]
+L_list = [8, 10, 12]
 # iteration parameters
-numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
+numb_itr = 10  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
 
 
@@ -43,7 +43,7 @@ def realization(itr, W_val):
         dynamic = []
         H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
 
-        E, psi = H.eigsh()
+        E, psi = H.eigh()
 
         E_mid = np.sort(E)[len(E)//2]
         psi_mid = psi[:, np.argsort(E)[len(E)//2]]
