@@ -1,7 +1,7 @@
 erg_loc
 =======
 
-A numerical toolbox to study the distinction between ergodic and localized phases in quantum many-body systems.
+A numerical toolbox to distinguish between ergodic and localized phases in quantum many-body systems.
 
 Prerequisites: Python 3.7.6+, QuSpin 0.3.6+
 
