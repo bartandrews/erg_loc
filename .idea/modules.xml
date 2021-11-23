@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/driven_systems.iml" filepath="$PROJECT_DIR$/.idea/driven_systems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/erg_loc.iml" filepath="$PROJECT_DIR$/.idea/erg_loc.iml" />
     </modules>
   </component>
 </project>
