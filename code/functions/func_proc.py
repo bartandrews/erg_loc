@@ -10,6 +10,14 @@ def file_name_stem(tool, model):
 def file_name_leaf(program, model, ham_params):
 
     L = f"L_{ham_params['L']}_"
+    if ham_params['Nup'] is not None:
+        Nup = f"Nup_{ham_params['Nup']}_"
+    else:
+        Nup = ""
+    if ham_params['pauli'] != 1:
+        pauli = f"pauli_{ham_params['pauli']}_"
+    else:
+        pauli = ""
     bc = f"{ham_params['bc']}bc_"
     if ham_params['dis'] == 1:
         dis = ""
@@ -19,7 +27,7 @@ def file_name_leaf(program, model, ham_params):
     W = f"W_{ham_params['W']:g}"
     ext = ".dat"
 
-    leaf = f"{L}{bc}{dis}{J}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{J}{W}{ext}{ham_params['tag']}"
 
     return leaf
 

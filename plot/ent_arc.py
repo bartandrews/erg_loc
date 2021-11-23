@@ -11,7 +11,7 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 def plot_ent_arc(_model, _params1, _params2=None, _save=False):
 
-    proj_root = '/home/bart/PycharmProjects/driven_systems'
+    proj_root = '/home/bart/PycharmProjects/erg_loc'
 
     ener_file1 = os.path.join(proj_root, 'data/ener_spec', _model, f"ener_spec_{_model}_{_params1}.dat")
     ent_file1 = os.path.join(proj_root, 'data/ent_spec', _model, f"ent_spec_{_model}_{_params1}.dat")
@@ -42,8 +42,8 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
         ax0.set_title(f"{_model}_{_params1}".replace('_', '\_'))
 
         if _save:
-            os.makedirs(os.path.join('figures/ent_arc', _model), exist_ok=True)
-            plt.savefig(os.path.join('figures/ent_arc', _model, f"ent_arc_{_model}_{_params1}.png"),
+            os.makedirs(os.path.join(proj_root, 'figures/ent_arc', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/ent_arc', _model, f"ent_arc_{_model}_{_params1}.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -60,7 +60,7 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
             E_2 = []
             for i, row in enumerate(plots):
                 E_2.append(float(row[0]))
-        with open(ent_file1, 'r') as csvfile:
+        with open(ent_file2, 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             S_2 = []
             for i, row in enumerate(plots):
@@ -85,16 +85,16 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
         ax1.set_title(f"{_model}_{_params2}".replace('_', '\_'))
 
         if _save:
-            os.makedirs(os.path.join('figures/ent_arc', _model), exist_ok=True)
-            plt.savefig(os.path.join('figures/ent_arc', _model, f"ent_arc_{_model}_{_params1}_comparison.png"),
-                        bbox_inches='tight', dpi=300)
+            os.makedirs(os.path.join(proj_root, 'figures/ent_arc', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/ent_arc', _model,
+                                     f"ent_arc_{_model}_{_params1}_comparison.png"), bbox_inches='tight', dpi=300)
         plt.show()
 
 
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    params1 = 'L_8_obc_J_1_1_1_W_0.5'
-    params2 = 'L_8_obc_J_1_1_1_W_8'
+    params1 = 'L_12_obc_J_1_1_1_W_0.5'
+    params2 = 'L_12_obc_J_1_1_1_W_8'
 
     plot_ent_arc(model, params1, params2, _save=True)

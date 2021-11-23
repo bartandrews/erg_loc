@@ -3,28 +3,10 @@ import numpy as np
 import time
 import sys
 from joblib import delayed, Parallel
-# --- QuSpin imports
-from quspin.operators import hamiltonian
-from quspin.basis import spin_basis_1d
 # --- driven_systems imports
+from models.heisenberg import heisenberg
 import functions.func_args as fa
 import functions.func_proc as fp
-
-
-def heisenberg_ham(_L, _J_x, _J_y, _J_z, _W):
-
-    basis = spin_basis_1d(_L)
-
-    J_x_term = [[_J_x, j, j+1] for j in range(_L-1)]
-    J_y_term = [[_J_y, j, j+1] for j in range(_L-1)]
-    J_z_term = [[_J_z, j, j+1] for j in range(_L-1)]
-    h_z_term = [[np.random.uniform(-_W, _W), j] for j in range(_L)]
-    static = [["xx", J_x_term], ["yy", J_y_term], ["zz", J_z_term], ["z", h_z_term]]
-    dynamic = []
-
-    _H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
-
-    return _H
 
 
 def my_inst_ham(path_flag, threads, model, _leaf_args):
@@ -40,9 +22,13 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
     ###################################################################################################################
 
-    def realization(itr, _leaf_args, entropy=False):
+    def realization(itr, _model, _leaf_args, entropy=False):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
-        H = heisenberg_ham(_leaf_args['L'], _leaf_args['J'][0], _leaf_args['J'][1], _leaf_args['J'][2], _leaf_args['W'])
+        if _model == "heisenberg":
+            H = heisenberg(_leaf_args['L'], _leaf_args['Nup'], _leaf_args['pauli'],
+                           _leaf_args['J'][0], _leaf_args['J'][1], _leaf_args['J'][2], _leaf_args['W'])
+        else:
+            raise ValueError("model not implemented in inst_ham")
         if entropy:
             _E, psi = H.eigh()
             _S = []
@@ -56,7 +42,7 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     ###################################################################################################################
 
     ent_flag = True if "ent_spec" in tools else False
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, leaf_args, entropy=ent_flag)
+    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, entropy=ent_flag)
                                                 for i in range(leaf_args['dis'])), dtype=object)
 
     #############

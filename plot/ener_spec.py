@@ -11,7 +11,9 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 def plot_ener_spec(_model, _file1, _file2=None, _save=False):
 
-    with open(os.path.join('data/ener_spec', _model, _file1), 'r') as csvfile:
+    proj_root = '/home/bart/PycharmProjects/erg_loc'
+
+    with open(os.path.join(proj_root, 'data/ener_spec', _model, _file1), 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter='\t')
         E_1 = []
         for i, row in enumerate(plots):
@@ -28,14 +30,14 @@ def plot_ener_spec(_model, _file1, _file2=None, _save=False):
         ax0.set_title(_file1.replace('ener_spec_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
-            os.makedirs(os.path.join('figures/ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join('figures/ener_spec', _model, _file1.replace(".dat", ".png")), bbox_inches='tight',
-                        dpi=300)
+            os.makedirs(os.path.join(proj_root, 'figures/ener_spec', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model, _file1.replace(".dat", ".png")),
+                        bbox_inches='tight', dpi=300)
         plt.show()
 
     else:
 
-        with open(os.path.join('data/ener_spec', _model, _file2), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/ener_spec', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             E_2 = []
             for i, row in enumerate(plots):
@@ -60,8 +62,8 @@ def plot_ener_spec(_model, _file1, _file2=None, _save=False):
         ax1.set_title(_file2.replace('ener_spec_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
-            os.makedirs(os.path.join('figures/ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join('figures/ener_spec', _model, _file1.replace(".dat", "_comparison.png")),
+            os.makedirs(os.path.join(proj_root, 'figures/ener_spec', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model, _file1.replace(".dat", "_comparison.png")),
                         bbox_inches='tight', dpi=300)
         plt.show()
 

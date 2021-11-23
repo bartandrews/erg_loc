@@ -21,6 +21,8 @@ def parse_input_arguments(program):
 
     # leaf sub-arguments (run specific)
     leaf.add_argument("-L", type=int, default=8, required=True, help="length of chain")
+    leaf.add_argument("-Nup", type=int, default=None, help="number of up spins")
+    leaf.add_argument("-pauli", type=int, default=1, choices=[0, 1, -1], help="type of spin operator")
     boundary_conditions = ["o", "p"]
     leaf.add_argument("-bc", type=str, default="o", choices=boundary_conditions, required=True,
                       help="boundary conditions")

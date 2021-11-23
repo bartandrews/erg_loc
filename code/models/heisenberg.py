@@ -1,28 +1,22 @@
+# --- python imports
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
-from matplotlib.ticker import FormatStrFormatter
-from matplotlib import ticker
-import time
-from joblib import delayed, Parallel
-
+# --- QuSpin imports
 from quspin.operators import hamiltonian
 from quspin.basis import spin_basis_1d
 
 
-class HeisenbergModel(hamiltonian):
+def heisenberg(L, Nup, pauli, J_x, J_y, J_z, W):
 
-    def __init__(self, params):
-        hamiltonian.__init__(self, params)
+    basis = spin_basis_1d(L, Nup=Nup, pauli=pauli)
 
-    def init_model(self, params):
+    J_x_term = [[J_x, i, i+1] for i in range(L-1)]
+    J_y_term = [[J_y, i, i+1] for i in range(L-1)]
+    J_z_term = [[J_z, i, i+1] for i in range(L-1)]
+    h_z_term = [[np.random.uniform(-W, W), i] for i in range(L)]
+    static = [["xx", J_x_term], ["yy", J_y_term], ["zz", J_z_term], ["z", h_z_term]]
+    dynamic = []
 
-        basis = spin_basis_1d(L)
+    H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False,
+                    check_pcon=False)
 
-        J_x = [[J_x_0, i, i + 1] for i in range(L - 1)]
-        J_y = [[J_x_0, i, i + 1] for i in range(L - 1)]
-        J_z = [[J_z_0, i, i + 1] for i in range(L - 1)]
-        h_z = [[np.random.uniform(-W_val, W_val), i] for i in range(L)]
-        static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z]]
-        dynamic = []
-        H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
+    return H

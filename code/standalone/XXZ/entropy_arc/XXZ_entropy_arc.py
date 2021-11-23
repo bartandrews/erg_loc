@@ -18,7 +18,7 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 J_x_0 = 1
 J_z_0 = 1
 W_1, W_2 = 0.5, 8
-L = 14
+L = 12
 
 
 # compute H
@@ -32,6 +32,7 @@ def realization(W_val):
     J_y = [[J_x_0, i, i+1] for i in range(L-1)]
     J_z = [[J_z_0, i, i+1] for i in range(L-1)]
     h_z = [[np.random.uniform(-W_val, W_val), i] for i in range(L)]
+    # h_z = [[8, i] for i in range(L)]
     static = [["xx", J_x], ["yy", J_y], ["zz", J_z], ["z", h_z]]
     dynamic = []
     H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
@@ -57,6 +58,10 @@ ax1 = plt.subplot(gs[1], sharey=ax0)
 t_0 = time.time()
 E_1, S_1 = realization(W_1)
 E_2, S_2 = realization(W_2)
+print(E_1)
+print(E_2)
+print(S_1)
+print(S_2)
 print(f"Total time (seconds): {int(time.time() - t_0)}")
 
 ax0.plot(E_1, S_1, '.', c='k', lw=1)
@@ -74,5 +79,5 @@ ax1.set_ylabel('$S$')
 ax1.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax1.set_title(f'MBL ($W={W_2}$)')
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/entropy_arc/XXZ_entropy_arc_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
+# plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/entropy_arc/XXZ_entropy_arc_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
 plt.show()
