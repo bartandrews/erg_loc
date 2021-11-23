@@ -24,4 +24,4 @@ The `plot` scripts:
 
 * **ener_spec** -- energy spectrum
 * **ent_arc** -- entanglement entropy arc
-* **ener_stat** -- energy_spacing_statistics
+* **ener_stat** -- energy spacing statistics
