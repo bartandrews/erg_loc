@@ -8,7 +8,7 @@ Prerequisites: Python 3.7.6+, QuSpin 0.3.6+
 Static Systems
 --------------
 
-The `programs` along with their corresponding `tools`:
+The ``programs`` along with their corresponding ``tools``:
 
 * **inst_ham** -- instantaneous Hamiltonian
 	* ener_spec -- energy spectrum
@@ -20,8 +20,22 @@ The `programs` along with their corresponding `tools`:
 	* ener_t_flow -- energy time evolution
 	* ent_t_flow -- entanglement entropy time evolution
 
-The `plot` scripts:
+The ``plot`` scripts:
 
 * **ener_spec** -- energy spectrum
+
+.. image:: figures/ener_spec/heisenberg/ener_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
 * **ent_arc** -- entanglement entropy arc
+
+.. image:: figures/ent_arc/heisenberg/ent_arc_heisenberg_L_8_obc_J_1_1_1_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
 * **ener_stat** -- energy spacing statistics
+
+.. image:: figures/ener_stat/heisenberg/ener_stat_heisenberg_L_8_obc_J_1_1_1_W_0.5_comparison.png
+	:align: center
+	:width: 80%
