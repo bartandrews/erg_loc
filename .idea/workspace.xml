@@ -2,9 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/models/Heisenberg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Heating_in_periodically_driven_spin_chains-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/Ponte2015_QN_mid_H0_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/Ponte2015_QN_mid_H0_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_L_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/old/Ponte2015_QN_L_scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/old/Ponte2015_QN_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_mid_H0.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/old/Ponte2015_QN_mid_H0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_H0.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_H0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_V.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_absorbed/old/Ponte2015_QN_start_V.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel_new.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_spacing_statistics/Ponte2015_r_comparison_parallel_new.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/energy_spacing_statistics/XXZ_r_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/energy_spacing_statistics/XXZ_r_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/entropy_scaling/Ponte2015_entropy_L_scaling_Hamiltonian.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/entropy_scaling/Ponte2015_entropy_L_scaling_Hamiltonian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/entropy_scaling/Ponte2015_entropy_W_scaling_Hamiltonian.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/entropy_scaling/Ponte2015_entropy_W_scaling_Hamiltonian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/floquet_eigenstate_structure/Ponte2015_A2_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/floquet_eigenstate_structure/Ponte2015_A2_comparison.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/floquet_eigenstate_structure/old/Ponte2015_A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/floquet_eigenstate_structure/old/Ponte2015_A2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_A2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_PR.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_PR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_QN_Floquet.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_QN_Floquet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_QN_Floquet_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_QN_Floquet_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_QN_old.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_QN_old.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ponte2015/old/Ponte2015_Qinf.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Ponte2015/old/Ponte2015_Qinf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/Heating_in_periodically_driven_spin_chains.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/Heating_in_periodically_driven_spin_chains.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example0.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example1.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example1_ETH.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example1_ETH.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example1_MBL.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example1_MBL.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QuSpin_examples/example2.py" beforeDir="false" afterPath="$PROJECT_DIR$/notes/QuSpin_examples/example2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_hist.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_hist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/energy_spectrum/XXZ_energy_spectrum.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/energy_spectrum/XXZ_energy_spectrum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_arc/XXZ_entropy_arc.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_arc/XXZ_entropy_arc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_scaling/XXZ_entropy_L_scaling_ground_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_scaling/XXZ_entropy_L_scaling_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_ground_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_scaling/XXZ_entropy_W_scaling_ground_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_W_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_scaling/XXZ_entropy_W_scaling_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_ground_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_spreading/XXZ_entropy_spreading_ground_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XXZ/entropy_spreading/XXZ_entropy_spreading_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/XXZ/entropy_spreading/XXZ_entropy_spreading_mid_state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/spin_model/energy_absorbed/spin_model_QN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/spin_model/energy_absorbed/spin_model_QN_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN_L_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/spin_model/energy_absorbed/spin_model_QN_L_scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spin_model/floquet_eigenstate_structure/spin_model_A2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/spin_model/floquet_eigenstate_structure/spin_model_A2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +66,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/spin_model/energy_absorbed/spin_model_QN.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/code/spin_model/energy_absorbed/spin_model_QN.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zn0Y3FRi22CNUdhpKwnZmitzRF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -46,11 +90,11 @@
       <recent name="$PROJECT_DIR$/XXZ/energy_spectrum" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/notes" />
+      <recent name="$PROJECT_DIR$/code" />
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
       <recent name="$PROJECT_DIR$/spin_model/energy_absorbed" />
       <recent name="$PROJECT_DIR$/spin_model/floquet_eigenstate_structure" />
-      <recent name="$PROJECT_DIR$/Ponte_2015/floquet_eigenstate_structure/old" />
-      <recent name="$PROJECT_DIR$/Ponte2015/energy_absorbed/old" />
     </key>
   </component>
   <component name="RunManager" selected="Python.XXZ_entropy_scaling_mid_state">
@@ -203,7 +247,8 @@
       <workItem from="1636675889932" duration="21965000" />
       <workItem from="1637004739141" duration="13444000" />
       <workItem from="1637103495303" duration="17744000" />
-      <workItem from="1637252753920" duration="32039000" />
+      <workItem from="1637252753920" duration="33326000" />
+      <workItem from="1637599242042" duration="2541000" />
     </task>
     <servers />
   </component>
@@ -229,7 +274,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_energy_spacing_statistics.coverage" NAME="XXZ_energy_spacing_statistics Coverage Results" MODIFIED="1637265333505" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0_comparison.coverage" NAME="Ponte2015_QN_mid_H0_comparison Coverage Results" MODIFIED="1636739053846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_A2_comparison.coverage" NAME="Ponte2015_A2_comparison Coverage Results" MODIFIED="1636742659795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
-    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_scaling_mid_state.coverage" NAME="XXZ_entropy_scaling_mid_state Coverage Results" MODIFIED="1637367881358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
+    <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_scaling_mid_state.coverage" NAME="XXZ_entropy_scaling_mid_state Coverage Results" MODIFIED="1637368914988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_mid_state.coverage" NAME="XXZ_entropy_W_scaling_mid_state Coverage Results" MODIFIED="1637277936019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_L_scaling.coverage" NAME="spin_model_L_scaling Coverage Results" MODIFIED="1635356414877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison.coverage" NAME="Ponte2015_r_comparison Coverage Results" MODIFIED="1637017666521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />

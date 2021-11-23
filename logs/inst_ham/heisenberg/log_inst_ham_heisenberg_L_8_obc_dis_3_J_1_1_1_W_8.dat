@@ -1,0 +1,6 @@
+Iteration 1 of 3
+Iteration 2 of 3
+Iteration 3 of 3
+/home/bart/miniconda3/lib/python3.7/site-packages/numpy/core/_asarray.py:102: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
+  return array(a, dtype, copy=False, order=order)
+Total time taken (seconds) =  0.28763341903686523

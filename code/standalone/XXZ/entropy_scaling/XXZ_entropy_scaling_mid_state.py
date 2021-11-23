@@ -19,7 +19,7 @@ J_z_0 = 1
 W_1, W_2 = 0.5, 8
 L_list = [8, 10, 12, 14]
 # iteration parameters
-numb_itr = 1000  # 20000 for L=8,10 or 1000 for L=12,14
+numb_itr = 20  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = 4  # number of spawned processes used for parallelization
 
 

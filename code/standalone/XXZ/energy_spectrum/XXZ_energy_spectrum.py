@@ -22,10 +22,8 @@ W_1, W_2 = 0.5, 8
 h_0 = 2
 L = 8
 # iteration parameters
-numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
+numb_itr = 1  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
-
-print(len(J_z_0_list))
 
 # compute H
 def realization(itr, W_val):
@@ -85,5 +83,5 @@ ax1.set_ylabel('$E$')
 ax1.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax1.set_title(f'MBL ($W={W_2}$, {numb_itr} disorders)')
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spectrum/XXZ_energy_spectrum.png", bbox_inches='tight', dpi=300)
+# plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spectrum/XXZ_energy_spectrum.png", bbox_inches='tight', dpi=300)
 plt.show()
