@@ -14,7 +14,7 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 # system parameters
-L = 14
+L = 8
 basis = spin_basis_1d(L, pauli=0, Nup=L//2)
 # Hamiltonian parameters
 J_x_0 = 1
@@ -83,5 +83,5 @@ ax1.set_xlabel("$r$")
 ax1.set_xlim([0, 5])
 ax1.set_title(f"MBL ($W={W_2}$, $L={L}$)")
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_hist_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
+# plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_hist_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
 plt.show()

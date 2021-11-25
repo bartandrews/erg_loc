@@ -28,7 +28,13 @@ def parse_input_arguments(program):
                       help="boundary conditions")
     leaf.add_argument("-dis", type=int, default=1, help="number of disorders")
     leaf.add_argument("-J", nargs=3, type=float, default=[1, 1, 1], help="coupling strength (heisenberg model)")
-    leaf.add_argument("-W", type=float, default=1, help="disorder strength")
+    if program == "W_flow":
+        leaf.add_argument("-W_min", type=float, default=0, required=True, help="minimum disorder strength")
+        leaf.add_argument("-W_max", type=float, default=10, required=True, help="maximum disorder strength")
+        leaf.add_argument("-W_samp", type=int, default=11, required=True,
+                            help="number of disorder strength samples")
+    else:
+        leaf.add_argument("-W", type=float, default=1, help="disorder strength")
     leaf.add_argument("-tag", type=str, default="", help="tag to append to filename")
 
     args = vars(parser.parse_args())

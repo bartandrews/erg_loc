@@ -14,15 +14,15 @@ def plot_ener_stat(_model, _file1, _file2=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
-    with open(os.path.join(proj_root, 'data/ener_spec', _model, _file1), 'r') as csvfile:
+    with open(os.path.join(proj_root, 'data/ener_spac', _model, _file1), 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter='\t')
-        E_1 = []
+        E_spac_1 = []
         for i, row in enumerate(plots):
-            E_1.append(float(row[0]))
+            E_spac_1.append(float(row[0]))
 
     r_1 = []
-    for i in range(1, len(E_1) - 1):
-        r_1.append((E_1[i + 1] - E_1[i]) / (E_1[i] - E_1[i - 1]))
+    for i in range(1, len(E_spac_1)):
+        r_1.append(E_spac_1[i]/E_spac_1[i-1])
 
     if _file2 is None:
 
@@ -39,26 +39,26 @@ def plot_ener_stat(_model, _file1, _file2=None, _save=False):
         ax0.set_xlim([0, 5])
         ax0.set_ylabel("$P(r)$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_title(_file1.replace('ener_spec_', '').replace('_', '\_').replace('.dat', ''))
+        ax0.set_title(_file1.replace('ener_spac_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ener_stat', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/ener_stat', _model,
-                                     _file1.replace('spec', 'stat').replace(".dat", ".png")),
+                                     _file1.replace('spac', 'stat').replace(".dat", ".png")),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
     else:
 
-        with open(os.path.join(proj_root, 'data/ener_spec', _model, _file2), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/ener_spac', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
-            E_2 = []
+            E_spac_2 = []
             for i, row in enumerate(plots):
-                E_2.append(float(row[0]))
+                E_spac_2.append(float(row[0]))
 
         r_2 = []
-        for i in range(1, len(E_2) - 1):
-            r_2.append((E_2[i+1]-E_2[i])/(E_2[i]-E_2[i-1]))
+        for i in range(1, len(E_spac_2)):
+            r_2.append(E_spac_2[i]/E_spac_2[i-1])
 
         plt.figure(figsize=(10, 5))
         gs = gridspec.GridSpec(1, 2, hspace=0, wspace=0.1)
@@ -76,7 +76,7 @@ def plot_ener_stat(_model, _file1, _file2=None, _save=False):
         ax0.set_xlim([0, 5])
         ax0.set_ylabel("$P(r)$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_title(_file1.replace('ener_spec_', '').replace('_', '\_').replace('.dat', ''))
+        ax0.set_title(_file1.replace('ener_spac_', '').replace('_', '\_').replace('.dat', ''))
 
         ax1.yaxis.set_visible(False)
         ax1.hist(r_2, bins=np.arange(0, 5.1, 0.1), density=True)
@@ -85,12 +85,12 @@ def plot_ener_stat(_model, _file1, _file2=None, _save=False):
         ax1.legend(loc='upper right')
         ax1.set_xlabel("$r$")
         ax1.set_xlim([0, 5])
-        ax1.set_title(_file2.replace('ener_spec_', '').replace('_', '\_').replace('.dat', ''))
+        ax1.set_title(_file2.replace('ener_spac_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ener_stat', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/ener_stat', _model,
-                                     _file1.replace('spec', 'stat').replace(".dat", "_comparison.png")),
+                                     _file1.replace('spac', 'stat').replace(".dat", "_comparison.png")),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -98,7 +98,7 @@ def plot_ener_stat(_model, _file1, _file2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'ener_spec_heisenberg_L_14_Nup_7_pauli_0_obc_J_1_1_1_W_0.5.dat'
-    file2 = 'ener_spec_heisenberg_L_14_Nup_7_pauli_0_obc_J_1_1_1_W_8.dat'
+    file1 = 'ener_spac_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5.dat'
+    file2 = 'ener_spac_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_8.dat'
 
     plot_ener_stat(model, file1, file2, _save=True)

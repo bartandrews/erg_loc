@@ -1,6 +1,6 @@
+# --- python imports
 import sys
 import os
-import ctypes
 
 
 def file_name_stem(tool, model):
@@ -22,9 +22,14 @@ def file_name_leaf(program, model, ham_params):
     if ham_params['dis'] == 1:
         dis = ""
     else:
-        dis = f"dis_{ham_params['dis']}_"
+        dis = f"dis_{ham_params['dis']:g}_"
     J = f"J_{ham_params['J'][0]:g}_{ham_params['J'][1]:g}_{ham_params['J'][2]:g}_"
-    W = f"W_{ham_params['W']:g}"
+
+    if program == "W_flow":
+        W = f"W_{ham_params['W_min']:g}_{ham_params['W_max']:g}_{ham_params['W_samp']}"
+    else:
+        W = f"W_{ham_params['W']:g}"
+
     ext = ".dat"
 
     leaf = f"{L}{Nup}{pauli}{bc}{dis}{J}{W}{ext}{ham_params['tag']}"

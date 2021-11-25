@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/code/functions/func_ham.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/functions/func_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_args.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/functions/func_proc.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_proc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/inst_ham.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/inst_ham.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/models/heisenberg.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/heisenberg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/standalone/XXZ/entropy_arc/XXZ_entropy_arc.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/standalone/XXZ/entropy_arc/XXZ_entropy_arc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ener_spec.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ener_spec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ener_stat.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ener_stat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ent_arc.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_arc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ener_spec/heisenberg/ener_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/ener_spec/heisenberg/ener_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ent_spec/heisenberg/ent_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/ent_spec/heisenberg/ent_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/inst_ham/heisenberg/log_inst_ham_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" beforeDir="false" afterPath="$PROJECT_DIR$/logs/inst_ham/heisenberg/log_inst_ham_heisenberg_L_8_obc_J_1_1_1_W_0.5.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +129,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -211,7 +208,7 @@
       <workItem from="1637599242042" duration="2541000" />
       <workItem from="1637691857034" duration="1375000" />
       <workItem from="1637693628401" duration="1874000" />
-      <workItem from="1637695515043" duration="4919000" />
+      <workItem from="1637695515043" duration="6053000" />
     </task>
     <servers />
   </component>

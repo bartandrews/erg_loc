@@ -21,7 +21,7 @@ J_x_0 = 1
 J_z_0 = 1
 W_list = np.arange(0.5, 12.5, 0.5)
 # iteration parameters
-numb_itr = 10000  # 20000 for L=8,10 or 1000 for L=12,14
+numb_itr = 100  # 20000 for L=8,10 or 1000 for L=12,14
 numb_jobs = -1  # number of spawned processes used for parallelization
 
 
@@ -48,7 +48,6 @@ def realization(itr):
             delta_n = E[i]-E[i-1]
             delta_n_plus_1 = E[i+1]-E[i]
             r.append(min(delta_n, delta_n_plus_1)/max(delta_n, delta_n_plus_1))
-
         r_av.append(np.mean(r))
 
     return r_av
@@ -73,5 +72,5 @@ ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax0.set_ylabel("$[r^{(n)}_\\alpha]$")
 ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_plot_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
+# plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/energy_spacing_statistics/XXZ_energy_spacing_statistics_plot_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
 plt.show()
