@@ -20,13 +20,27 @@ def parse_input_arguments(program):
                       help="name of model")
 
     # leaf sub-arguments (run specific)
-    leaf.add_argument("-L", type=int, default=8, required=True, help="length of chain")
+
+    if program == "L_flow":
+        leaf.add_argument("-L_min", type=int, default=8, required=True, help="minimum chain length")
+        leaf.add_argument("-L_max", type=int, default=12, required=True, help="maximum chain length")
+        leaf.add_argument("-L_samp", type=int, default=3, required=True,
+                            help="number of chain length samples")
+    else:
+        leaf.add_argument("-L", type=int, default=8, required=True, help="length of chain")
+
     leaf.add_argument("-Nup", type=int, default=None, help="number of up spins")
     leaf.add_argument("-pauli", type=int, default=1, choices=[0, 1, -1], help="type of spin operator")
     boundary_conditions = ["o", "p"]
     leaf.add_argument("-bc", type=str, default="o", choices=boundary_conditions, required=True,
                       help="boundary conditions")
     leaf.add_argument("-dis", type=int, default=1, help="number of disorders")
+
+    if program == "t_flow":
+        leaf.add_argument("-t_min", type=float, default=0, required=True, help="start time")
+        leaf.add_argument("-t_max", type=float, default=10, required=True, help="end time")
+        leaf.add_argument("-t_samp", type=int, default=11, required=True, help="number of time samples")
+
     leaf.add_argument("-J", nargs=3, type=float, default=[1, 1, 1], help="coupling strength (heisenberg model)")
     if program == "W_flow":
         leaf.add_argument("-W_min", type=float, default=0, required=True, help="minimum disorder strength")

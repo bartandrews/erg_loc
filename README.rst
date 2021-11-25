@@ -18,9 +18,11 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
+* **L_flow** -- length evolution
+	* ener_L_flow -- disorder-averaged energy spectrum against length
+	* ent_L_flow -- disorder-averaged entanglement entropy spectrum against length
 * **t_flow** -- time evolution
-	* ener_t_flow -- disorder-averaged energy spectrum against time
-	* ent_t_flow -- disorder-averaged entanglement entropy spectrum against time
+	* ent_t_flow -- disorder-averaged entanglement entropy of given state against time
 
 The ``plot`` scripts:
 
@@ -42,13 +44,29 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **ener_stat_W_flow** -- energy spacing statistics disorder evolution
+* **ener_stat_W_flow** -- energy spacing statistics disorder evolution (cf. Fig.3 of [Pal2010])
 
 .. image:: figures/ener_stat_W_flow/heisenberg/ener_stat_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
 	:width: 80%
 
 * **ent_W_flow** -- entanglement entropy disorder evolution
+
+.. image:: figures/ent_W_flow/heisenberg/ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
+	:align: center
+	:width: 80%
+
+* **ent_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of [Luitz2015])
+
+.. image:: figures/ent_L_flow/heisenberg/ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_0_comparison.png
+	:align: center
+	:width: 80%
+
+* **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of [Nanduri2014])
+
+.. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_8_obc_t_10_1000_3_J_1_1_1_W_3.png
+	:align: center
+	:width: 80%
 
 Driven Systems
 --------------
@@ -65,8 +83,16 @@ Cluster Usage
 
 Programs to install:
 
-* (htop)[https://htop.dev/]
-* (parallel)[https://www.gnu.org/software/parallel/]
+* `htop <https://htop.dev/>`__
+* `parallel <https://www.gnu.org/software/parallel/>`__
 
 Modules to load:
 
+References
+----------
+
+[Pal2010] "Many-body localization phase transition" by Arijeet Pal and David Huse, PRB **82**, 174411 (2010).
+
+[Luitz2015] "Many-body localization edge in the random-field Heisenberg chain", by David Luitz, Nicolas Laflorencie, and Fabien Alet, PRB **91**, 081103(R) (2015).
+
+[Nanduri2014] "Entanglement spreading in a many-body localized system", by Arun Nanduri, Hyungwon Kim, and David Huse, PRB **90**, 064201 (2014).

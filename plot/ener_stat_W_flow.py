@@ -23,15 +23,15 @@ def plot_ener_stat_W_flow(_model, _file, _save=False):
     plt.figure(figsize=(10, 5))
     ax0 = plt.subplot(111)
     ax0.plot(W, r, '.-')
-    ax0.plot([min(W), max(W)], [0.53, 0.53], label="GOE")
-    ax0.plot([min(W), max(W)], [0.39, 0.39], label="Poisson")
+    ax0.plot([min(W), max(W)], [0.53, 0.53], label="GOE", c='g')
+    ax0.plot([min(W), max(W)], [0.39, 0.39], label="Poisson", c='r')
     ax0.legend()
     ax0.set_xlabel("$W$")
     ax0.set_xscale('log', basex=2)
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
     ax0.set_ylabel("$[r^{(n)}_\\alpha]$")
     ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-    ax0.set_title(_file.replace('ener_W_flow_', '').replace('_', '\_').replace('.dat', ''))
+    ax0.set_title(_file.replace('r_W_flow_', '').replace('_', '\_').replace('.dat', ''))
 
     if _save:
         os.makedirs(os.path.join(proj_root, 'figures/ener_stat_W_flow', _model), exist_ok=True)

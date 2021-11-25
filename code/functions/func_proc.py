@@ -9,7 +9,11 @@ def file_name_stem(tool, model):
 
 def file_name_leaf(program, model, ham_params):
 
-    L = f"L_{ham_params['L']}_"
+    if program == "L_flow":
+        L = f"L_{ham_params['L_min']:g}_{ham_params['L_max']:g}_{ham_params['L_samp']}_"
+    else:
+        L = f"L_{ham_params['L']:g}_"
+
     if ham_params['Nup'] is not None:
         Nup = f"Nup_{ham_params['Nup']}_"
     else:
@@ -23,6 +27,12 @@ def file_name_leaf(program, model, ham_params):
         dis = ""
     else:
         dis = f"dis_{ham_params['dis']:g}_"
+
+    if program == "t_flow":
+        t = f"t_{ham_params['t_min']:g}_{ham_params['t_max']:g}_{ham_params['t_samp']}_"
+    else:
+        t = ""
+
     J = f"J_{ham_params['J'][0]:g}_{ham_params['J'][1]:g}_{ham_params['J'][2]:g}_"
 
     if program == "W_flow":
@@ -32,7 +42,7 @@ def file_name_leaf(program, model, ham_params):
 
     ext = ".dat"
 
-    leaf = f"{L}{Nup}{pauli}{bc}{dis}{J}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{W}{ext}{ham_params['tag']}"
 
     return leaf
 
