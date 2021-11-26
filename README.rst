@@ -73,20 +73,48 @@ Driven Systems
 
 Coming soon...
 
+Hoffman2 Cluster
+----------------
+
+`Hoffman2 <https://schuang.github.io/hcat/index.html>`__ uses the Univa Grid Engine batch-queueing system on CentOS (Fedora/RHEL).
+
+Programs to install:
+
+* `htop <https://htop.dev/>`__ -- allows you to view memory and CPU usage
+* `parallel <https://www.gnu.org/software/parallel/>`__ -- allows you to conveniently parallelize jobs
+
+Edits to ``~/.bash_profile``:
+
+* ``export PATH=$PATH:$HOME/local/bin`` to access personal programs
+* ``export PYTHONUNBUFFERED='True'`` to view granular output of running python jobs
+
+Modules to load:
+
+* anaconda3 (currently python 3.8.5)
+
+Useful commands:
+
+* ``module list`` -- list currently loaded modules
+* ``module avail`` -- list available modules to load
+* ``module load`` / ``module unload`` -- add or remove modules
+
+* ``mygroup`` -- view accessible private resources
+* ``myquota`` -- view my quota for home and scratch
+
+* ``qhost`` -- view all cluster nodes
+* ``qstat -U baandr12`` -- view all jobs running on the parts of cluster where I have access
+* ``qstat -u baandr12`` -- view the status of my running jobs
+* ``qstat -q bhaumik_pod.q`` -- status of bhaumik queue
+* ``qstat -j 627506`` -- print the information for a particular job
+
+Private resources:
+
+* ``bhaumik`` resource group currently has 8 nodes, each with 32 cores and 512GB RAM
+
 Example Command
 ---------------
 
 ``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 0.5``
-
-Cluster Usage
--------------
-
-Programs to install:
-
-* `htop <https://htop.dev/>`__
-* `parallel <https://www.gnu.org/software/parallel/>`__
-
-Modules to load:
 
 References
 ----------

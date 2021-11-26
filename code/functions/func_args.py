@@ -24,8 +24,7 @@ def parse_input_arguments(program):
     if program == "L_flow":
         leaf.add_argument("-L_min", type=int, default=8, required=True, help="minimum chain length")
         leaf.add_argument("-L_max", type=int, default=12, required=True, help="maximum chain length")
-        leaf.add_argument("-L_samp", type=int, default=3, required=True,
-                            help="number of chain length samples")
+        leaf.add_argument("-L_samp", type=int, default=3, required=True, help="number of chain length samples")
     else:
         leaf.add_argument("-L", type=int, default=8, required=True, help="length of chain")
 
@@ -45,8 +44,7 @@ def parse_input_arguments(program):
     if program == "W_flow":
         leaf.add_argument("-W_min", type=float, default=0, required=True, help="minimum disorder strength")
         leaf.add_argument("-W_max", type=float, default=10, required=True, help="maximum disorder strength")
-        leaf.add_argument("-W_samp", type=int, default=11, required=True,
-                            help="number of disorder strength samples")
+        leaf.add_argument("-W_samp", type=int, default=11, required=True, help="number of disorder strength samples")
     else:
         leaf.add_argument("-W", type=float, default=1, help="disorder strength")
     leaf.add_argument("-tag", type=str, default="", help="tag to append to filename")
