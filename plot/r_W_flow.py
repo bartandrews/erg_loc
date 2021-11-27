@@ -1,7 +1,6 @@
 # --- python imports
 import matplotlib.pyplot as plt
 import csv
-import numpy as np
 from matplotlib.ticker import FormatStrFormatter
 import os
 
@@ -34,9 +33,9 @@ def plot_ener_stat_W_flow(_model, _file, _save=False):
     ax0.set_title(_file.replace('r_W_flow_', '').replace('_', '\_').replace('.dat', ''))
 
     if _save:
-        os.makedirs(os.path.join(proj_root, 'figures/ener_stat_W_flow', _model), exist_ok=True)
-        plt.savefig(os.path.join(proj_root, 'figures/ener_stat_W_flow', _model,
-                                 _file.replace('r_W_flow', 'ener_stat_W_flow').replace(".dat", ".png")),
+        os.makedirs(os.path.join(proj_root, 'figures/r_W_flow', _model), exist_ok=True)
+        plt.savefig(os.path.join(proj_root, 'figures/r_W_flow', _model,
+                                 _file.replace(".dat", ".png")),
                     bbox_inches='tight', dpi=300)
     plt.show()
 
@@ -44,6 +43,6 @@ def plot_ener_stat_W_flow(_model, _file, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file = 'r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.dat'
+    file = 'r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_11000_J_1_1_1_W_0.5_12.5_24.dat'
 
-    plot_ener_stat_W_flow(model, file, _save=True)
+    plot_ener_stat_W_flow(model, file, _save=False)

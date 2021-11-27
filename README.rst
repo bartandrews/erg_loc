@@ -44,9 +44,9 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **ener_stat_W_flow** -- energy spacing statistics disorder evolution (cf. Fig.3 of [Pal2010])
+* **r_W_flow** -- first moment of the energy spacings disorder evolution (cf. Fig.3 of [Pal2010])
 
-.. image:: figures/ener_stat_W_flow/heisenberg/ener_stat_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
+.. image:: figures/r_W_flow/heisenberg/r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
 	:width: 80%
 
@@ -79,20 +79,42 @@ Hoffman2 Cluster
 `Hoffman2 <https://schuang.github.io/hcat/index.html>`__ uses the Univa Grid Engine batch-queueing system on CentOS (Fedora/RHEL).
 
 Programs to install:
+^^^^^^^^^^^^^^^^^^^^
 
 * `htop <https://htop.dev/>`__ -- allows you to view memory and CPU usage
 * `parallel <https://www.gnu.org/software/parallel/>`__ -- allows you to conveniently parallelize jobs
 
 Edits to ``~/.bash_profile``:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* ``export PATH=$PATH:$HOME/local/bin`` to access personal programs
-* ``export PYTHONUNBUFFERED='True'`` to view granular output of running python jobs
+* ``export PATH=$PATH:$HOME/local/bin`` to access personal programs (installed above)
+* ``export PYTHONUNBUFFERED='True'`` to view output of running python jobs in real time
 
 Modules to load:
+^^^^^^^^^^^^^^^^
 
-* anaconda3 (currently python 3.8.5)
+* ``source /u/local/Modules/default/init/modules.sh``
+* ``module load anaconda3``
+* ``source /u/local/apps/anaconda3/2020.11/etc/profile.d/conda.sh``
+* ``conda activate bart``
+
+...where the anaconda path is found via...
+
+* ``conda info | grep -i 'base environment'``
+
+Alternatively, you can set up a conda environment in your home directory:
+
+* ``conda init bash``
+* ``conda env create --name bart --file=environment.yml``
+* ``conda activate bart``
+
+...then, once everything is set-up, you can simply source your bash configuration in the submission script instead:
+
+* ``source /u/home/b/baandr12/.bash_profile``
+* ``source /u/home/b/baandr12/.bashrc``
 
 Useful commands:
+^^^^^^^^^^^^^^^^
 
 * ``module list`` -- list currently loaded modules
 * ``module avail`` -- list available modules to load
@@ -106,10 +128,16 @@ Useful commands:
 * ``qstat -u baandr12`` -- view the status of my running jobs
 * ``qstat -q bhaumik_pod.q`` -- status of bhaumik queue
 * ``qstat -j 627506`` -- print the information for a particular job
+* ``qsub srun.sh`` -- submit a script
+* ``qdel 660385`` -- delete a job
 
 Private resources:
+^^^^^^^^^^^^^^^^^^
 
-* ``bhaumik`` resource group currently has 8 nodes, each with 32 cores and 512GB RAM
+``bhaumik`` resource group currently has 8 intel-E5-2697 nodes, each with 32 cores and 512GB RAM
+
+* ``qstat -q *.q@n{6..7}06{1..4}`` -- view all running jobs on bhaumik nodes (fast)
+* ``qstat -f | sed -n -e '/q@n[6-7]06[1-4]/,/---/ p'`` -- view the full status of all bhaumik nodes (slow)
 
 Example Command
 ---------------

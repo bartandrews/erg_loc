@@ -1,10 +1,16 @@
 #!/bin/bash
-#$ -l h_rt=01:00:00
-#$ -l h_vmem=32G
+#$ -l h_rt=3:00:00:00
+#$ -l h_data=16G
+#$ -l h_vmem=512G
 #$ -cwd
 #$ -o stdout.$JOB_ID
 #$ -j y
-#$ -pe shared 16
+#$ -pe shared 32
 #$ -l highp
 
-python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 11000 -W_min 0.5 -W_max 12.5 -W_samp 24
+source /u/home/b/baandr12/.bash_profile
+source /u/home/b/baandr12/.bashrc
+
+python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 0;
+python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 2.5;
+python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 5
