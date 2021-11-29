@@ -40,7 +40,7 @@ def entropy_calculator(_proj_root, _model, _file):
     return L_list, S_ground, S_mid, S_max
 
 
-def plot_ener_stat_W_flow(_model, _file1, _file2=None, _file3=None, _save=False):
+def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     file2 = 'ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_2.5.dat'
     file3 = 'ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_5.dat'
 
-    plot_ener_stat_W_flow(model, file1, file2, file3, _save=True)
+    plot_ent_L_flow(model, file1, file2, file3, _save=True)

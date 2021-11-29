@@ -8,7 +8,7 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 
-def plot_ener_stat_W_flow(_model, _file, _save=False):
+def plot_r_W_flow(_model, _file, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     model = 'heisenberg'
     file = 'r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_11000_J_1_1_1_W_0.5_12.5_24.dat'
 
-    plot_ener_stat_W_flow(model, file, _save=False)
+    plot_r_W_flow(model, file, _save=False)
