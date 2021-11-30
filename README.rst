@@ -44,7 +44,7 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **r_W_flow** -- first moment of the energy spacings disorder evolution (cf. Fig.3 of [Pal2010])
+* **r_W_flow** -- first moment of the energy spacings disorder evolution (cf. Fig.3 of `[Pal2010] <https://arxiv.org/pdf/1010.1992.pdf>`__)
 
 .. image:: figures/r_W_flow/heisenberg/r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
@@ -56,13 +56,13 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **ent_mid_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of [Luitz2015])
+* **ent_mid_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
 
 .. image:: figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_8_16_5_Nup_4_8_5_pauli_0_obc_dis_100_J_1_1_1_W_0_comparison.png
 	:align: center
 	:width: 80%
 
-* **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of [Nanduri2014])
+* **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__)
 
 .. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_8_obc_t_10_1000_3_J_1_1_1_W_3.png
 	:align: center
