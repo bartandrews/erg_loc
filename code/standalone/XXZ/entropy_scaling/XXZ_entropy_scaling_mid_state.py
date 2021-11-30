@@ -17,10 +17,10 @@ plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 J_x_0 = 1
 J_z_0 = 1
 W_1, W_2 = 0.5, 8
-L_list = [8, 10, 12, 14]
+L_list = [8, 10, 12, 14, 16]
 # iteration parameters
-numb_itr = 20  # 20000 for L=8,10 or 1000 for L=12,14
-numb_jobs = 4  # number of spawned processes used for parallelization
+numb_itr = 10  # 20000 for L=8,10 or 1000 for L=12,14
+numb_jobs = -1  # number of spawned processes used for parallelization
 
 
 # compute H
@@ -35,7 +35,7 @@ def realization(itr, W_val):
         print(f"L = {L} of {max(L_list)}")
         t_0 = time.time()
 
-        basis = spin_basis_1d(L)
+        basis = spin_basis_1d(L, Nup=L//2, pauli=0)
 
         J_x = [[J_x_0, i, i+1] for i in range(L-1)]
         J_y = [[J_x_0, i, i+1] for i in range(L-1)]
@@ -45,8 +45,9 @@ def realization(itr, W_val):
         dynamic = []
         H = hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False)
 
-        E = H.eigvalsh()
-        E_mid, psi_mid = H.eigsh(k=1, sigma=E[2**L//2], maxiter=1E4)
+        # E = H.eigvalsh()
+        # E_mid, psi_mid = H.eigsh(k=1, sigma=E[2**L//2], maxiter=1E4)
+        E_mid, psi_mid = H.eigsh(k=1, sigma=0.5, maxiter=1E4)
 
         # E, psi = H.eigh()
         # E_mid = np.sort(E)[len(E)//2]
@@ -76,5 +77,5 @@ ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
 ax0.set_yscale('log')
 ax0.legend(title="$W$", ncol=6)
 
-plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
+# plt.savefig(f"/home/bart/Documents/papers/MBF/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state_J_{J_z_0}.png", bbox_inches='tight', dpi=300)
 plt.show()

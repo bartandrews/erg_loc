@@ -14,15 +14,15 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener -- disorder-averaged energy spectrum
 	* ener_spac -- disorder-concatenated energy spacings
 	* ent -- disorder-averaged entanglement entropy spectrum
+	* ent_mid -- disorder-averaged entanglement entropy for a mid state only
 * **W_flow** -- disorder evolution
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
 * **L_flow** -- length evolution
-	* ener_L_flow -- disorder-averaged energy spectrum against length
-	* ent_L_flow -- disorder-averaged entanglement entropy spectrum against length
+	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
-	* ent_t_flow -- disorder-averaged entanglement entropy of given state against time
+	* ent_t_flow -- disorder-averaged entanglement entropy of a given state against time
 
 The ``plot`` scripts:
 
@@ -56,9 +56,9 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **ent_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of [Luitz2015])
+* **ent_mid_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of [Luitz2015])
 
-.. image:: figures/ent_L_flow/heisenberg/ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_0_comparison.png
+.. image:: figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_8_16_5_Nup_4_8_5_pauli_0_obc_dis_100_J_1_1_1_W_0_comparison.png
 	:align: center
 	:width: 80%
 
@@ -143,14 +143,14 @@ Example Commands
 ----------------
 
 * ``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 0.5``
-* ``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -Pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 25 -W_samp 24``
+* ``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 25 -W_samp 24``
 * ``python code/L_flow.py -mod heisenberg -L_min 8 -L_max 12 -L_samp 3 -bc o -dis 10 -W 0``
 * ``python code/t_flow.py -mod heisenberg -thr 1 -L 8 -t_min 10 -t_max 1000 -t_samp 3 -dis 1 -bc o -W 3``
 
 References
 ----------
 
-`[Pal2010] <https://arxiv.org/pdf/1010.1992.pdf>`__ "Many-body localization phase transition" by Arijeet Pal and David Huse, PRB **82**, 174411 (2010).
+`[Pal2010] <https://arxiv.org/pdf/1010.1992.pdf>`__ "Many-body localization phase transition", by Arijeet Pal and David Huse, PRB **82**, 174411 (2010).
 
 `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__ "Many-body localization edge in the random-field Heisenberg chain", by David Luitz, Nicolas Laflorencie, and Fabien Alet, PRB **91**, 081103(R) (2015).
 

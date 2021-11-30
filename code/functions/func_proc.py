@@ -11,13 +11,11 @@ def file_name_leaf(program, model, ham_params):
 
     if program == "L_flow":
         L = f"L_{ham_params['L_min']:g}_{ham_params['L_max']:g}_{ham_params['L_samp']}_"
+        Nup = f"Nup_{ham_params['Nup_min']}_{ham_params['Nup_max']}_{ham_params['L_samp']}_" if ham_params['Nup_min'] is not None else ""
     else:
         L = f"L_{ham_params['L']:g}_"
+        Nup = f"Nup_{ham_params['Nup']}_" if ham_params['Nup'] is not None else ""
 
-    if ham_params['Nup'] is not None:
-        Nup = f"Nup_{ham_params['Nup']}_"
-    else:
-        Nup = ""
     if ham_params['pauli'] != 1:
         pauli = f"pauli_{ham_params['pauli']}_"
     else:

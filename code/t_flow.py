@@ -9,7 +9,7 @@ import functions.func_args as fa
 import functions.func_proc as fp
 
 
-def my_W_flow(path_flag, threads, model, _leaf_args):
+def my_t_flow(path_flag, threads, model, _leaf_args):
 
     path = "/data/baandr" if path_flag else ""  # specify the custom path
     t0 = perf_counter()  # start the timer
@@ -64,4 +64,4 @@ if __name__ == "__main__":
 
     prog_args, stem_args, leaf_args = fa.parse_input_arguments('t_flow')
 
-    my_W_flow(prog_args['path'], prog_args['threads'], stem_args['model'], leaf_args)
+    my_t_flow(prog_args['path'], prog_args['threads'], stem_args['model'], leaf_args)

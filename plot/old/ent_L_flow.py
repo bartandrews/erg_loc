@@ -78,8 +78,8 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_0.dat'
-    file2 = 'ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_2.5.dat'
-    file3 = 'ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_5.dat'
+    file1 = 'ent_mid_L_flow_heisenberg_L_8_12_3_Nup_4_6_3_pauli_0_obc_dis_10_J_1_1_1_W_0.dat'
+    file2 = 'ent_mid_L_flow_heisenberg_L_6_14_5_Nup_4_6_3_pauli_0_obc_dis_10_J_1_1_1_W_2.5.dat'
+    file3 = 'ent_mid_L_flow_heisenberg_L_6_14_5_Nup_4_6_3_pauli_0_obc_dis_10_J_1_1_1_W_5.dat'
 
     plot_ent_L_flow(model, file1, file2, file3, _save=True)
