@@ -9,6 +9,13 @@ import functions.func_args as fa
 import functions.func_proc as fp
 
 
+def bloch_state(cos_theta, phi):
+
+    theta = np.arccos(cos_theta)
+
+    return np.array([np.cos(theta/2), np.exp(1j*phi)*np.sin(theta/2)])
+
+
 def my_t_flow(path_flag, threads, model, _leaf_args):
 
     path = "/data/baandr" if path_flag else ""  # specify the custom path
@@ -29,10 +36,19 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-        # initial state
-        psi_prod = np.zeros(H.basis.Ns)
-        array_idx_prod = H.basis.index(H.basis.state_to_int('010101'))
-        psi_prod[array_idx_prod] = 1.0
+        # initial spin product state
+        # psi_prod = np.zeros(H.basis.Ns)
+        # array_idx_prod = H.basis.index(H.basis.state_to_int('010101'))
+        # psi_prod[array_idx_prod] = 1.0
+        #
+        # print(psi_prod.shape, psi_prod)
+
+        # initial bloch product state
+        v = 0
+        psi_prod = 1
+        for i in range(_leaf_args['L']):
+            bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2*np.pi))
+            psi_prod = np.kron(psi_prod, bloch)
 
         # print(type(psi_prod), psi_prod.shape, psi_prod)
         psi = H.evolve(psi_prod, 0.0, _t_list)
