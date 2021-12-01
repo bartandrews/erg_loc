@@ -46,7 +46,7 @@ The ``plot`` scripts:
 
 * **r_W_flow** -- first moment of the energy spacings disorder evolution (cf. Fig.3 of `[Pal2010] <https://arxiv.org/pdf/1010.1992.pdf>`__)
 
-.. image:: figures/r_W_flow/heisenberg/r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
+.. image:: figures/r_W_flow/heisenberg/r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_11000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
 	:width: 80%
 
@@ -64,7 +64,7 @@ The ``plot`` scripts:
 
 * **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__)
 
-.. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.png
+.. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10_comparison.png
 	:align: center
 	:width: 80%
 
@@ -94,13 +94,13 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **floq_struc** -- Floquet eigenstate structure
+* **floq_struc** -- Floquet eigenstate structure (cf. Fig.2a of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
 .. image:: figures/floq_struc/ponte2015/floq_struc_ponte2015_L_8_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_8_comparison.png
 	:align: center
 	:width: 80%
 
-* **ener_abs_N_flow** -- energy absorbed N evolution
+* **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
 .. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
 	:align: center
@@ -188,3 +188,5 @@ References
 `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__ "Many-body localization edge in the random-field Heisenberg chain", by David Luitz, Nicolas Laflorencie, and Fabien Alet, PRB **91**, 081103(R) (2015).
 
 `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__ "Entanglement spreading in a many-body localized system", by Arun Nanduri, Hyungwon Kim, and David Huse, PRB **90**, 064201 (2014).
+
+`[Ponte2015] <https://arxiv.org/abs/1403.6480>`__ "Periodically driven ergodic and many-body localized quantum systems"  by Pedro Ponte, Anushya Chandran, Zlatko Papić, and Dmitry Abanin, Annals of Physics **353**, 196 (2015).

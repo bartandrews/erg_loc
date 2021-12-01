@@ -33,17 +33,17 @@ def file_name_leaf(program, model, ham_params):
 
     J = f"J_{ham_params['J'][0]:g}_{ham_params['J'][1]:g}_{ham_params['J'][2]:g}_"
 
-    if "h0" in ham_params:
+    if "h0" in ham_params and ham_params['h0'] is not None:
         h0 = f"h0_{ham_params['h0']:g}_"
     else:
         h0 = ""
 
-    if "T0" in ham_params:
+    if "T0" in ham_params and ham_params['T0'] is not None:
         T0 = f"T0_{ham_params['T0']:g}_"
     else:
         T0 = ""
 
-    if "T1" in ham_params:
+    if "T1" in ham_params and ham_params['T1'] is not None:
         T1 = f"T1_{ham_params['T1']:g}_"
     else:
         T1 = ""
