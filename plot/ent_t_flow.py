@@ -41,6 +41,6 @@ def plot_ent_t_flow(_model, _file, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_3_100_J_1_1_0.2_W_10.dat'
+    file = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.dat'
 
     plot_ent_t_flow(model, file, _save=True)

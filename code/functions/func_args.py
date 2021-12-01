@@ -9,7 +9,7 @@ def parse_input_arguments(program):
     stem = parser.add_argument_group("stem sub-arguments")
     leaf = parser.add_argument_group("leaf sub-arguments")
 
-    models = ["heisenberg"]
+    models = ["heisenberg", "ponte2015"]
 
     # program sub-arguments
     prog.add_argument("-path", default=False, action='store_true', help="use a custom path")
@@ -45,7 +45,15 @@ def parse_input_arguments(program):
         leaf.add_argument("-t_max", type=float, default=10, required=True, help="end time")
         leaf.add_argument("-t_samp", type=int, default=11, required=True, help="number of time samples")
 
-    leaf.add_argument("-J", nargs=3, type=float, default=[1, 1, 1], help="coupling strength (heisenberg model)")
+    leaf.add_argument("-J", nargs=3, type=float, default=[1, 1, 1], help="coupling strength")
+
+    leaf.add_argument("-h0", type=float, default=None, help="middle kick strength (ponte2015)")
+    leaf.add_argument("-T0", type=float, default=None, help="drive interval 0 (ponte2015)")
+    leaf.add_argument("-T1", type=float, default=None, help="drive interval 1 (ponte2015)")
+
+    if program == "N_flow":
+        leaf.add_argument("-N", type=int, default=31, required=True, help="number of Floquet cycles")
+
     if program == "W_flow":
         leaf.add_argument("-W_min", type=float, default=0, required=True, help="minimum disorder strength")
         leaf.add_argument("-W_max", type=float, default=10, required=True, help="maximum disorder strength")

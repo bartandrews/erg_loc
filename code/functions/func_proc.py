@@ -33,6 +33,26 @@ def file_name_leaf(program, model, ham_params):
 
     J = f"J_{ham_params['J'][0]:g}_{ham_params['J'][1]:g}_{ham_params['J'][2]:g}_"
 
+    if "h0" in ham_params:
+        h0 = f"h0_{ham_params['h0']:g}_"
+    else:
+        h0 = ""
+
+    if "T0" in ham_params:
+        T0 = f"T0_{ham_params['T0']:g}_"
+    else:
+        T0 = ""
+
+    if "T1" in ham_params:
+        T1 = f"T1_{ham_params['T1']:g}_"
+    else:
+        T1 = ""
+
+    if "N" in ham_params:
+        N = f"N_{ham_params['N']:g}_"
+    else:
+        N = ""
+
     if program == "W_flow":
         W = f"W_{ham_params['W_min']:g}_{ham_params['W_max']:g}_{ham_params['W_samp']}"
     else:
@@ -40,7 +60,7 @@ def file_name_leaf(program, model, ham_params):
 
     ext = ".dat"
 
-    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{h0}{T0}{T1}{N}{W}{ext}{ham_params['tag']}"
 
     return leaf
 
