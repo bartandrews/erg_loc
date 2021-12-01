@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/L_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/functions/func_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_args.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/functions/func_proc.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_proc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/inst_ham.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/inst_ham.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/standalone/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/standalone/XXZ/entropy_scaling/XXZ_entropy_scaling_mid_state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/t_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/t_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/ent_L_flow/heisenberg/ent_L_flow_heisenberg_L_8_12_3_obc_dis_10_J_1_1_1_W_0_comparison.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ent_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/old/ent_L_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_8_16_5_Nup_4_8_5_pauli_0_obc_dis_100_J_1_1_1_W_0_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_8_16_5_Nup_4_8_5_pauli_0_obc_dis_100_J_1_1_1_W_0_comparison.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/ent_t_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_t_flow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +52,7 @@
       <recent name="$PROJECT_DIR$/spin_model/floquet_eigenstate_structure" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ent_mid_L_flow">
+  <component name="RunManager" selected="Python.ent_t_flow">
     <configuration name="XXZ_entropy_scaling_mid_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -178,11 +172,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ent_t_flow" />
         <item itemvalue="Python.ent_mid_L_flow" />
         <item itemvalue="Python.XXZ_entropy_scaling_mid_state" />
         <item itemvalue="Python.inst_ham" />
         <item itemvalue="Python.r_W_flow" />
-        <item itemvalue="Python.ent_t_flow" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +207,7 @@
       <workItem from="1637691857034" duration="1375000" />
       <workItem from="1637693628401" duration="1874000" />
       <workItem from="1637695515043" duration="81674000" />
-      <workItem from="1638208435744" duration="20571000" />
+      <workItem from="1638208435744" duration="33143000" />
     </task>
     <servers />
   </component>
@@ -285,8 +279,8 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_start_H0.coverage" NAME="Ponte2015_QN_start_H0 Coverage Results" MODIFIED="1636564013425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_spreading.coverage" NAME="XXZ_entropy_spreading_ground_state Coverage Results" MODIFIED="1637283941236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_spreading" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_ground_state.coverage" NAME="XXZ_entropy_L_scaling_ground_state Coverage Results" MODIFIED="1637253979747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
-    <SUITE FILE_PATH="coverage/erg_loc$ent_L_flow.coverage" NAME="ent_mid_L_flow Coverage Results" MODIFIED="1638298076797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/erg_loc$ent_t_flow.coverage" NAME="ent_t_flow Coverage Results" MODIFIED="1637878413033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$ent_L_flow.coverage" NAME="ent_mid_L_flow Coverage Results" MODIFIED="1638303394083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$ent_t_flow.coverage" NAME="ent_t_flow Coverage Results" MODIFIED="1638317624779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2.coverage" NAME="Ponte2015_QN_Floquet_2 Coverage Results" MODIFIED="1635293288457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_QN.coverage" NAME="spin_model_QN Coverage Results" MODIFIED="1635521860097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

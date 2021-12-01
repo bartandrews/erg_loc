@@ -22,29 +22,33 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
     ###################################################################################################################
 
-    def realization(itr, _model, _leaf_args):
+    def realization(itr, _t_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
         _S_array = np.zeros(_leaf_args['t_samp'], dtype=float)
 
-        t_list = np.linspace(_leaf_args['t_min'], _leaf_args['t_max'], _leaf_args['t_samp'])
         H = fh.chosen_hamiltonian(_model, _leaf_args)
-        _E, psi = H.eigh()
+
         # initial state
-        psi_mid = psi[:, np.argsort(_E)[len(_E)//2]]
-        # time evolution
-        psi = H.evolve(psi_mid, 0.0, t_list)
-        for i in range(psi.shape[1]):
+        psi_prod = np.zeros(H.basis.Ns)
+        array_idx_prod = H.basis.index(H.basis.state_to_int('010101'))
+        psi_prod[array_idx_prod] = 1.0
+
+        # print(type(psi_prod), psi_prod.shape, psi_prod)
+        psi = H.evolve(psi_prod, 0.0, _t_list)
+        # print(psi.shape)
+        # print(psi[:, 0].shape)
+        for i in range(psi.shape[1]):  # t_samp
             _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
 
         return _S_array
 
     ###################################################################################################################
 
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args)
-                                                for i in range(leaf_args['dis'])), dtype=object)
+    t_list = np.logspace(_leaf_args['t_min'], _leaf_args['t_max'], _leaf_args['t_samp'])
 
-    t_list = np.linspace(_leaf_args['t_min'], _leaf_args['t_max'], _leaf_args['t_samp'])
+    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, t_list, model, leaf_args)
+                                                for i in range(leaf_args['dis'])), dtype=object)
 
     ##############
     # ent_t_flow #
@@ -52,7 +56,10 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
     if "ent_t_flow" in tools:
 
+        # print("array.shape = ", array.shape)
+        # print(array)
         S = np.mean(array, axis=0)
+        # print("S.shape = ", S.shape)
 
         for i, S_val in enumerate(S):
             data['ent_t_flow'].write(f"{t_list[i]}\t{S[i]}\n")

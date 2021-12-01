@@ -16,14 +16,15 @@ def plot_ent_t_flow(_model, _file, _save=False):
         plots = csv.reader(csvfile, delimiter='\t')
         t, S = [], []
         for i, row in enumerate(plots):
-            t.append(float(row[0]))
-            S.append(float(row[1]))
+            if i != 0:  # skip t=0 point
+                t.append(float(row[0]))
+                S.append(float(row[1]))
 
     plt.figure(figsize=(10, 5))
     ax0 = plt.subplot(111)
     ax0.plot(t, S, '.-', label="mid state")
-    ax0.legend()
     ax0.set_xlabel("$t$")
+    ax0.set_xscale('log')
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
     ax0.set_ylabel("$S$")
     ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
@@ -40,6 +41,6 @@ def plot_ent_t_flow(_model, _file, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file = 'ent_t_flow_heisenberg_L_8_obc_t_10_1000_3_J_1_1_1_W_3.dat'
+    file = 'ent_t_flow_heisenberg_L_6_obc_dis_1000_t_-1_3_100_J_1_1_0.2_W_10.dat'
 
     plot_ent_t_flow(model, file, _save=True)

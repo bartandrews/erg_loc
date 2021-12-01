@@ -20,7 +20,7 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _save=False):
         for i, row in enumerate(plots):
             L.append(float(row[0]))
             S.append(float(row[1]))
-    ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=0$ (mid)", c='tab:red')
+    ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=0$", c='tab:red')
     if _file2 is not None:
         with open(os.path.join(proj_root, 'data/ent_mid_L_flow', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
@@ -28,7 +28,7 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _save=False):
             for i, row in enumerate(plots):
                 L.append(float(row[0]))
                 S.append(float(row[1]))
-        ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=2.5$ (mid)", c='tab:green')
+        ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=2.5$", c='tab:green')
     if _file3 is not None:
         with open(os.path.join(proj_root, 'data/ent_mid_L_flow', _model, _file3), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
@@ -36,7 +36,7 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _save=False):
             for i, row in enumerate(plots):
                 L.append(float(row[0]))
                 S.append(float(row[1]))
-        ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=5$ (mid)", c='tab:purple')
+        ax0.plot(L, [y/x for x, y in zip(L, S)], '.-', label="$W=5$", c='tab:purple')
     ax0.legend()
     ax0.set_xlabel("$L$")
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
