@@ -28,8 +28,12 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-        t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _leaf_args['T1']]) + np.finfo(float).eps
-        dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
+        if _model == "ponte2015":
+            t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _leaf_args['T1']]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
+        else:
+            t_list = np.array([0.0, _leaf_args['T0']/4.0]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0']/4.0, (_leaf_args['T0']/2.0)/10.0])
 
         if eigenstate:
             _, alpha = H.eigh(time=0)

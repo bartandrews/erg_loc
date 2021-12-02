@@ -28,7 +28,7 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
         # --- energy absorbed under driving
-        E_Tinf = H.trace(time=0) / (2 ** _leaf_args['L'])
+        E_Tinf = H.trace(time=0) / H.basis.Ns
         E, phi = H.eigh(time=0)
 
         E_0 = np.min(E)

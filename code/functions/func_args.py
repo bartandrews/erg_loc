@@ -9,7 +9,7 @@ def parse_input_arguments(program):
     stem = parser.add_argument_group("stem sub-arguments")
     leaf = parser.add_argument_group("leaf sub-arguments")
 
-    models = ["heisenberg", "ponte2015"]
+    models = ["heisenberg", "ponte2015", "spin2021"]
 
     # program sub-arguments
     prog.add_argument("-path", default=False, action='store_true', help="use a custom path")
@@ -53,6 +53,11 @@ def parse_input_arguments(program):
 
     if program == "N_flow":
         leaf.add_argument("-N", type=int, default=31, required=True, help="number of Floquet cycles")
+
+    if program == "T_flow":
+        leaf.add_argument("-T_min", type=float, default=0, required=True, help="minimum T")
+        leaf.add_argument("-T_max", type=float, default=3, required=True, help="maximum T")
+        leaf.add_argument("-T_samp", type=int, default=11, required=True, help="number of T samples")
 
     if program == "W_flow":
         leaf.add_argument("-W_min", type=float, default=0, required=True, help="minimum disorder strength")
