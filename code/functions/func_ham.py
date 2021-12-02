@@ -1,6 +1,7 @@
 # --- driven_systems imports
 from models.heisenberg import heisenberg
 from models.ponte2015 import ponte2015
+from models.spin2021 import spin2021
 
 
 def chosen_hamiltonian(model, leaf_args):
@@ -12,6 +13,10 @@ def chosen_hamiltonian(model, leaf_args):
         H = ponte2015(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
                       leaf_args['J'][0], leaf_args['J'][1], leaf_args['J'][2], leaf_args['W'],
                       leaf_args['h0'], leaf_args['T0'], leaf_args['T1'])
+    elif model == "spin2021":
+        H = spin2021(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
+                     leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'],
+                     leaf_args['T0'])
     else:
         raise ValueError("model not implemented in func_ham")
 

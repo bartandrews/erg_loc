@@ -90,7 +90,7 @@ The ``plot`` scripts:
 
 * **q_ener_stat** -- quasi-energy spacing statistics
 
-.. image:: figures/q_ener_stat/ponte2015/q_ener_stat_ponte2015_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
+.. image:: figures/q_ener_stat/ponte2015/q_ener_stat_ponte2015_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
@@ -103,6 +103,21 @@ The ``plot`` scripts:
 * **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
 .. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
+Model Drive Results
+-------------------
+
+* **floq_struc** -- Floquet eigenstate structure
+
+.. image:: figures/floq_struc/spin2021/floq_struc
+	:align: center
+	:width: 80%
+
+* **ener_abs_N_flow** -- energy absorbed N evolution
+
+.. image:: figures/ener_abs_N_flow/spin2021/ener_abs_N_flow
 	:align: center
 	:width: 80%
 
@@ -179,6 +194,9 @@ Example Commands
 * ``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 25 -W_samp 24``
 * ``python code/L_flow.py -mod heisenberg -L_min 8 -L_max 12 -L_samp 3 -bc o -dis 10 -W 0``
 * ``python code/t_flow.py -mod heisenberg -thr 1 -L 8 -t_min 10 -t_max 1000 -t_samp 3 -dis 1 -bc o -W 3``
+
+* ``python code/inst_U.py -mod ponte2015 -L 8 -Nup 4 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5 -dis 10000``
+* ``python code/N_flow.py -mod ponte2015 -L 8 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -N 31 -dis 100``
 
 References
 ----------

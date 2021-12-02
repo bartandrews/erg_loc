@@ -36,24 +36,20 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-        # initial spin product state
+        # - initial spin product state
         # psi_prod = np.zeros(H.basis.Ns)
         # array_idx_prod = H.basis.index(H.basis.state_to_int('010101'))
         # psi_prod[array_idx_prod] = 1.0
-        #
-        # print(psi_prod.shape, psi_prod)
 
-        # initial bloch product state
+        # - initial bloch product state
         v = 0
         psi_prod = 1
         for i in range(_leaf_args['L']):
             bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2*np.pi))
             psi_prod = np.kron(psi_prod, bloch)
 
-        # print(type(psi_prod), psi_prod.shape, psi_prod)
         psi = H.evolve(psi_prod, 0.0, _t_list)
-        # print(psi.shape)
-        # print(psi[:, 0].shape)
+
         for i in range(psi.shape[1]):  # t_samp
             _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
 
@@ -72,10 +68,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
     if "ent_t_flow" in tools:
 
-        # print("array.shape = ", array.shape)
-        # print(array)
         S = np.mean(array, axis=0)
-        # print("S.shape = ", S.shape)
 
         for i, S_val in enumerate(S):
             data['ent_t_flow'].write(f"{t_list[i]}\t{S[i]}\n")
