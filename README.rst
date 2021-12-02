@@ -64,7 +64,7 @@ The ``plot`` scripts:
 
 * **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__)
 
-.. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10_comparison.png
+.. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 

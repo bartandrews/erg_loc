@@ -80,7 +80,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.dat'
+    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_0.5.dat'
     file2 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.dat'
 
     plot_ent_t_flow(model, file1, file2, _save=True)
