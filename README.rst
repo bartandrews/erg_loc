@@ -110,7 +110,7 @@ The ``plot`` scripts:
 
 * **PR_T_flow** -- participation ratio T evolution (cf. Fig.2b of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
-.. image:: figures/PR_T_flow/ponte2015/PR_T_flow_ponte2015_L_8_obc_dis_10_J_1_1_1_h0_2_T0_7_T_0_3_11_W_0.5_comparison.png
+.. image:: figures/PR_T_flow/ponte2015/PR_T_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T_0_3_11_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
