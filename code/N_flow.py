@@ -34,9 +34,14 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         E_0 = np.min(E)
         phi_0 = phi[:, np.argmin(E)]
 
-        t_list = np.array([0.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 2.0 + _leaf_args['T1']]) \
-                 + np.finfo(float).eps
-        dt_list = np.array([_leaf_args['T0'] / 2.0, _leaf_args['T1'], _leaf_args['T0'] / 2.0])
+        if model == "ponte2015":
+            t_list = np.array([0.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 2.0 + _leaf_args['T1']]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0'] / 2.0, _leaf_args['T1'], _leaf_args['T0'] / 2.0])
+        else:
+            delta = 0.01  # fraction of T0/4
+            t_list = np.array([0.0, _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0'] / 4.0, (_leaf_args['T0'] / 4.0)*delta])
+
         Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, UF=True)
         UF = Floq.UF
 

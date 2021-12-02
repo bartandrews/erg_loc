@@ -80,8 +80,8 @@ def plot_ener_abs_N_flow(_model, _file1, _file2=None, _save=False):
 
 if __name__ == "__main__":
 
-    model = 'ponte2015'
-    file1 = 'ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5.dat'
-    file2 = 'ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_8.dat'
+    model = 'spin2021'
+    file1 = 'ener_abs_N_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_10_N_31_W_0.5.dat'
+    file2 = 'ener_abs_N_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_10_N_31_W_8.dat'
 
     plot_ener_abs_N_flow(model, file1, file2, _save=True)

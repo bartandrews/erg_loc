@@ -117,15 +117,29 @@ The ``plot`` scripts:
 Model Drive Results
 -------------------
 
+T/4 + (T/4)*0.01
+
+* **q_ener_spec** -- quasi-energy spectrum
+
+.. image:: figures/q_ener_spec/spin2021/q_ener_spec_spin2021_L_8_obc_J_1_1_1_T0_10_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
 * **floq_struc** -- Floquet eigenstate structure
 
-.. image:: figures/floq_struc/spin2021/floq_struc
+.. image:: figures/floq_struc/spin2021/floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_8_comparison.png
+	:align: center
+	:width: 80%
+
+* **q_ener_stat** -- quasi-energy spacing statistics
+
+.. image:: figures/q_ener_stat/spin2021/q_ener_stat_spin2021_L_8_Nup_4_obc_dis_100_J_1_1_1_T0_10_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **ener_abs_N_flow** -- energy absorbed N evolution
 
-.. image:: figures/ener_abs_N_flow/spin2021/ener_abs_N_flow
+.. image:: figures/ener_abs_N_flow/spin2021/ener_abs_N_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_10_N_31_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
