@@ -30,8 +30,8 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
             _leaf_args['T1'] = _T
             H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-            t_list = np.array([0.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 2.0 + _T]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T0'] / 2.0, _T, _leaf_args['T0'] / 2.0])
+            t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _T]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0']/2.0, _T, _leaf_args['T0']/2.0])
 
             _, alpha = H.eigh(time=0)
             Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)

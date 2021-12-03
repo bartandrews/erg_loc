@@ -83,7 +83,7 @@ def plot_floq_struc(_model, _file1, _file2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_0.5.dat'
-    file2 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_8.dat'
+    file1 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_10.dat'
+    # file2 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_8.dat'
 
-    plot_floq_struc(model, file1, file2, _save=True)
+    plot_floq_struc(model, file1, _save=False)

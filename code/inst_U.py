@@ -4,6 +4,7 @@ from time import perf_counter
 import sys
 from joblib import delayed, Parallel
 from quspin.tools.Floquet import Floquet
+import matplotlib.pyplot as plt
 # --- driven_systems imports
 import functions.func_ham as fh
 import functions.func_args as fa
@@ -32,13 +33,34 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _leaf_args['T1']]) + np.finfo(float).eps
             dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
         else:
-            delta = 0.01  # fraction of T0/4
+            delta = 1  # fraction of T0/4
+            print("delta = ", delta)
             t_list = np.array([0.0, _leaf_args['T0']/4.0]) + np.finfo(float).eps
             dt_list = np.array([_leaf_args['T0']/4.0, (_leaf_args['T0']/4.0)*delta])
 
         if eigenstate:
             _, alpha = H.eigh(time=0)
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
+            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True, UF=True, thetaF=True)
+
+            # print(Floq.UF)
+            # fig = plt.figure()
+            # ax = fig.add_subplot(111)
+            # mat = ax.matshow(np.abs(Floq.UF), cmap='Greys')
+            # ax.set_xlabel("$i$")
+            # ax.set_ylabel("$j$")
+            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $\delta={delta}$, $L={_leaf_args['L']}$")
+            # cbar = plt.colorbar(mat)
+            # cbar.set_label("$|U_{\mathrm{F}, i, j}|$")
+            # plt.show()
+
+            # fig = plt.figure()
+            # ax = fig.add_subplot(111)
+            # ax.plot([np.angle(i)/np.pi for i in Floq.thetaF], '.')
+            # ax.set_xlabel("$i$")
+            # ax.set_ylabel("$\\theta_{\mathrm{F},i}/\pi$")
+            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $\delta={delta}$, $L={_leaf_args['L']}$")
+            # plt.show()
+
             # quasi-energies
             qE = Floq.EF
             # quasi-energy spacings

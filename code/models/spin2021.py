@@ -20,7 +20,7 @@ def spin2021(L, Nup, pauli, J_1, J_2, W, T_0=10):
     J_1_x = [[-J_1, i, (i + 1) % L] for i in range(0, L, 2)]
     J_1_y = [[-J_1, i, (i + 1) % L] for i in range(0, L, 2)]
     J_1_z = [[-J_1, i, (i + 1) % L] for i in range(0, L, 2)]
-    h_z = [[2 * np.random.uniform(-W, W), i] for i in range(L)]
+    h_z = [[np.random.uniform(-W, W), i] for i in range(L)]
     pos_G_2 = [[J_2, i] for i in range(L)]
     pos_J_2_x = [[-J_2, i, (i - 1) % L] for i in range(0, L, 2)]
     pos_J_2_y = [[-J_2, i, (i - 1) % L] for i in range(0, L, 2)]
@@ -29,10 +29,10 @@ def spin2021(L, Nup, pauli, J_1, J_2, W, T_0=10):
     neg_J_2_x = [[J_2, i, (i - 1) % L] for i in range(0, L, 2)]
     neg_J_2_y = [[J_2, i, (i - 1) % L] for i in range(0, L, 2)]
     neg_J_2_z = [[J_2, i, (i - 1) % L] for i in range(0, L, 2)]
-    static = [["I", G_1], ["xx", J_1_x], ["yy", J_1_y], ["zz", J_1_z],
-              ["I", pos_G_2], ["xx", pos_J_2_x], ["yy", pos_J_2_y], ["zz", pos_J_2_z], ["z", h_z]]
+    static = [["I", G_1], ["xx", J_1_x], ["yy", J_1_y], ["zz", J_1_z], ["z", h_z],
+              ["I", pos_G_2], ["xx", pos_J_2_x], ["yy", pos_J_2_y], ["zz", pos_J_2_z]]
     dynamic = [["I", G_1, drive, drive_args], ["xx", J_1_x, drive, drive_args],
-               ["yy", J_1_y, drive, drive_args], ["zz", J_1_z, drive, drive_args],
+               ["yy", J_1_y, drive, drive_args], ["zz", J_1_z, drive, drive_args], ["z", h_z, drive, drive_args],
                ["I", neg_G_2, drive, drive_args], ["xx", neg_J_2_x, drive, drive_args],
                ["yy", neg_J_2_y, drive, drive_args], ["zz", neg_J_2_z, drive, drive_args]]
     H = 0.5 * Omega * hamiltonian(static, dynamic, basis=basis, dtype=np.float64, check_symm=False, check_herm=False,
