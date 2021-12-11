@@ -27,38 +27,59 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     def realization(itr, _model, _leaf_args, eigenstate=False):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        H = fh.chosen_hamiltonian(_model, _leaf_args)
-
-        if _model == "ponte2015":
-            t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _leaf_args['T1']]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
-        else:
-            delta = 1  # fraction of T0/4
+        if model == "ponte2015":
+            H = fh.chosen_hamiltonian(_model, _leaf_args)
+            H_init = H
+            t_list = np.array([0.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 2.0 + _leaf_args['T1']]) \
+                + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0'] / 2.0, _leaf_args['T1'], _leaf_args['T0'] / 2.0])
+            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate,
+                           thetaF=eigenstate)
+        elif model == "ponte2015_2":
+            H_0, V = fh.chosen_hamiltonian(_model, _leaf_args)
+            H_init = H_0
+            H_list = [H_0, V, H_0]
+            dt_list = np.array([_leaf_args['T0'] / 2.0, _leaf_args['T1'], _leaf_args['T0'] / 2.0])
+            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
+        elif model == "spin2021":
+            H = fh.chosen_hamiltonian(_model, _leaf_args)
+            H_init = H
+            t_list = np.array([0.0, _leaf_args['T0'] / 4.0, 3 * _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T0'] / 4.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 4.0])
+            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate,
+                           thetaF=eigenstate)
+        elif model == "spin2021_2":
+            V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
+            H_init = V
+            H_list = [V, H_1, H_2]
+            delta = 1
             print("delta = ", delta)
-            t_list = np.array([0.0, _leaf_args['T0']/4.0]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T0']/4.0, (_leaf_args['T0']/4.0)*delta])
+            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
+        else:
+            raise ValueError("model not implemented in inst_U")
 
         if eigenstate:
-            _, alpha = H.eigh(time=0)
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True, UF=True, thetaF=True)
 
-            # print(Floq.UF)
+            _, alpha = H_init.eigh(time=0)
+
+            # # print(Floq.UF)
             # fig = plt.figure()
             # ax = fig.add_subplot(111)
             # mat = ax.matshow(np.abs(Floq.UF), cmap='Greys')
             # ax.set_xlabel("$i$")
             # ax.set_ylabel("$j$")
-            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $\delta={delta}$, $L={_leaf_args['L']}$")
+            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
             # cbar = plt.colorbar(mat)
             # cbar.set_label("$|U_{\mathrm{F}, i, j}|$")
             # plt.show()
-
+            #
             # fig = plt.figure()
             # ax = fig.add_subplot(111)
             # ax.plot([np.angle(i)/np.pi for i in Floq.thetaF], '.')
             # ax.set_xlabel("$i$")
             # ax.set_ylabel("$\\theta_{\mathrm{F},i}/\pi$")
-            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $\delta={delta}$, $L={_leaf_args['L']}$")
+            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
             # plt.show()
 
             # quasi-energies
@@ -76,7 +97,6 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
                     A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
             return qE, qE_spac, A2[:, 0]
         else:
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list})
             # quasi-energies
             qE = Floq.EF
             # quasi-energy spacings

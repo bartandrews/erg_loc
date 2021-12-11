@@ -36,7 +36,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _save=False):
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ent_t_flow', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/ent_t_flow', _model,
-                                     _file1.replace(".dat", ".png")),
+                                     _file1.replace(".dat", "")+".png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -72,7 +72,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _save=False):
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ent_t_flow', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/ent_t_flow', _model,
-                                     _file1.replace(".dat", "_comparison.png")),
+                                     _file1.replace(".dat", "")+"_comparison.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 

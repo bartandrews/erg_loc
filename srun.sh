@@ -11,6 +11,5 @@
 source /u/home/b/baandr12/.bash_profile
 source /u/home/b/baandr12/.bashrc
 
-python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 0;
-python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 2.5;
-python code/L_flow.py -mod heisenberg -thr 32 -L_min 12 -L_max 18 -L_samp 4 -bc o -dis 100 -W 5
+python code/T_flow.py -mod ponte2015 -thr 32 -L 8 -h0 2 -T0 7 -dis 1000 -bc o -W 0.5 -T_min 0 -T_max 3 -T_samp 31;
+python code/T_flow.py -mod ponte2015 -thr 32 -L 8 -h0 2 -T0 7 -dis 1000 -bc o -W 8 -T_min 0 -T_max 3 -T_samp 31

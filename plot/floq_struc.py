@@ -37,8 +37,8 @@ def plot_floq_struc(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/floq_struc', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/floq_struc', _model, _file1.replace('.dat', '.png')),
-                        bbox_inches='tight', dpi=300)
+            plt.savefig(os.path.join(proj_root, 'figures/floq_struc', _model,
+                                     _file1.replace('.dat', '')+'.png'), bbox_inches='tight', dpi=300)
         plt.show()
 
     else:
@@ -76,14 +76,14 @@ def plot_floq_struc(_model, _file1, _file2=None, _save=False):
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/floq_struc', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/floq_struc', _model,
-                                     _file2.replace('.dat', '_comparison.png')), bbox_inches='tight', dpi=300)
+                                     _file2.replace('.dat', '')+'_comparison.png'), bbox_inches='tight', dpi=300)
         plt.show()
 
 
 if __name__ == "__main__":
 
-    model = 'spin2021'
-    file1 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_10.dat'
-    # file2 = 'floq_struc_spin2021_L_8_obc_J_1_1_1_T0_10_W_8.dat'
+    model = 'ponte2015_2'
+    file1 = 'floq_struc_ponte2015_2_L_8_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5.dat'
+    file2 = 'floq_struc_ponte2015_2_L_8_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_8.dat'
 
-    plot_floq_struc(model, file1, _save=False)
+    plot_floq_struc(model, file1, file2, _save=False)

@@ -31,7 +31,8 @@ def plot_q_ener_spec(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/q_ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model, _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", ".png")),
+            plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model,
+                                     _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "")+".png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -63,7 +64,8 @@ def plot_q_ener_spec(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/q_ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model, _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "_comparison.png")),
+            plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model,
+                                     _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "")+"_comparison.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 

@@ -31,7 +31,7 @@ def plot_ener_spec(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model, _file1.replace(".dat", ".png")),
+            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model, _file1.replace(".dat", "")+".png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -63,7 +63,8 @@ def plot_ener_spec(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/ener_spec', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model, _file1.replace(".dat", "_comparison.png")),
+            plt.savefig(os.path.join(proj_root, 'figures/ener_spec', _model,
+                                     _file1.replace(".dat", "")+"_comparison.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 

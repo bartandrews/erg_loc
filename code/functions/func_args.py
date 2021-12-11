@@ -9,13 +9,15 @@ def parse_input_arguments(program):
     stem = parser.add_argument_group("stem sub-arguments")
     leaf = parser.add_argument_group("leaf sub-arguments")
 
-    models = ["heisenberg", "ponte2015", "spin2021"]
+    models = ["heisenberg", "ponte2015", "ponte2015_2", "spin2021", "spin2021_2"]
 
     # program sub-arguments
+
     prog.add_argument("-path", default=False, action='store_true', help="use a custom path")
     prog.add_argument("-thr", "--threads", type=int, default=-1, help="number of threads")
 
     # stem sub-arguments (model specific)
+
     stem.add_argument("-mod", "--model", type=str, default="heisenberg", choices=models, required=True,
                       help="name of model")
 
@@ -47,9 +49,9 @@ def parse_input_arguments(program):
 
     leaf.add_argument("-J", nargs=3, type=float, default=[1, 1, 1], help="coupling strength")
 
-    leaf.add_argument("-h0", type=float, default=None, help="middle kick strength (ponte2015)")
-    leaf.add_argument("-T0", type=float, default=None, help="drive interval 0 (ponte2015)")
-    leaf.add_argument("-T1", type=float, default=None, help="drive interval 1 (ponte2015)")
+    leaf.add_argument("-h0", type=float, default=None, help="middle kick strength")
+    leaf.add_argument("-T0", type=float, default=None, help="drive interval 0")
+    leaf.add_argument("-T1", type=float, default=None, help="drive interval 1")
 
     if program == "N_flow":
         leaf.add_argument("-N", type=int, default=31, required=True, help="number of Floquet cycles")

@@ -37,7 +37,7 @@ def plot_PR_T_flow(_model, _file1, _file2=None, _save=False):
 
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/PR_T_flow', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/PR_T_flow', _model, file1.replace('.dat', '.png')),
+            plt.savefig(os.path.join(proj_root, 'figures/PR_T_flow', _model, file1.replace('.dat', '')+'.png'),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
@@ -76,14 +76,14 @@ def plot_PR_T_flow(_model, _file1, _file2=None, _save=False):
         if _save:
             os.makedirs(os.path.join(proj_root, 'figures/PR_T_flow', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/PR_T_flow', _model,
-                                     _file1.replace('.dat', '_comparison.png')), bbox_inches='tight', dpi=300)
+                                     _file1.replace('.dat', '')+'_comparison.png'), bbox_inches='tight', dpi=300)
         plt.show()
 
 
 if __name__ == "__main__":
 
     model = 'ponte2015'
-    file1 = 'PR_T_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T_0_3_11_W_0.5.dat'
-    file2 = 'PR_T_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T_0_3_11_W_8.dat'
+    file1 = 'PR_T_flow_ponte2015_L_8_obc_dis_20_J_1_1_1_h0_2_T0_7_T_0_3_31_W_0.5.dat'
+    file2 = 'PR_T_flow_ponte2015_L_8_obc_dis_20_J_1_1_1_h0_2_T0_7_T_0_3_31_W_8.dat'
 
-    plot_PR_T_flow(model, file1, file2, _save=True)
+    plot_PR_T_flow(model, file1, _save=False)

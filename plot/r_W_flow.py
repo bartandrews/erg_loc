@@ -36,7 +36,7 @@ def plot_r_W_flow(_model, _file, _save=False):
     if _save:
         os.makedirs(os.path.join(proj_root, 'figures/r_W_flow', _model), exist_ok=True)
         plt.savefig(os.path.join(proj_root, 'figures/r_W_flow', _model,
-                                 _file.replace(".dat", ".png")),
+                                 _file.replace(".dat", "")+".png"),
                     bbox_inches='tight', dpi=300)
     plt.show()
 
