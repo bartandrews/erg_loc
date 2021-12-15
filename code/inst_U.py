@@ -10,6 +10,8 @@ import functions.func_ham as fh
 import functions.func_args as fa
 import functions.func_proc as fp
 
+delta = 1
+
 
 def my_inst_U(path_flag, threads, model, _leaf_args):
 
@@ -44,17 +46,22 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         elif model == "spin2021":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init = H
-            t_list = np.array([0.0, _leaf_args['T0'] / 4.0, 3 * _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T0'] / 4.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 4.0])
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate,
-                           thetaF=eigenstate)
+            t_list = np.array([0.0, _leaf_args['T1'] / 2.0]) + np.finfo(float).eps
+            # t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0])
+            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021_2":
             V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
+            #print(V.basis.Ns, H_1.basis.Ns, H_2.basis.Ns)
+            #print(V.basis, H_1.basis, H_2.basis)
             H_init = V
-            H_list = [V, H_1, H_2]
-            delta = 1
-            print("delta = ", delta)
-            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            H_list = [H_1]
+            # H_list = [V, H_1, H_2]
+            #print("delta = ", delta)
+            dt_list = np.array([_leaf_args['T0'] / 4.0])
+            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            # print("dt_list = ", dt_list)
             Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         else:
             raise ValueError("model not implemented in inst_U")
@@ -89,13 +96,37 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             for i in range(len(qE)-1):
                 qE_spac.append(qE[i+1]-qE[i])
             qE_spac = np.asarray(qE_spac)
-            # A2
+
             psi = Floq.VF
+
+            vec = np.zeros((8, 1))
+            vec[0, 0] = 1
+
+            print(Floq.UF)
+
+            # localization length
+            i_0 = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                for alpha_idx in [0, 1]:
+                    for i in range(alpha_idx, H_init.basis.Ns, 2):
+                        i_0[j] += (i//2)*np.abs(psi[i, j])**2
+
+            loc_len_2 = np.zeros(H_init.basis.Ns)
+            loc_len = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                for alpha_idx in [0, 1]:
+                    for i in range(alpha_idx, H_init.basis.Ns, 2):
+                        loc_len_2[j] += (i//2 - i_0[j])**2 * np.abs(psi[i, j])**2
+                loc_len[j] = np.sqrt(loc_len_2[j])
+
+            av_loc_len = np.mean(loc_len)
+
+            # A2
             A2 = np.zeros((len(psi), len(alpha)))
             for i_idx in range(len(psi)):
                 for alpha_idx in range(len(alpha)):
                     A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
-            return qE, qE_spac, A2[:, 0]
+            return qE, qE_spac, A2[:, 0], av_loc_len
         else:
             # quasi-energies
             qE = Floq.EF
@@ -104,7 +135,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             for i in range(len(qE) - 1):
                 qE_spac.append(qE[i + 1] - qE[i])
             qE_spac = np.asarray(qE_spac)
-            return qE, qE_spac, None
+            return qE, qE_spac, None, None
 
     ###################################################################################################################
 
@@ -147,6 +178,13 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         for i in A2:
             data['floq_struc'].write(f"{i}\n")
+
+    ###########
+    # loc_len #
+    ###########
+
+    loc_len_array = array[:, 3]
+    print(delta, np.mean(loc_len_array))
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

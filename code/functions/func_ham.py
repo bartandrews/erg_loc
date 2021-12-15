@@ -19,11 +19,10 @@ def chosen_hamiltonian(model, leaf_args):
                              leaf_args['h0'])
     elif model == "spin2021":
         H = spin2021(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
-                               leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'])
+                     leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'], leaf_args['T0'], leaf_args['T1'])
     elif model == "spin2021_2":
         V, H_1, H_2 = spin2021_2(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
-                               leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'],
-                               leaf_args['h0'])
+                                 leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'])
     else:
         raise ValueError("model not implemented in func_ham")
 
