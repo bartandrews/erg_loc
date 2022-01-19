@@ -10,7 +10,7 @@ import functions.func_ham as fh
 import functions.func_args as fa
 import functions.func_proc as fp
 
-delta = 1
+delta = 0.8
 
 
 def my_inst_U(path_flag, threads, model, _leaf_args):
@@ -46,10 +46,10 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         elif model == "spin2021":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init = H
-            t_list = np.array([0.0, _leaf_args['T1'] / 2.0]) + np.finfo(float).eps
-            # t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0])
-            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            # t_list = np.array([0.0, _leaf_args['T1'] / 2.0]) + np.finfo(float).eps
+            t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
+            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0])
+            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
             Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021_2":
             V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
@@ -102,22 +102,17 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             vec = np.zeros((8, 1))
             vec[0, 0] = 1
 
-            print(Floq.UF)
-
             # localization length
+
+            # i_array = unit cell index [0,0,1,1,2,2,...]
+            i_array = np.array([val for val in range(H_init.basis.Ns//2) for _ in (0, 1)])
             i_0 = np.zeros(H_init.basis.Ns)
             for j in range(H_init.basis.Ns):
-                for alpha_idx in [0, 1]:
-                    for i in range(alpha_idx, H_init.basis.Ns, 2):
-                        i_0[j] += (i//2)*np.abs(psi[i, j])**2
+                i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
 
-            loc_len_2 = np.zeros(H_init.basis.Ns)
             loc_len = np.zeros(H_init.basis.Ns)
             for j in range(H_init.basis.Ns):
-                for alpha_idx in [0, 1]:
-                    for i in range(alpha_idx, H_init.basis.Ns, 2):
-                        loc_len_2[j] += (i//2 - i_0[j])**2 * np.abs(psi[i, j])**2
-                loc_len[j] = np.sqrt(loc_len_2[j])
+                loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
 
             av_loc_len = np.mean(loc_len)
 

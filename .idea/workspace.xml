@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/plot/old/app_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/erg_loc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/erg_loc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/functions/func_ham.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_ham.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/inst_U.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/inst_U.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/models/spin2021.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/models/spin2021.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/PR_T_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/PR_T_flow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,14 +47,14 @@
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/plot/old" />
       <recent name="$PROJECT_DIR$/notes" />
       <recent name="$PROJECT_DIR$/code" />
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
       <recent name="$PROJECT_DIR$/spin_model/energy_absorbed" />
-      <recent name="$PROJECT_DIR$/spin_model/floquet_eigenstate_structure" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.PR_T_flow">
+  <component name="RunManager" selected="Python.app_plot">
     <configuration name="PR_T_flow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -70,6 +69,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/PR_T_flow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app_plot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="erg_loc" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/old/app_plot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,42 +165,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="q_ener_stat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="erg_loc" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/q_ener_stat.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.q_ener_stat" />
       <item itemvalue="Python.PR_T_flow" />
       <item itemvalue="Python.floq_struc" />
       <item itemvalue="Python.q_ener_spec" />
       <item itemvalue="Python.ener_abs_N_flow" />
+      <item itemvalue="Python.app_plot" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.app_plot" />
         <item itemvalue="Python.PR_T_flow" />
         <item itemvalue="Python.ener_abs_N_flow" />
         <item itemvalue="Python.floq_struc" />
         <item itemvalue="Python.q_ener_spec" />
-        <item itemvalue="Python.q_ener_stat" />
       </list>
     </recent_temporary>
   </component>
@@ -217,6 +216,11 @@
       <workItem from="1639077530610" duration="31227000" />
       <workItem from="1639356618182" duration="599000" />
       <workItem from="1639439444421" duration="23148000" />
+      <workItem from="1640685253370" duration="174000" />
+      <workItem from="1641303561873" duration="3162000" />
+      <workItem from="1641380084486" duration="703000" />
+      <workItem from="1641486329415" duration="611000" />
+      <workItem from="1642531209173" duration="13905000" />
     </task>
     <servers />
   </component>
@@ -244,6 +248,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_W_scaling_mid_state.coverage" NAME="XXZ_entropy_W_scaling_mid_state Coverage Results" MODIFIED="1637277936019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_energy_spacing_statistics_hist.coverage" NAME="XXZ_energy_spacing_statistics_hist Coverage Results" MODIFIED="1637275927852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_arc.coverage" NAME="XXZ_entropy_arc Coverage Results" MODIFIED="1637280415603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_arc" />
+    <SUITE FILE_PATH="coverage/erg_loc$app_plot.coverage" NAME="app_plot Coverage Results" MODIFIED="1641380160755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_A2.coverage" NAME="spin_model_A2 Coverage Results" MODIFIED="1635371944735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN.coverage" NAME="Ponte2015_QN_mid_H0 Coverage Results" MODIFIED="1636586006142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$example2.coverage" NAME="example2 Coverage Results" MODIFIED="1634837013858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
