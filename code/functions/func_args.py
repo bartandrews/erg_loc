@@ -67,6 +67,14 @@ def parse_input_arguments(program):
         leaf.add_argument("-W_samp", type=int, default=11, required=True, help="number of disorder strength samples")
     else:
         leaf.add_argument("-W", type=float, default=1, help="disorder strength")
+
+    if program == "delta_flow":
+        leaf.add_argument("-delta_min", type=float, default=0, required=True, help="minimum delta")
+        leaf.add_argument("-delta_max", type=float, default=1, required=True, help="maximum delta")
+        leaf.add_argument("-delta_samp", type=int, default=11, required=True, help="number of delta samples")
+    else:
+        leaf.add_argument("-delta", type=float, default=1, help="fraction of drive (see model for details)")
+
     leaf.add_argument("-tag", type=str, default="", help="tag to append to filename")
 
     args = vars(parser.parse_args())

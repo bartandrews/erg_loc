@@ -71,7 +71,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         S = np.mean(array, axis=0)
 
         for i, S_val in enumerate(S):
-            data['ent_t_flow'].write(f"{t_list[i]}\t{S[i]}\n")
+            data['ent_t_flow'].write(f"{t_list[i]:g}\t{S[i]}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

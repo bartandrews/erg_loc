@@ -10,8 +10,6 @@ import functions.func_ham as fh
 import functions.func_args as fa
 import functions.func_proc as fp
 
-delta = 0.8
-
 
 def my_inst_U(path_flag, threads, model, _leaf_args):
 
@@ -21,7 +19,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("inst_U", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
 
-    tools = ["q_ener", "q_ener_spac", "floq_struc"]
+    tools = ["q_ener", "q_ener_spac", "floq_struc", "loc_len"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -46,22 +44,15 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         elif model == "spin2021":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init = H
-            # t_list = np.array([0.0, _leaf_args['T1'] / 2.0]) + np.finfo(float).eps
-            t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
-            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0])
-            dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+            t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
+                + np.finfo(float).eps
+            dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
             Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021_2":
             V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
-            #print(V.basis.Ns, H_1.basis.Ns, H_2.basis.Ns)
-            #print(V.basis, H_1.basis, H_2.basis)
-            H_init = V
-            H_list = [H_1]
-            # H_list = [V, H_1, H_2]
-            #print("delta = ", delta)
-            dt_list = np.array([_leaf_args['T0'] / 4.0])
-            # dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
-            # print("dt_list = ", dt_list)
+            H_init = H_1
+            H_list = [V, H_1, H_2]
+            dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
             Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         else:
             raise ValueError("model not implemented in inst_U")
@@ -99,13 +90,11 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
             psi = Floq.VF
 
-            vec = np.zeros((8, 1))
-            vec[0, 0] = 1
-
             # localization length
 
             # i_array = unit cell index [0,0,1,1,2,2,...]
             i_array = np.array([val for val in range(H_init.basis.Ns//2) for _ in (0, 1)])
+
             i_0 = np.zeros(H_init.basis.Ns)
             for j in range(H_init.basis.Ns):
                 i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
@@ -114,14 +103,12 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             for j in range(H_init.basis.Ns):
                 loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
 
-            av_loc_len = np.mean(loc_len)
-
             # A2
             A2 = np.zeros((len(psi), len(alpha)))
             for i_idx in range(len(psi)):
                 for alpha_idx in range(len(alpha)):
                     A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
-            return qE, qE_spac, A2[:, 0], av_loc_len
+            return qE, qE_spac, A2[:, 0], loc_len
         else:
             # quasi-energies
             qE = Floq.EF
@@ -178,8 +165,15 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     # loc_len #
     ###########
 
-    loc_len_array = array[:, 3]
-    print(delta, np.mean(loc_len_array))
+    if "loc_len" in tools:
+
+        loc_len_array = array[:, 3]
+        loc_len = np.mean(loc_len_array, axis=0)
+
+        for i in loc_len:
+            data['loc_len'].write(f"{i}\n")
+
+        print(f"average localization length = {np.mean(loc_len)}")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

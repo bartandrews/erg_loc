@@ -77,10 +77,13 @@ The ``programs`` along with their corresponding ``tools``:
 	* q_ener -- disorder-averaged quasi-energy spectrum
 	* q_ener_spac -- disorder-concatenated quasi-energy spacings
 	* floq_struc -- disorder-averaged Floquet eigenstate structure
+	* loc_len -- disorder-averaged localization length per Floquet eigenstate
 * **N_flow** -- Floquet cycle evolution
 	* ener_abs_N_flow -- disorder-averaged energy absorbed against N
 * **T_flow** -- Floquet time evolution
 	* PR_T_flow -- disorder-averaged participation ratio against T
+* **delta_flow** -- drive period evolution
+	* loc_len_delta_flow -- disorder-averaged Floquet-eigenstate-averaged localization length against delta
 
 The ``plot`` scripts:
 

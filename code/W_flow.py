@@ -86,7 +86,7 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
         E_list_flat = [item for sublist in E_list for item in sublist]
 
         for i, E_val in enumerate(E_list_flat):
-            data['ener_W_flow'].write(f"{W_ext_list[i]}\t{E_val}\n")
+            data['ener_W_flow'].write(f"{W_ext_list[i]:g}\t{E_val}\n")
 
     ############
     # r_W_flow #
@@ -98,7 +98,7 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
         r = np.mean(r_array, axis=0)
 
         for i, r_val in enumerate(r):
-            data['r_W_flow'].write(f"{W_list[i]}\t{r_val}\n")
+            data['r_W_flow'].write(f"{W_list[i]:g}\t{r_val}\n")
 
     ##############
     # ent_W_flow #
@@ -112,7 +112,7 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
         S_list_flat = [item for sublist in S_list for item in sublist]
 
         for i, S_val in enumerate(S_list_flat):
-            data['ent_W_flow'].write(f"{W_ext_list[i]}\t{S_val}\n")
+            data['ent_W_flow'].write(f"{W_ext_list[i]:g}\t{S_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

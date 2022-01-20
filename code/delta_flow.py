@@ -10,24 +10,24 @@ import functions.func_args as fa
 import functions.func_proc as fp
 
 
-def my_T_flow(path_flag, threads, model, _leaf_args):
+def my_delta_flow(path_flag, threads, model, _leaf_args):
+
     path = "/data/baandr" if path_flag else ""  # specify the custom path
     t0 = perf_counter()  # start the timer
 
-    leaf = fp.file_name_leaf("T_flow", model, _leaf_args)
-    sys.stdout = sys.stderr = fp.Logger("T_flow", path, model, leaf)
+    leaf = fp.file_name_leaf("inst_U", model, _leaf_args)
+    sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
 
-    tools = ["PR_T_flow"]
+    tools = ["loc_len_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
 
-    def realization(itr, _T_list, _model, _leaf_args):
+    def realization(itr, _delta_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        _PR = []
-        for i, _T in enumerate(_T_list):
-            _leaf_args['T1'] = _T
+        av_loc_len = []
+        for i, _delta in enumerate(_delta_list):
             if model == "ponte2015":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
                 H_init = H
@@ -44,58 +44,61 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
             elif model == "spin2021":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
                 H_init = H
-                t_list = np.array([0.0, _leaf_args['T0'] / 4.0, 3 * _leaf_args['T0'] / 4.0]) + np.finfo(float).eps
-                dt_list = np.array([_leaf_args['T0'] / 4.0, _leaf_args['T0'] / 2.0, _leaf_args['T0'] / 4.0])
+                t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
+                    + np.finfo(float).eps
+                dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _delta*_leaf_args['T0']/4.0])
                 Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
             elif model == "spin2021_2":
                 V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
                 H_init = V
                 H_list = [V, H_1, H_2]
-                delta = 1
-                print("delta = ", delta)
-                dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, delta * _leaf_args['T0'] / 4.0])
+                dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _delta*_leaf_args['T0']/4.0])
                 Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
             else:
-                raise ValueError("model not implemented in T_flow")
+                raise ValueError("model not implemented in inst_U")
 
             _, alpha = H_init.eigh(time=0)
 
-            # A4
+            # localization length
             psi = Floq.VF
-            A4 = np.zeros((len(alpha), len(psi)))
-            for alpha_idx in range(len(alpha)):
-                for i_idx in range(len(psi)):
-                    A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx])) ** 4
 
-            _PR_temp = []
-            for j in range(len(psi)):
-                _PR_temp.append((1/H_init.basis.Ns)*(1/np.sum(A4[:, j])))
+            # i_array = unit cell index [0,0,1,1,2,2,...]
+            i_array = np.array([val for val in range(H_init.basis.Ns//2) for _ in (0, 1)])
 
-            _PR.append(np.mean(_PR_temp))
+            i_0 = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
 
-        return _PR
+            _loc_len = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                _loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
+
+            av_loc_len.append(np.mean(_loc_len))
+
+        return av_loc_len
 
     ###################################################################################################################
 
-    T_list = np.linspace(_leaf_args['T_min'], _leaf_args['T_max'], _leaf_args['T_samp'])
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, T_list, model, leaf_args)
+    delta_list = np.linspace(_leaf_args['delta_min'], _leaf_args['delta_max'], _leaf_args['delta_samp'])
+    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, delta_list, model, leaf_args)
                                                 for i in range(leaf_args['dis'])), dtype=object)
 
-    #############
-    # PR_T_flow #
-    #############
+    ######################
+    # loc_len_delta_flow #
+    ######################
 
-    if "PR_T_flow" in tools:
+    if "loc_len_delta_flow" in tools:
 
-        PR = np.mean(array, axis=0)
+        loc_len = np.mean(array, axis=0)
 
-        for i, PR_val in enumerate(PR):
-            data['PR_T_flow'].write(f"{T_list[i]:g}\t{PR_val}\n")
+        for i, loc_len_val in enumerate(loc_len):
+            data['loc_len_delta_flow'].write(f"{delta_list[i]:g}\t{loc_len_val}\n")
 
-    print(f"Total time taken (seconds) = {perf_counter() - t0:.1f}")
+    print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 
 
 if __name__ == "__main__":
-    prog_args, stem_args, leaf_args = fa.parse_input_arguments('T_flow')
 
-    my_T_flow(prog_args['path'], prog_args['threads'], stem_args['model'], leaf_args)
+    prog_args, stem_args, leaf_args = fa.parse_input_arguments('delta_flow')
+
+    my_delta_flow(prog_args['path'], prog_args['threads'], stem_args['model'], leaf_args)

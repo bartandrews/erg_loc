@@ -58,6 +58,13 @@ def file_name_leaf(program, model, ham_params):
     else:
         T = ""
 
+    if program == "delta_flow":
+        delta = f"delta_{ham_params['delta_min']:g}_{ham_params['delta_max']:g}_{ham_params['delta_samp']}_"
+    elif model in ["spin2021", "spin2021_2"]:
+        delta = f"delta_{ham_params['delta']:g}_"
+    else:
+        delta = ""
+
     if program == "W_flow":
         W = f"W_{ham_params['W_min']:g}_{ham_params['W_max']:g}_{ham_params['W_samp']}"
     else:
@@ -65,7 +72,7 @@ def file_name_leaf(program, model, ham_params):
 
     ext = ".dat"
 
-    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{h0}{T0}{T1}{N}{T}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{h0}{T0}{T1}{N}{T}{delta}{W}{ext}{ham_params['tag']}"
 
     return leaf
 
