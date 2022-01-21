@@ -59,7 +59,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         if eigenstate:
 
-            _, alpha = H_init.eigh(time=0)
+            _, alpha = H_init.eigh(time=0.625)
 
             # # print(Floq.UF)
             # fig = plt.figure()

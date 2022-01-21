@@ -15,8 +15,8 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     path = "/data/baandr" if path_flag else ""  # specify the custom path
     t0 = perf_counter()  # start the timer
 
-    leaf = fp.file_name_leaf("inst_U", model, _leaf_args)
-    sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
+    leaf = fp.file_name_leaf("delta_flow", model, _leaf_args)
+    sys.stdout = sys.stderr = fp.Logger("delta_flow", path, model, leaf)
 
     tools = ["loc_len_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
