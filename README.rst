@@ -107,13 +107,13 @@ The ``plot`` scripts:
 
 * **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
-.. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
+.. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_pauli_0_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **PR_T_flow** -- participation ratio T evolution (cf. Fig.2b of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
-.. image:: figures/PR_T_flow/ponte2015/PR_T_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T_0_3_11_W_0.5_comparison.png
+.. image:: figures/PR_T_flow/ponte2015/PR_T_flow_ponte2015_L_8_pauli_0_obc_dis_10_J_1_1_1_h0_2_T0_7_T_0_3_16_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 

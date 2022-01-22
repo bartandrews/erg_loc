@@ -30,7 +30,7 @@ def plot_PR_T_flow(_model, _file1, _file2=None, _save=False):
         ax0.set_xlabel('$T$')
         ax0.set_xlim([0, max(T_1)])
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_ylabel('PR($i=0$)')
+        ax0.set_ylabel('PR')
         # ax0.set_ylim([0, 1])
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_title(_file1.replace('PR_T_flow_', '').replace('_', '\_').replace('.dat', ''))
@@ -61,7 +61,7 @@ def plot_PR_T_flow(_model, _file1, _file2=None, _save=False):
         ax0.set_xlabel('$T$')
         ax0.set_xlim([0, max(T_1)])
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_ylabel('PR($i=0$)')
+        ax0.set_ylabel('PR')
         # ax0.set_ylim([0, 1])
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_title(_file1.replace('PR_T_flow_', '').replace('_', '\_').replace('.dat', ''))
@@ -83,7 +83,7 @@ def plot_PR_T_flow(_model, _file1, _file2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'ponte2015'
-    file1 = 'PR_T_flow_ponte2015_L_8_obc_dis_12_J_1_1_1_h0_2_T0_7_T_0_3_11_W_0.5.dat'
-    # file2 = 'PR_T_flow_ponte2015_L_8_obc_dis_1000_J_1_1_1_h0_2_T0_7_T_0_3_31_W_8.dat'
+    file1 = 'PR_T_flow_ponte2015_L_8_pauli_0_obc_dis_10_J_1_1_1_h0_2_T0_7_T_0_3_16_W_0.5.dat'
+    file2 = 'PR_T_flow_ponte2015_L_8_pauli_0_obc_dis_10_J_1_1_1_h0_2_T0_7_T_0_3_16_W_8.dat'
 
-    plot_PR_T_flow(model, file1, _save=False)
+    plot_PR_T_flow(model, file1, file2, _save=True)

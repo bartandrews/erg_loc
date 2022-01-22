@@ -31,15 +31,14 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
             if model == "ponte2015":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
                 H_init = H
-                t_list = np.array([0.0, _leaf_args['T0']/2.0, _leaf_args['T0']/2.0 + _leaf_args['T1']]) \
-                    + np.finfo(float).eps
-                dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
+                t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
+                dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
                 Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
             elif model == "ponte2015_2":
-                H_0, V = fh.chosen_hamiltonian(_model, _leaf_args)
+                V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
                 H_init = H_0
-                H_list = [H_0, V, H_0]
-                dt_list = np.array([_leaf_args['T0']/2.0, _leaf_args['T1'], _leaf_args['T0']/2.0])
+                H_list = [V, H_0]
+                dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
                 Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
             elif model == "spin2021":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
@@ -59,18 +58,18 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
             else:
                 raise ValueError("model not implemented in T_flow")
 
-            _, alpha = H_init.eigh(time=0)
+            _, alpha = H_init.eigh(time=_leaf_args['T1'])
 
             # A4
             psi = Floq.VF
             A4 = np.zeros((len(alpha), len(psi)))
-            for alpha_idx in range(len(alpha)):
-                for i_idx in range(len(psi)):
+            for i_idx in range(len(psi)):
+                for alpha_idx in range(len(alpha)):
                     A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx])) ** 4
 
             _PR_temp = []
-            for j in range(len(psi)):
-                _PR_temp.append((1/H_init.basis.Ns)*(1/np.sum(A4[:, j])))
+            for i_idx in range(len(psi)):
+                _PR_temp.append((1/H_init.basis.Ns)*(1/np.sum(A4[:, i_idx])))
 
             _PR.append(np.mean(_PR_temp))
 
