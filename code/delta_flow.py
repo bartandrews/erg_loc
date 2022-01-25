@@ -18,7 +18,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("delta_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("delta_flow", path, model, leaf)
 
-    tools = ["loc_len_delta_flow"]
+    tools = ["loc_len_delta_flow", "PR_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -26,37 +26,37 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     def realization(itr, _delta_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        av_loc_len = []
+        av_loc_len, _PR = [], []
         for i, _delta in enumerate(_delta_list):
             if model == "ponte2015":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init = H
+                H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0']/2
                 t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
                 dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
                 Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
             elif model == "ponte2015_2":
                 V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init = H_0
+                H_init, T_init = H_0, 0
                 H_list = [V, H_0]
                 dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
                 Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
             elif model == "spin2021":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init = H
+                H_init, T_init = H, _leaf_args['T1']/2 + _leaf_args['T0']/8
                 t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
                     + np.finfo(float).eps
                 dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _delta*_leaf_args['T0']/4.0])
                 Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
             elif model == "spin2021_2":
                 V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init = V
+                H_init, T_init = H_1, 0
                 H_list = [V, H_1, H_2]
                 dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _delta*_leaf_args['T0']/4.0])
                 Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
             else:
                 raise ValueError("model not implemented in inst_U")
 
-            _, alpha = H_init.eigh(time=0)
+            _, alpha = H_init.eigh(time=T_init)
 
             # localization length
             psi = Floq.VF
@@ -74,7 +74,20 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
             av_loc_len.append(np.mean(_loc_len))
 
-        return av_loc_len
+            # A4
+            psi = Floq.VF
+            A4 = np.zeros((len(alpha), len(psi)))
+            for i_idx in range(len(psi)):
+                for alpha_idx in range(len(alpha)):
+                    A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx])) ** 4
+
+            _PR_temp = []
+            for i_idx in range(len(psi)):
+                _PR_temp.append((1 / H_init.basis.Ns) * (1 / np.sum(A4[:, i_idx])))
+
+            _PR.append(np.mean(_PR_temp))
+
+        return av_loc_len, _PR
 
     ###################################################################################################################
 
@@ -88,10 +101,23 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
     if "loc_len_delta_flow" in tools:
 
-        loc_len = np.mean(array, axis=0)
+        loc_len_array = array[:, 0]
+        loc_len = np.mean(loc_len_array, axis=0)
 
         for i, loc_len_val in enumerate(loc_len):
             data['loc_len_delta_flow'].write(f"{delta_list[i]:g}\t{loc_len_val}\n")
+
+    #################
+    # PR_delta_flow #
+    #################
+
+    if "PR_delta_flow" in tools:
+
+        PR_array = array[:, 1]
+        PR = np.mean(PR_array, axis=0)
+
+        for i, PR_val in enumerate(PR):
+            data['PR_delta_flow'].write(f"{delta_list[i]:g}\t{PR_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

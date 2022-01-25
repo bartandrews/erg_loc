@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/plot/PR_delta_flow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/N_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/N_flow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/T_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/T_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/delta_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/delta_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/inst_U.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/inst_U.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot/PR_T_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/PR_T_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/floq_struc.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/floq_struc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/loc_len_delta_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/loc_len_delta_flow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot/q_ener_spec.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/q_ener_spec.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/plot" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
@@ -57,7 +60,7 @@
       <recent name="$PROJECT_DIR$/spin_model/energy_absorbed" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.PR_T_flow">
+  <component name="RunManager" selected="Python.PR_delta_flow">
     <configuration name="PR_T_flow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -80,7 +83,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ener_abs_N_flow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="PR_delta_flow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -93,7 +96,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/ener_abs_N_flow.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/PR_delta_flow.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,18 +173,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.floq_struc" />
-      <item itemvalue="Python.ener_abs_N_flow" />
-      <item itemvalue="Python.loc_len_delta_flow" />
       <item itemvalue="Python.PR_T_flow" />
       <item itemvalue="Python.q_ener_spec" />
+      <item itemvalue="Python.PR_delta_flow" />
+      <item itemvalue="Python.loc_len_delta_flow" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.PR_delta_flow" />
+        <item itemvalue="Python.loc_len_delta_flow" />
+        <item itemvalue="Python.q_ener_spec" />
         <item itemvalue="Python.PR_T_flow" />
         <item itemvalue="Python.floq_struc" />
-        <item itemvalue="Python.q_ener_spec" />
-        <item itemvalue="Python.ener_abs_N_flow" />
-        <item itemvalue="Python.loc_len_delta_flow" />
       </list>
     </recent_temporary>
   </component>
@@ -228,7 +231,7 @@
       <workItem from="1642699088401" duration="16709000" />
       <workItem from="1642788120224" duration="17000" />
       <workItem from="1642803807457" duration="11084000" />
-      <workItem from="1643063019370" duration="9304000" />
+      <workItem from="1643063019370" duration="19635000" />
     </task>
     <servers />
   </component>
@@ -247,10 +250,10 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/erg_loc$loc_len_delta_flow.coverage" NAME="loc_len_delta_flow Coverage Results" MODIFIED="1642722670800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$loc_len_delta_flow.coverage" NAME="loc_len_delta_flow Coverage Results" MODIFIED="1643140267800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_ground_state.coverage" NAME="XXZ_entropy_L_scaling_ground_state Coverage Results" MODIFIED="1637253979747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/erg_loc$XXZ_entropy_scaling_mid_state.coverage" NAME="XXZ_entropy_scaling_mid_state Coverage Results" MODIFIED="1638233992477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/standalone/XXZ/entropy_scaling" />
-    <SUITE FILE_PATH="coverage/erg_loc$q_ener_spec.coverage" NAME="q_ener_spec Coverage Results" MODIFIED="1643064611172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$q_ener_spec.coverage" NAME="q_ener_spec Coverage Results" MODIFIED="1643135989163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$XXZ_entropy_arc.coverage" NAME="XXZ_entropy_arc Coverage Results" MODIFIED="1637697365421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/standalone/XXZ/entropy_arc" />
     <SUITE FILE_PATH="coverage/erg_loc$ener_stat_W_flow.coverage" NAME="r_W_flow Coverage Results" MODIFIED="1637970256900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0_comparison.coverage" NAME="Ponte2015_QN_mid_H0_comparison Coverage Results" MODIFIED="1636739053846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
@@ -262,7 +265,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN.coverage" NAME="Ponte2015_QN_mid_H0 Coverage Results" MODIFIED="1636586006142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$example2.coverage" NAME="example2 Coverage Results" MODIFIED="1634837013858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_new__1_.coverage" NAME="Ponte2015_r_comparison_new (1) Coverage Results" MODIFIED="1637168833714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte_2015/energy_spacing_statistics" />
-    <SUITE FILE_PATH="coverage/erg_loc$PR_T_flow.coverage" NAME="PR_T_flow Coverage Results" MODIFIED="1643072503100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$PR_T_flow.coverage" NAME="PR_T_flow Coverage Results" MODIFIED="1643134566546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$inst_ham.coverage" NAME="inst_ham Coverage Results" MODIFIED="1638231241872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_r_comparison.coverage" NAME="XXZ_r_comparison Coverage Results" MODIFIED="1637104838358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0.coverage" NAME="Ponte2015_QN_mid_H0 Coverage Results" MODIFIED="1636736491546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
@@ -302,6 +305,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_parallel_new__1_.coverage" NAME="Ponte2015_r_comparison_parallel_new (1) Coverage Results" MODIFIED="1637170108909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte_2015/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_entropy_L_scaling_mid_state.coverage" NAME="XXZ_entropy_L_scaling_mid_state Coverage Results" MODIFIED="1637350304481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/XXZ/entropy_scaling" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2.coverage" NAME="Ponte2015_QN_Floquet_2 Coverage Results" MODIFIED="1635293288457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/erg_loc$PR_delta_flow.coverage" NAME="PR_delta_flow Coverage Results" MODIFIED="1643149450685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_3_Parallel.coverage" NAME="Ponte2015_QN_L_scaling Coverage Results" MODIFIED="1635356464397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/erg_loc$XXZ_energy_spacing_statistics_hist.coverage" NAME="XXZ_energy_spacing_statistics_hist Coverage Results" MODIFIED="1637784873658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/standalone/XXZ/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_start_V.coverage" NAME="Ponte2015_QN_start_V Coverage Results" MODIFIED="1636677137488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />

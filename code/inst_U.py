@@ -29,27 +29,27 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         if model == "ponte2015":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init = H
+            H_init, T_init = H, _leaf_args['T1']+_leaf_args['T0']/2
             t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
             dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
             Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
                            VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "ponte2015_2":
             V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init = H_0
+            H_init, T_init = H_0, 0
             H_list = [V, H_0]
             dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
             Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init = H
+            H_init, T_init = H, _leaf_args['T1']/2+_leaf_args['T0']/8
             t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
                 + np.finfo(float).eps
             dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
             Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021_2":
             V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init = H_1
+            H_init, T_init = H_1, 0
             H_list = [V, H_1, H_2]
             dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
             Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
@@ -58,7 +58,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         if eigenstate:
 
-            _, alpha = H_init.eigh(time=0.625)
+            _, alpha = H_init.eigh(time=T_init)
 
             # # print(Floq.UF)
             # fig = plt.figure()

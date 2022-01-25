@@ -81,9 +81,10 @@ The ``programs`` along with their corresponding ``tools``:
 * **N_flow** -- Floquet cycle evolution
 	* ener_abs_N_flow -- disorder-averaged energy absorbed against N
 * **T_flow** -- Floquet time evolution
-	* PR_T_flow -- disorder-averaged participation ratio against T
+	* PR_T_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against T
 * **delta_flow** -- drive period evolution
 	* loc_len_delta_flow -- disorder-averaged Floquet-eigenstate-averaged localization length against delta
+	* PR_delta_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against delta
 
 The ``plot`` scripts:
 
@@ -119,7 +120,13 @@ The ``plot`` scripts:
 
 * **loc_len_delta_flow** -- localization length delta evolution
 
-.. image:: figures/loc_len_delta_flow/spin2021/loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1.png
+.. image:: figures/loc_len_delta_flow/spin2021/loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1_comparison.png
+	:align: center
+	:width: 80%
+
+* **PR_delta_flow** -- participation ratio delta evolution
+
+.. image:: figures/PR_delta_flow/spin2021/PR_delta_flow_spin2021_L_100_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2_comparison.png
 	:align: center
 	:width: 80%
 
