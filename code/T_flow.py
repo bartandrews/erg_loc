@@ -58,7 +58,8 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
             else:
                 raise ValueError("model not implemented in T_flow")
 
-            _, alpha = H_init.eigh(time=_leaf_args['T1'])
+            _, alpha = H_init.eigh(time=(_leaf_args['T1']+_leaf_args['T0']/2))
+            # _, alpha = H_init.eigh(time=0)
 
             # A4
             psi = Floq.VF

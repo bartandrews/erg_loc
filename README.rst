@@ -89,7 +89,7 @@ The ``plot`` scripts:
 
 * **q_ener_spec** -- quasi-energy spectrum
 
-.. image:: figures/q_ener_spec/ponte2015/q_ener_spec_ponte2015_L_8_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
+.. image:: figures/q_ener_spec/ponte2015/q_ener_spec_ponte2015_L_8_pauli_0_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
@@ -101,7 +101,7 @@ The ``plot`` scripts:
 
 * **floq_struc** -- Floquet eigenstate structure (cf. Fig.2a of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
-.. image:: figures/floq_struc/ponte2015/floq_struc_ponte2015_L_8_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_8_comparison.png
+.. image:: figures/floq_struc/ponte2015/floq_struc_ponte2015_L_8_pauli_0_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_8_comparison.png
 	:align: center
 	:width: 80%
 
