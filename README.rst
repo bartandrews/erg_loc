@@ -115,7 +115,7 @@ The ``plot`` scripts:
 
 * **info_ent_N_flow** -- information entropy N evolution (cf. Fig.4 of `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__)
 
-.. image:: figures/info_ent_N_flow/spin2021/info_ent_N_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_N_60_delta_0.1_W_2_comparison.png
+.. image:: figures/info_ent_N_flow/spin2021/info_ent_N_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_N_60_delta_0.9_W_2_comparison.png
 	:align: center
 	:width: 80%
 

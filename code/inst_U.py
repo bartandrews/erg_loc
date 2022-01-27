@@ -4,7 +4,6 @@ from time import perf_counter
 import sys
 from joblib import delayed, Parallel
 from quspin.tools.Floquet import Floquet
-import matplotlib.pyplot as plt
 # --- driven_systems imports
 import functions.func_ham as fh
 import functions.func_args as fa
@@ -19,6 +18,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("inst_U", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
 
+    # "q_ener", "q_ener_spac", "floq_struc", "loc_len"
     tools = ["q_ener", "q_ener_spac", "floq_struc", "loc_len"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -39,20 +39,23 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             H_init, T_init = H_0, 0
             H_list = [V, H_0]
             dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
-            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
+            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
+                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init, T_init = H, _leaf_args['T1']/2+_leaf_args['T0']/8
             t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
                 + np.finfo(float).eps
             dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
+            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
+                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         elif model == "spin2021_2":
             V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init, T_init = H_1, 0
             H_list = [V, H_1, H_2]
             dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
+            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
+                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
         else:
             raise ValueError("model not implemented in inst_U")
 
@@ -60,7 +63,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
             _, alpha = H_init.eigh(time=T_init)
 
-            # # print(Floq.UF)
+            # import matplotlib.pyplot as plt
             # fig = plt.figure()
             # ax = fig.add_subplot(111)
             # mat = ax.matshow(np.abs(Floq.UF), cmap='Greys')
@@ -79,9 +82,9 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
             # plt.show()
 
-            # quasi-energies
+            # --- q_ener
             qE = Floq.EF
-            # quasi-energy spacings
+            # --- q_ener_spac
             qE_spac = []
             for i in range(len(qE)-1):
                 qE_spac.append(qE[i+1]-qE[i])
@@ -89,29 +92,28 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
             psi = Floq.VF
 
-            # localization length
-
-            # i_array = unit cell index [0,0,1,1,2,2,...]
-            i_array = np.array([val for val in range(H_init.basis.Ns//2) for _ in (0, 1)])
-
-            i_0 = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
-                i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
-
-            loc_len = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
-                loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
-
-            # A2
-            A2 = np.zeros((len(psi), len(alpha)))
+            # --- floq_struc
+            _A2 = np.zeros((len(psi), len(alpha)))
             for i_idx in range(len(psi)):
                 for alpha_idx in range(len(alpha)):
-                    A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
-            return qE, qE_spac, A2[:, 0], loc_len
+                    _A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
+            # --- loc_len
+            # i_array = unit cell index [0,0,1,1,2,2,...]
+            i_array = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                i_array[j] = j//2
+            i_0 = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                i_0[j] = i_array.dot(np.abs(psi[:, j]) ** 2)
+            _loc_len = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                _loc_len[j] = np.sqrt(np.dot((i_array - i_0[j]) ** 2, np.abs(psi[:, j]) ** 2))
+
+            return qE, qE_spac, _A2[:, 0], _loc_len
         else:
-            # quasi-energies
+            # --- q_ener
             qE = Floq.EF
-            # quasi-energy spacings
+            # --- q_ener_spac
             qE_spac = []
             for i in range(len(qE) - 1):
                 qE_spac.append(qE[i + 1] - qE[i])
@@ -120,7 +122,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
     ###################################################################################################################
 
-    eig_flag = True if "floq_struc" in tools else False
+    eig_flag = True if "floq_struc" in tools or "loc_len" in tools else False
     array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, eigenstate=eig_flag)
                                                 for i in range(leaf_args['dis'])), dtype=object)
 

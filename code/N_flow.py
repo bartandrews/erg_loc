@@ -11,13 +11,15 @@ import functions.func_proc as fp
 
 
 def my_N_flow(path_flag, threads, model, _leaf_args):
+
     path = "/data/baandr" if path_flag else ""  # specify the custom path
     t0 = perf_counter()  # start the timer
 
     leaf = fp.file_name_leaf("N_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("N_flow", path, model, leaf)
 
-    tools = ["info_ent_N_flow"]
+    # "ener_abs_N_flow", "info_ent_N_flow"
+    tools = ["ener_abs_N_flow", "info_ent_N_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -53,9 +55,10 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         else:
             raise ValueError("model not implemented in N_flow")
 
-        # --- energy absorbed under driving
-        E_Tinf = H_init.trace(time=T_init) / H_init.basis.Ns
         E, phi = H_init.eigh(time=T_init)
+
+        # --- ener_abs_N_flow
+        E_Tinf = H_init.trace(time=T_init) / H_init.basis.Ns
 
         E_0 = np.min(E)
         phi_0 = phi[:, np.argmin(E)]
@@ -71,7 +74,7 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
 
             Q_N[n] = (np.real(H_init.matrix_ele(phi_N, phi_N, time=T_init)) - E_0) / (E_Tinf - E_0)
 
-        # --- Floquet eigenstate information entropy
+        # --- info_ent_N_flow
         S_av = []
         UF_new = UF
         VF = Floq.VF

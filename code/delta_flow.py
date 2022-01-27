@@ -18,6 +18,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("delta_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("delta_flow", path, model, leaf)
 
+    # "loc_len_delta_flow", "PR_delta_flow"
     tools = ["loc_len_delta_flow", "PR_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -57,34 +58,30 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
                 raise ValueError("model not implemented in inst_U")
 
             _, alpha = H_init.eigh(time=T_init)
-
-            # localization length
             psi = Floq.VF
 
+            # --- loc_len_delta_flow
             # i_array = unit cell index [0,0,1,1,2,2,...]
-            i_array = np.array([val for val in range(H_init.basis.Ns//2) for _ in (0, 1)])
-
+            i_array = np.zeros(H_init.basis.Ns)
+            for j in range(H_init.basis.Ns):
+                i_array[j] = j//2
             i_0 = np.zeros(H_init.basis.Ns)
             for j in range(H_init.basis.Ns):
                 i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
-
             _loc_len = np.zeros(H_init.basis.Ns)
             for j in range(H_init.basis.Ns):
                 _loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
-
             av_loc_len.append(np.mean(_loc_len))
 
-            # A4
+            # PR_delta_flow
             psi = Floq.VF
             A4 = np.zeros((len(alpha), len(psi)))
             for i_idx in range(len(psi)):
                 for alpha_idx in range(len(alpha)):
                     A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx])) ** 4
-
             _PR_temp = []
             for i_idx in range(len(psi)):
                 _PR_temp.append((1 / H_init.basis.Ns) * (1 / np.sum(A4[:, i_idx])))
-
             _PR.append(np.mean(_PR_temp))
 
         return av_loc_len, _PR

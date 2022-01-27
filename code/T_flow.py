@@ -11,12 +11,14 @@ import functions.func_proc as fp
 
 
 def my_T_flow(path_flag, threads, model, _leaf_args):
+
     path = "/data/baandr" if path_flag else ""  # specify the custom path
     t0 = perf_counter()  # start the timer
 
     leaf = fp.file_name_leaf("T_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("T_flow", path, model, leaf)
 
+    # "PR_T_flow"
     tools = ["PR_T_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -60,7 +62,7 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
 
             _, alpha = H_init.eigh(time=T_init)
 
-            # A4
+            # --- PR_T_flow
             psi = Floq.VF
             A4 = np.zeros((len(alpha), len(psi)))
             for i_idx in range(len(psi)):
