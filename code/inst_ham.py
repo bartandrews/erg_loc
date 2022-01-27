@@ -17,6 +17,7 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("inst_ham", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("inst_ham", path, model, leaf)
 
+    # "ener", "ener_spac", "ent", "ent_mid"
     tools = ["ener", "ener_spac", "ent"]
     if "ent_mid" not in tools:
         data = fp.prepare_output_files(tools, path, model, leaf)

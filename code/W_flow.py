@@ -17,6 +17,7 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("W_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("W_flow", path, model, leaf)
 
+    # "ener_W_flow", "r_W_flow", "ent_W_flow"
     tools = ["ener_W_flow", "r_W_flow", "ent_W_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 

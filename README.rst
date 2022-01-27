@@ -80,6 +80,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* loc_len -- disorder-averaged localization length per Floquet eigenstate
 * **N_flow** -- Floquet cycle evolution
 	* ener_abs_N_flow -- disorder-averaged energy absorbed against N
+	* ent_N_flow -- disorder-averaged entanglement entropy against N
 	* info_ent_N_flow -- disorder-averaged Floquet-eigenstate-average information entropy against N
 * **T_flow** -- Floquet time evolution
 	* PR_T_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against T
@@ -110,6 +111,12 @@ The ``plot`` scripts:
 * **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
 .. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_pauli_0_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
+* **ent_N_flow** -- entanglement entropy N evolution
+
+.. image:: figures/ent_N_flow/spin2021/ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2_comparison.png
 	:align: center
 	:width: 80%
 
@@ -209,11 +216,11 @@ Example Commands
 * ``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 0.5``
 * ``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 25 -W_samp 24``
 * ``python code/L_flow.py -mod heisenberg -L_min 8 -L_max 12 -L_samp 3 -bc o -dis 10 -W 0``
-* ``python code/t_flow.py -mod heisenberg -thr 1 -L 8 -t_min 10 -t_max 1000 -t_samp 3 -dis 1 -bc o -W 3``
+* ``python code/t_flow.py -mod heisenberg -L 6 -J 1 1 0.2 -t_min -1 -t_max 6 -t_samp 100 -dis 100 -bc o -W 0.5``
 * ``python code/inst_U.py -mod ponte2015 -L 8 -Nup 4 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5 -dis 10000``
 * ``python code/N_flow.py -mod ponte2015 -L 8 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -N 31 -dis 100``
 * ``python code/T_flow.py -mod ponte2015 -L 8 -h0 2 -T0 7 -dis 20 -bc o -W 0.5 -T_min 0 -T_max 3 -T_samp 11``
-* ``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 200 -bc o -T0 1 -T1 1 -W 1 -delta_min 0 -delta_max 1 -delta_samp 11``
+* ``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 200 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 11``
 
 References
 ----------

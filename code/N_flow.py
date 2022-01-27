@@ -10,6 +10,13 @@ import functions.func_args as fa
 import functions.func_proc as fp
 
 
+def bloch_state(cos_theta, phi):
+
+    theta = np.arccos(cos_theta)
+
+    return np.array([np.cos(theta/2), np.exp(1j*phi)*np.sin(theta/2)])
+
+
 def my_N_flow(path_flag, threads, model, _leaf_args):
 
     path = "/data/baandr" if path_flag else ""  # specify the custom path
@@ -18,8 +25,8 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("N_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("N_flow", path, model, leaf)
 
-    # "ener_abs_N_flow", "info_ent_N_flow"
-    tools = ["ener_abs_N_flow", "info_ent_N_flow"]
+    # "ener_abs_N_flow", "ent_N_flow", "info_ent_N_flow"
+    tools = ["ent_N_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -57,22 +64,33 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
 
         E, phi = H_init.eigh(time=T_init)
 
-        # --- ener_abs_N_flow
+        # --- ener_abs_N_flow / ent_N_flow
         E_Tinf = H_init.trace(time=T_init) / H_init.basis.Ns
-
-        E_0 = np.min(E)
-        phi_0 = phi[:, np.argmin(E)]
-
         UF = Floq.UF
 
+        # initial conditions for ener_abs_N_flow
+        E_0 = np.min(E)
+        phi_0 = phi[:, np.argmin(E)]
         phi_N = phi_0
         Q_N = np.zeros(_leaf_args['N'])
+
+        # initial conditions for ent_N_flow
+        v = 0
+        psi_prod = 1
+        for i in range(_leaf_args['L']):
+            bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2 * np.pi))
+            psi_prod = np.kron(psi_prod, bloch)
+        psi_prod_N = psi_prod
+        S_N = np.zeros(_leaf_args['N'])
+
         for n in range(_leaf_args['N']):
 
             if n > 0:
                 phi_N = UF.dot(phi_N)
+                psi_prod_N = UF.dot(psi_prod_N)
 
             Q_N[n] = (np.real(H_init.matrix_ele(phi_N, phi_N, time=T_init)) - E_0) / (E_Tinf - E_0)
+            S_N[n] = float(H_init.basis.ent_entropy(psi_prod_N, sub_sys_A=range(H_init.basis.L//2))["Sent_A"])
 
         # --- info_ent_N_flow
         S_av = []
@@ -95,7 +113,7 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
                 S[n] = -np.sum(c2*np.log(c2))
             S_av.append(np.mean(S)/(np.log(0.48*H_init.basis.Ns)))
 
-        return Q_N, S_av
+        return Q_N, S_N, S_av
 
     ###################################################################################################################
 
@@ -114,13 +132,25 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         for i in E_abs:
             data['ener_abs_N_flow'].write(f"{i}\n")
 
+    ##############
+    # ent_N_flow #
+    ##############
+
+    if "ent_N_flow" in tools:
+
+        ent_array = array[:, 1]
+        ent = np.mean(ent_array, axis=0)
+
+        for i in ent:
+            data['ent_N_flow'].write(f"{i}\n")
+
     ###################
     # info_ent_N_flow #
     ###################
 
     if "info_ent_N_flow" in tools:
 
-        info_ent_array = array[:, 1]
+        info_ent_array = array[:, 2]
         info_ent = np.mean(info_ent_array, axis=0)
 
         for i in info_ent:

@@ -7,11 +7,19 @@ from quspin.basis import spin_basis_1d
 
 def _V_drive(t, T_0, T_1):
 
-    if 0 <= t < T_1 / 2:
+    T = T_0 + T_1
+
+    # bring into range 0<=t<T
+    if t >= T:
+        t = t % T
+    elif t < 0:
+        t = T - abs(t) % T
+
+    if 0 <= t < T_1/2:
         ans = 1
-    elif T_1 / 2 <= t < T_0 + T_1 / 2:
+    elif T_1/2 <= t < T_1/2 + T_0:
         ans = 0
-    elif T_1 / 2 + T_0 <= t < T_0 + T_1:
+    elif T_1/2 + T_0 <= t < T:
         ans = 1
     else:
         ans = 0
@@ -21,14 +29,24 @@ def _V_drive(t, T_0, T_1):
 
 def _H1_drive(t, T_0, T_1):
 
+    T = T_0 + T_1
+
+    # bring into range 0<=t<T
+    if t >= T:
+        t = t % T
+    elif t < 0:
+        t = T - abs(t) % T
+
     if 0 <= t < T_1/2:
         ans = 0
     elif T_1/2 <= t < T_1/2 + T_0/4:
         ans = 1
     elif T_1/2 + T_0/4 <= t < T_1/2 + 3*T_0/4:
         ans = 0
-    elif T_1/2 + 3*T_0/4 <= t < T_0 + T_1/2:
+    elif T_1/2 + 3*T_0/4 <= t < T_1/2 + T_0:
         ans = 1
+    elif T_1/2 + T_0 <= t < T:
+        ans = 0
     else:
         ans = 0
 
@@ -37,13 +55,19 @@ def _H1_drive(t, T_0, T_1):
 
 def _H2_drive(t, T_0, T_1):
 
-    if 0 <= t < T_1/2:
-        ans = 0
-    elif T_1/2 <= t < T_1/2 + T_0/4:
+    T = T_0 + T_1
+
+    # bring into range 0<=t<T
+    if t >= T:
+        t = t % T
+    elif t < 0:
+        t = T - abs(t) % T
+
+    if 0 <= t < T_1/2 + T_0/4:
         ans = 0
     elif T_1/2 + T_0/4 <= t < T_1/2 + 3*T_0/4:
         ans = 1
-    elif T_1/2 + 3*T_0/4 <= t < T_0 + T_1/2:
+    elif T_1/2 + 3*T_0/4 <= t < T:
         ans = 0
     else:
         ans = 0

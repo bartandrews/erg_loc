@@ -79,8 +79,8 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _save=False):
 
 if __name__ == "__main__":
 
-    model = 'heisenberg'
-    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_0.5.dat'
-    file2 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.dat'
+    model = 'spin2021'
+    file1 = 'ent_t_flow_spin2021_L_6_obc_dis_100_t_-1_3_50_J_1_1_1_T0_1_T1_1_delta_0.9_W_2.dat'
+    # file2 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_10.dat'
 
-    plot_ent_t_flow(model, file1, file2, _save=True)
+    plot_ent_t_flow(model, file1, _save=False)

@@ -24,6 +24,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("t_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("t_flow", path, model, leaf)
 
+    # "ent_t_flow"
     tools = ["ent_t_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
