@@ -80,6 +80,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* loc_len -- disorder-averaged localization length per Floquet eigenstate
 * **N_flow** -- Floquet cycle evolution
 	* ener_abs_N_flow -- disorder-averaged energy absorbed against N
+	* info_ent_N_flow -- disorder-averaged Floquet-eigenstate-average information entropy against N
 * **T_flow** -- Floquet time evolution
 	* PR_T_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against T
 * **delta_flow** -- drive period evolution
@@ -109,6 +110,12 @@ The ``plot`` scripts:
 * **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
 .. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_pauli_0_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
+* **info_ent_N_flow** -- information entropy N evolution (cf. Fig.4 of `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__)
+
+.. image:: figures/info_ent_N_flow/spin2021/info_ent_N_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_N_60_delta_0.1_W_2_comparison.png
 	:align: center
 	:width: 80%
 
@@ -218,3 +225,5 @@ References
 `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__ "Entanglement spreading in a many-body localized system", by Arun Nanduri, Hyungwon Kim, and David Huse, PRB **90**, 064201 (2014).
 
 `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__ "Periodically driven ergodic and many-body localized quantum systems"  by Pedro Ponte, Anushya Chandran, Zlatko Papić, and Dmitry Abanin, Annals of Physics **353**, 196 (2015).
+
+`[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__ "Long-time Behavior of Isolated Periodically Driven Interacting Lattice Systems"  by Luca D’Alessio and Marcos Rigol, PRX **4**, 041048 (2014).
