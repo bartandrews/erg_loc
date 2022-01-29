@@ -1,5 +1,6 @@
 # --- driven_systems imports
 from models.heisenberg import heisenberg
+from models.ising import ising_2
 from models.ponte2015 import ponte2015, ponte2015_2
 from models.spin2021 import spin2021, spin2021_2
 
@@ -9,6 +10,10 @@ def chosen_hamiltonian(model, leaf_args):
     if model == "heisenberg":
         H = heisenberg(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
                        leaf_args['J'][0], leaf_args['J'][1], leaf_args['J'][2], leaf_args['W'])
+    elif model == "ising_2":
+        H = ising_2(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
+                    leaf_args['J'][0], leaf_args['J'][1], leaf_args['J'][2], leaf_args['W'],
+                    leaf_args['h0'], leaf_args['T0'])
     elif model == "ponte2015":
         H = ponte2015(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
                       leaf_args['J'][0], leaf_args['J'][1], leaf_args['J'][2], leaf_args['W'],
@@ -28,7 +33,7 @@ def chosen_hamiltonian(model, leaf_args):
 
     if model == "ponte2015_2":
         return V, H_0
-    if model == "spin2021_2":
+    elif model == "spin2021_2":
         return V, H_1, H_2
     else:
         return H

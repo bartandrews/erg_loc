@@ -24,7 +24,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("t_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("t_flow", path, model, leaf)
 
-    # "ent_t_flow"
+    # "ent_t_flow", "numb_fluc_t_flow"
     tools = ["ent_t_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -34,6 +34,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
         _S_array = np.zeros(_leaf_args['t_samp'], dtype=float)
+        _numb_fluc_array = np.zeros(_leaf_args['t_samp'], dtype=float)
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
@@ -43,7 +44,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         # psi_prod[array_idx_prod] = 1.0
 
         # - initial bloch product state
-        v = 0
+        v = 1
         psi_prod = 1
         for i in range(_leaf_args['L']):
             bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2*np.pi))
@@ -51,8 +52,23 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         psi = H.evolve(psi_prod, 0.0, _t_list)
 
+        # op_list_x = [["x", [i], 1] for i in range(H.basis.L // 2)]
+        # op_list_y = [["y", [i], 1] for i in range(H.basis.L // 2)]
+        # op_list_z = [["z", [i], 1] for i in range(H.basis.L // 2)]
+        # # op_list = [["x", [0, 1, 2], 1],
+        # #            ["y", [0, 1, 2], 1],
+        # #            ["z", [0, 1, 2], 1]]
+        # O_psi_x = H.basis.inplace_Op(psi, op_list_x, np.float64)
+        # O_psi_y = np.real(H.basis.inplace_Op(psi, op_list_y, np.complex64))
+        # O_psi_z = H.basis.inplace_Op(psi, op_list_z, np.float64)
+        #
+        # O_psi = O_psi_z
+        #
+        # print(psi[:, 0].states)
+
         for i in range(psi.shape[1]):  # t_samp
             _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
+            # _numb_fluc_array[i] = np.var(O_psi[:, i])
 
         return _S_array
 
@@ -69,10 +85,23 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
     if "ent_t_flow" in tools:
 
-        S = np.mean(array, axis=0)
+        ent_array = array[:, 0]
+        S = np.mean(ent_array, axis=0)
 
         for i, S_val in enumerate(S):
             data['ent_t_flow'].write(f"{t_list[i]:g}\t{S[i]}\n")
+
+    ####################
+    # numb_fluc_t_flow #
+    ####################
+
+    if "numb_fluc_t_flow" in tools:
+
+        numb_fluc_array = array[:, 1]
+        numb_fluc = np.mean(numb_fluc_array, axis=0)
+
+        for i, numb_fluc_val in enumerate(numb_fluc):
+            data['numb_fluc_t_flow'].write(f"{t_list[i]:g}\t{numb_fluc[i]}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

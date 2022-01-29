@@ -9,11 +9,11 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 
-def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save=False):
+def plot_numb_fluc_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
-    with open(os.path.join(proj_root, 'data/ent_t_flow', _model, _file1), 'r') as csvfile:
+    with open(os.path.join(proj_root, 'data/numb_fluc_t_flow', _model, _file1), 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter='\t')
         t_1, S_1 = [], []
         for i, row in enumerate(plots):
@@ -29,20 +29,20 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
         ax0.set_xlabel("$t$")
         ax0.set_xscale('log')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_ylabel("$S$")
+        ax0.set_ylabel("$\mathrm{var}(n)$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_title(_file1.replace('ent_t_flow_', '').replace('_', '\_').replace('.dat', ''))
+        ax0.set_title(_file1.replace('numb_fluc_t_flow_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
-            os.makedirs(os.path.join(proj_root, 'figures/ent_t_flow', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/ent_t_flow', _model,
+            os.makedirs(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model,
                                      _file1.replace(".dat", "")+".png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
     elif _file3 is None and _file4 is None:
 
-        with open(os.path.join(proj_root, 'data/ent_t_flow', _model, _file2), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/numb_fluc_t_flow', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             t_2, S_2 = [], []
             for i, row in enumerate(plots):
@@ -59,27 +59,27 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
         ax0.set_xlabel("$t$")
         ax0.set_xscale('log')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_ylabel("$S$")
+        ax0.set_ylabel("$\mathrm{var}(n)$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_title(_file1.replace('ent_t_flow_', '').replace('_', '\_').replace('.dat', ''))
+        ax0.set_title(_file1.replace('numb_fluc_t_flow_', '').replace('_', '\_').replace('.dat', ''))
 
         ax1.yaxis.set_visible(False)
         ax1.plot(t_2, S_2, '.-', label="mid state")
         ax1.set_xlabel("$t$")
         ax1.set_xscale('log')
         ax1.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax1.set_title(_file2.replace('ent_t_flow_', '').replace('_', '\_').replace('.dat', ''))
+        ax1.set_title(_file2.replace('numb_fluc_t_flow_', '').replace('_', '\_').replace('.dat', ''))
 
         if _save:
-            os.makedirs(os.path.join(proj_root, 'figures/ent_t_flow', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/ent_t_flow', _model,
+            os.makedirs(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model,
                                      _file1.replace(".dat", "")+"_comparison.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
 
     else:
 
-        with open(os.path.join(proj_root, 'data/ent_t_flow', _model, _file2), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/numb_fluc_t_flow', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             t_2, S_2 = [], []
             for i, row in enumerate(plots):
@@ -87,7 +87,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
                     t_2.append(float(row[0]))
                     S_2.append(float(row[1]))
 
-        with open(os.path.join(proj_root, 'data/ent_t_flow', _model, _file3), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/numb_fluc_t_flow', _model, _file3), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             t_3, S_3 = [], []
             for i, row in enumerate(plots):
@@ -95,7 +95,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
                     t_3.append(float(row[0]))
                     S_3.append(float(row[1]))
 
-        with open(os.path.join(proj_root, 'data/ent_t_flow', _model, _file4), 'r') as csvfile:
+        with open(os.path.join(proj_root, 'data/numb_fluc_t_flow', _model, _file4), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
             t_4, S_4 = [], []
             for i, row in enumerate(plots):
@@ -112,15 +112,15 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
         ax0.set_xlabel("$t$")
         ax0.set_xscale('log')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_ylabel("$S$")
+        ax0.set_ylabel("$\mathrm{var}(n)$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
-        ax0.set_title(_file1.replace('ent_t_flow_', '').replace('_', '\_').replace('.dat', ''))
+        ax0.set_title(_file1.replace('numb_fluc_t_flow_', '').replace('_', '\_').replace('.dat', ''))
 
         ax0.legend(loc='lower right')
 
         if _save:
-            os.makedirs(os.path.join(proj_root, 'figures/ent_t_flow', _model), exist_ok=True)
-            plt.savefig(os.path.join(proj_root, 'figures/ent_t_flow', _model,
+            os.makedirs(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/numb_fluc_t_flow', _model,
                                      _file1.replace(".dat", "") + "_comparison.png"),
                         bbox_inches='tight', dpi=300)
         plt.show()
@@ -129,9 +129,9 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0_W_5.dat.v_1'
-    file2 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
-    file3 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
-    file4 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'
+    file1 = 'numb_fluc_t_flow_heisenberg_L_10_obc_t_-1_3_100_J_1_1_0_W_5.dat.v_1'
+    # file2 = 'numb_fluc_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
+    # file3 = 'numb_fluc_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
+    # file4 = 'numb_fluc_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'
 
-    plot_ent_t_flow(model, file1, file2, file3, file4, _save=False)
+    plot_numb_fluc_t_flow(model, file1, _save=False)

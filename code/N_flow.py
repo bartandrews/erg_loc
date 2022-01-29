@@ -34,7 +34,11 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
     def realization(itr, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        if model == "ponte2015":
+        if model == "ising_2":
+            H = fh.chosen_hamiltonian(_model, _leaf_args)
+            H_init, T_init = H, 0
+            Floq = Floquet({'H': H, 'T': _leaf_args['T0']}, UF=True, VF=True)
+        elif model == "ponte2015":
             H = fh.chosen_hamiltonian(_model, _leaf_args)
             H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0']/2
             t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
@@ -75,43 +79,45 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         Q_N = np.zeros(_leaf_args['N'])
 
         # initial conditions for ent_N_flow
-        v = 0
-        psi_prod = 1
-        for i in range(_leaf_args['L']):
-            bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2 * np.pi))
-            psi_prod = np.kron(psi_prod, bloch)
+        psi_prod = phi_0
         psi_prod_N = psi_prod
+        # v = 0
+        # psi_prod = 1
+        # for i in range(_leaf_args['L']):
+        #     bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2*np.pi))
+        #     psi_prod = np.kron(psi_prod, bloch)
+        # psi_prod_N = psi_prod
         S_N = np.zeros(_leaf_args['N'])
 
         for n in range(_leaf_args['N']):
 
             if n > 0:
-                phi_N = UF.dot(phi_N)
+                # phi_N = UF.dot(phi_N)
                 psi_prod_N = UF.dot(psi_prod_N)
 
-            Q_N[n] = (np.real(H_init.matrix_ele(phi_N, phi_N, time=T_init)) - E_0) / (E_Tinf - E_0)
-            S_N[n] = float(H_init.basis.ent_entropy(psi_prod_N, sub_sys_A=range(H_init.basis.L//2))["Sent_A"])
+            # Q_N[n] = (np.real(H_init.matrix_ele(phi_N, phi_N, time=T_init)) - E_0) / (E_Tinf - E_0)
+            S_N[n] = float(H_init.basis.ent_entropy(psi_prod_N, sub_sys_A=range(2))["Sent_A"])
 
         # --- info_ent_N_flow
         S_av = []
-        UF_new = UF
-        VF = Floq.VF
-        for N in range(1, _leaf_args['N']+1):
-
-            if N > 1:
-                UF_new = UF @ UF_new
-                _, VF = np.linalg.eigh(UF_new)
-
-            c = np.zeros((H_init.basis.Ns, H_init.basis.Ns), dtype=complex)
-            for n in range(H_init.basis.Ns):
-                for m in range(H_init.basis.Ns):
-                    c[n, m] = np.dot(VF[:, n], phi[:, m])
-
-            S = np.zeros(H_init.basis.Ns)
-            for n in range(H_init.basis.Ns):
-                c2 = np.square(np.abs(c[n, :]))
-                S[n] = -np.sum(c2*np.log(c2))
-            S_av.append(np.mean(S)/(np.log(0.48*H_init.basis.Ns)))
+        # UF_new = UF
+        # VF = Floq.VF
+        # for N in range(1, _leaf_args['N']+1):
+        #
+        #     if N > 1:
+        #         UF_new = UF @ UF_new
+        #         _, VF = np.linalg.eigh(UF_new)
+        #
+        #     c = np.zeros((H_init.basis.Ns, H_init.basis.Ns), dtype=complex)
+        #     for n in range(H_init.basis.Ns):
+        #         for m in range(H_init.basis.Ns):
+        #             c[n, m] = np.dot(VF[:, n], phi[:, m])
+        #
+        #     S = np.zeros(H_init.basis.Ns)
+        #     for n in range(H_init.basis.Ns):
+        #         c2 = np.square(np.abs(c[n, :]))
+        #         S[n] = -np.sum(c2*np.log(c2))
+        #     S_av.append(np.mean(S)/(np.log(0.48*H_init.basis.Ns)))
 
         return Q_N, S_N, S_av
 

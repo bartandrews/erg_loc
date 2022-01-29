@@ -9,7 +9,7 @@ def parse_input_arguments(program):
     stem = parser.add_argument_group("stem sub-arguments")
     leaf = parser.add_argument_group("leaf sub-arguments")
 
-    models = ["heisenberg", "ponte2015", "ponte2015_2", "spin2021", "spin2021_2"]
+    models = ["heisenberg", "ising_2", "ponte2015", "ponte2015_2", "spin2021", "spin2021_2"]
 
     # program sub-arguments
 

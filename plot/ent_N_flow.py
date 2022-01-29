@@ -10,7 +10,7 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 
-def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _save=False):
+def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _file5=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
@@ -22,7 +22,7 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _save=False):
         for i, row in enumerate(plots):
             ent_1.append(float(row[0]))
 
-    if _file2 is None and _file3 is None:
+    if _file2 is None and _file3 is None and _file4 is None and _file5 is None:
 
         plt.figure(figsize=(5, 5))
         ax0 = plt.subplot(111)
@@ -41,7 +41,7 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _save=False):
                         bbox_inches='tight', dpi=300)
         plt.show()
 
-    elif _file3 is None:
+    elif _file3 is None and _file4 is None and _file5 is None:
 
         file2 = os.path.join(proj_root, 'data/ent_N_flow', _model, _file2)
 
@@ -96,11 +96,29 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _save=False):
             for i, row in enumerate(plots):
                 ent_3.append(float(row[0]))
 
+        file4 = os.path.join(proj_root, 'data/ent_N_flow', _model, _file4)
+
+        with open(file4, 'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter='\t')
+            ent_4 = []
+            for i, row in enumerate(plots):
+                ent_4.append(float(row[0]))
+        #
+        # file5 = os.path.join(proj_root, 'data/ent_N_flow', _model, _file5)
+        #
+        # with open(file5, 'r') as csvfile:
+        #     plots = csv.reader(csvfile, delimiter='\t')
+        #     ent_5 = []
+        #     for i, row in enumerate(plots):
+        #         ent_5.append(float(row[0]))
+
         plt.figure(figsize=(5, 5))
         ax0 = plt.subplot(111)
         ax0.plot(ent_1, '.-', c='C1', lw=1, label="$\delta=0.1$")
-        ax0.plot(ent_2, '.-', c='C2', lw=1, label="$\delta=0.5$")
-        ax0.plot(ent_3, '.-', c='C3', lw=1, label="$\delta=0.9$")
+        ax0.plot(ent_2, '.-', c='C2', lw=1, label="$\delta=0.9$")
+        ax0.plot(ent_3, '.-', c='C3', lw=1, label="$\delta=0.99$")
+        ax0.plot(ent_4, '.-', c='C4', lw=1, label="$\delta=1$")
+        # ax0.plot(ent_5, '.-', c='C5', lw=1, label="$\delta=0.99$")
         ax0.set_xlabel('$N$')
         ax0.set_xlim([0, len(ent_1)])
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
@@ -120,8 +138,11 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _save=False):
 
 if __name__ == "__main__":
 
-    model = 'spin2021'
-    file1 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2.dat'
-    file2 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.1_W_2.dat'
+    model = 'ising_2'
+    file1 = 'ent_N_flow_ising_2_L_10_obc_J_1_0_1_h0_2.3_T0_1.5708_N_101_W_1.dat'
+    # file2 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2.dat'
+    # file3 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.99_W_2.dat'
+    # file4 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_1_W_2.dat'
+    # file5 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.99_W_2.dat'
 
-    plot_ent_N_flow(model, file1, file2, _save=True)
+    plot_ent_N_flow(model, file1, _save=False)
