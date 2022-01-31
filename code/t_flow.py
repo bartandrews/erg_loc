@@ -70,7 +70,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
             _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
             # _numb_fluc_array[i] = np.var(O_psi[:, i])
 
-        return _S_array
+        return _S_array, _numb_fluc_array
 
     ###################################################################################################################
 

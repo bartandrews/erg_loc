@@ -129,9 +129,9 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0_W_5.dat.v_1'
-    file2 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
-    file3 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
-    file4 = 'ent_t_flow_heisenberg_L_8_obc_dis_1000_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'
+    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_3_50_J_1_1_0_W_5.dat.v_1'
+    # file2 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
+    # file3 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
+    # file4 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'
 
-    plot_ent_t_flow(model, file1, file2, file3, file4, _save=False)
+    plot_ent_t_flow(model, file1, _save=False)
