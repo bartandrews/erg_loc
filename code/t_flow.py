@@ -3,6 +3,9 @@ import numpy as np
 from time import perf_counter
 import sys
 from joblib import delayed, Parallel
+# --- QuSpin imports
+from quspin.basis import spin_basis_1d
+from quspin.operators import hamiltonian
 # --- driven_systems imports
 import functions.func_ham as fh
 import functions.func_args as fa
@@ -25,7 +28,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("t_flow", path, model, leaf)
 
     # "ent_t_flow", "numb_fluc_t_flow"
-    tools = ["ent_t_flow"]
+    tools = ["ent_t_flow", "numb_fluc_t_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -38,11 +41,6 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-        # - initial spin product state
-        # psi_prod = np.zeros(H.basis.Ns)
-        # array_idx_prod = H.basis.index(H.basis.state_to_int('010101'))
-        # psi_prod[array_idx_prod] = 1.0
-
         # - initial bloch product state
         v = 1
         psi_prod = 1
@@ -52,23 +50,17 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         psi = H.evolve(psi_prod, 0.0, _t_list)
 
-        # op_list_x = [["x", [i], 1] for i in range(H.basis.L // 2)]
-        # op_list_y = [["y", [i], 1] for i in range(H.basis.L // 2)]
-        # op_list_z = [["z", [i], 1] for i in range(H.basis.L // 2)]
-        # # op_list = [["x", [0, 1, 2], 1],
-        # #            ["y", [0, 1, 2], 1],
-        # #            ["z", [0, 1, 2], 1]]
-        # O_psi_x = H.basis.inplace_Op(psi, op_list_x, np.float64)
-        # O_psi_y = np.real(H.basis.inplace_Op(psi, op_list_y, np.complex64))
-        # O_psi_z = H.basis.inplace_Op(psi, op_list_z, np.float64)
-        #
-        # O_psi = O_psi_z
-        #
-        # print(psi[:, 0].states)
+        basis = spin_basis_1d(H.basis.L)
+        Id_term = [[1, i] for i in range(H.basis.L//2)]
+        Sz_term = [[1, i] for i in range(H.basis.L//2)]
+        static = [["I", Id_term], ["z", Sz_term]]
+        dynamic = []
+        total_spin_half_chain = 0.5*hamiltonian(static, dynamic, basis=basis, dtype=np.float64,
+                                                check_symm=False, check_herm=False, check_pcon=False)
 
         for i in range(psi.shape[1]):  # t_samp
             _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
-            # _numb_fluc_array[i] = np.var(O_psi[:, i])
+            _numb_fluc_array[i] = np.real(total_spin_half_chain.quant_fluct(psi[:, i]))
 
         return _S_array, _numb_fluc_array
 

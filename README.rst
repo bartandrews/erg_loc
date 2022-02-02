@@ -23,6 +23,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
 	* ent_t_flow -- disorder-averaged entanglement entropy of a given state against time
+	* numb_fluc_t_flow -- disorder-averaged particle number fluctuations against time
 
 The ``plot`` scripts:
 
@@ -65,6 +66,12 @@ The ``plot`` scripts:
 * **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__)
 
 .. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
+* **numb_fluc_t_flow** -- particle number fluctuation time evolution (cf. Fig.2 of `[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__)
+
+.. image:: figures/numb_fluc_t_flow/heisenberg/numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.v_1_comparison.png
 	:align: center
 	:width: 80%
 
@@ -234,3 +241,5 @@ References
 `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__ "Periodically driven ergodic and many-body localized quantum systems"  by Pedro Ponte, Anushya Chandran, Zlatko Papić, and Dmitry Abanin, Annals of Physics **353**, 196 (2015).
 
 `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__ "Long-time Behavior of Isolated Periodically Driven Interacting Lattice Systems"  by Luca D’Alessio and Marcos Rigol, PRX **4**, 041048 (2014).
+
+`[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__ "Unbounded growth of entanglement in models of many-body localization" by Jens Bardarson, Frank Pollmann, Joel Moore, PRL **109**, 017202 (2012).

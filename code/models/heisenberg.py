@@ -1,8 +1,8 @@
 # --- python imports
 import numpy as np
 # --- QuSpin imports
-from quspin.operators import hamiltonian
 from quspin.basis import spin_basis_1d
+from quspin.operators import hamiltonian
 
 
 def heisenberg(L, Nup, pauli, J_x, J_y, J_z, W):
