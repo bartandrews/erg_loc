@@ -69,7 +69,7 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **numb_fluc_t_flow** -- particle number fluctuation time evolution (cf. Fig.2 of `[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__)
+* **numb_fluc_t_flow** -- particle number fluctuation time evolution (cf. Fig.2a of `[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__)
 
 .. image:: figures/numb_fluc_t_flow/heisenberg/numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.v_1_comparison.png
 	:align: center
