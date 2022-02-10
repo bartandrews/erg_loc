@@ -96,7 +96,7 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
                 psi_prod_N = UF.dot(psi_prod_N)
 
             # Q_N[n] = (np.real(H_init.matrix_ele(phi_N, phi_N, time=T_init)) - E_0) / (E_Tinf - E_0)
-            S_N[n] = float(H_init.basis.ent_entropy(psi_prod_N, sub_sys_A=range(2))["Sent_A"])
+            S_N[n] = float(H_init.basis.ent_entropy(psi_prod_N, sub_sys_A=range(H_init.basis.L//2))["Sent_A"])
 
         # --- info_ent_N_flow
         S_av = []

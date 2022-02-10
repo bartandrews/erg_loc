@@ -31,8 +31,8 @@ def parse_input_arguments(program):
         leaf.add_argument("-L", type=int, default=8, required=True, help="length of chain")
 
     if program == "L_flow":
-        leaf.add_argument("-Nup_min", type=int, default=None, help="minimum chain length")
-        leaf.add_argument("-Nup_max", type=int, default=None, help="maximum chain length")
+        leaf.add_argument("-Nup_min", type=int, default=None, help="minimum number of up spins")
+        leaf.add_argument("-Nup_max", type=int, default=None, help="maximum number of up spins")
     else:
         leaf.add_argument("-Nup", type=int, default=None, help="number of up spins")
 
