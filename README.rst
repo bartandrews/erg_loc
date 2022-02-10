@@ -101,6 +101,7 @@ The ``programs`` along with their corresponding ``tools``:
 * **delta_flow** -- drive period evolution
 	* loc_len_delta_flow -- disorder-averaged Floquet-eigenstate-averaged localization length against delta
 	* PR_delta_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against delta
+	* ent_delta_flow -- disorder-averaged Floquet-eigenstate-average entanglement entropy against delta
 
 The ``plot`` scripts:
 
@@ -155,6 +156,12 @@ The ``plot`` scripts:
 * **PR_delta_flow** -- participation ratio delta evolution
 
 .. image:: figures/PR_delta_flow/spin2021/PR_delta_flow_spin2021_L_100_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2_comparison.png
+	:align: center
+	:width: 80%
+
+* **ent_delta_flow** -- entanglement entropy delta evolution
+
+.. image:: figures/ent_delta_flow/spin2021/
 	:align: center
 	:width: 80%
 

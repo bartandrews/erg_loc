@@ -18,8 +18,8 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("delta_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("delta_flow", path, model, leaf)
 
-    # "loc_len_delta_flow", "PR_delta_flow"
-    tools = ["loc_len_delta_flow", "PR_delta_flow"]
+    # "loc_len_delta_flow", "PR_delta_flow", "ent_delta_flow"
+    tools = ["ent_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -27,7 +27,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     def realization(itr, _delta_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        av_loc_len, _PR = [], []
+        av_loc_len, _PR, av_ent = [], [], []
         for i, _delta in enumerate(_delta_list):
             if model == "ponte2015":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
@@ -62,18 +62,18 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
             # --- loc_len_delta_flow
             # i_array = unit cell index [0,0,1,1,2,2,...]
-            i_array = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
+            i_array = np.zeros(H_init.Ns)
+            for j in range(H_init.Ns):
                 i_array[j] = j//2
-            i_0 = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
+            i_0 = np.zeros(H_init.Ns)
+            for j in range(H_init.Ns):
                 i_0[j] = i_array.dot(np.abs(psi[:, j])**2)
-            _loc_len = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
+            _loc_len = np.zeros(H_init.Ns)
+            for j in range(H_init.Ns):
                 _loc_len[j] = np.sqrt(np.dot((i_array-i_0[j])**2, np.abs(psi[:, j])**2))
             av_loc_len.append(np.mean(_loc_len))
 
-            # PR_delta_flow
+            # --- PR_delta_flow
             psi = Floq.VF
             A4 = np.zeros((len(alpha), len(psi)))
             for i_idx in range(len(psi)):
@@ -81,10 +81,17 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
                     A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx])) ** 4
             _PR_temp = []
             for i_idx in range(len(psi)):
-                _PR_temp.append((1 / H_init.basis.Ns) * (1 / np.sum(A4[:, i_idx])))
+                _PR_temp.append((1/H_init.Ns) * (1/np.sum(A4[:, i_idx])))
             _PR.append(np.mean(_PR_temp))
 
-        return av_loc_len, _PR
+            # --- ent_delta_flow
+            _S_array = np.zeros(H_init.Ns)
+            for j in range(H_init.Ns):
+                _S_array[j] = float(H_init.basis.ent_entropy(psi[:, j], sub_sys_A=range(H_init.basis.L//2),
+                                                             density=False)["Sent_A"])
+            av_ent.append(np.mean(_S_array))
+
+        return av_loc_len, _PR, av_ent
 
     ###################################################################################################################
 
@@ -115,6 +122,18 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
         for i, PR_val in enumerate(PR):
             data['PR_delta_flow'].write(f"{delta_list[i]:g}\t{PR_val}\n")
+
+    ##################
+    # ent_delta_flow #
+    ##################
+
+    if "ent_delta_flow" in tools:
+
+        ent_array = array[:, 2]
+        ent = np.mean(ent_array, axis=0)
+        
+        for i, ent_val in enumerate(ent):
+            data['ent_delta_flow'].write(f"{delta_list[i]:g}\t{ent_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

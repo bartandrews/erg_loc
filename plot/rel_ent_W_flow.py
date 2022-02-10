@@ -14,14 +14,14 @@ def plot_rel_ent_W_flow(_model, _file1, _file2=None, _file3=None, _save=False):
 
     with open(os.path.join(proj_root, 'data/rel_ent_W_flow', _model, _file1), 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter='\t')
-        W, r = [], []
+        W, rel_ent = [], []
         for i, row in enumerate(plots):
             W.append(float(row[0]))
-            r.append(float(row[1]))
+            rel_ent.append(float(row[1]))
 
     plt.figure(figsize=(10, 5))
     ax0 = plt.subplot(111)
-    ax0.plot(W, r, '.-', label="$L=8$")
+    ax0.plot(W, rel_ent, '.-', label="$L=8$")
     ax0.set_xlabel("$W$")
     # ax0.set_xscale('log', basex=2)
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
@@ -34,21 +34,21 @@ def plot_rel_ent_W_flow(_model, _file1, _file2=None, _file3=None, _save=False):
 
         with open(os.path.join(proj_root, 'data/rel_ent_W_flow', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
-            W2, r2 = [], []
+            W2, rel_ent2 = [], []
             for i, row in enumerate(plots):
                 W2.append(float(row[0]))
-                r2.append(float(row[1]))
-        ax0.plot(W2, r2, '.-', label="$L=10$")
+                rel_ent2.append(float(row[1]))
+        ax0.plot(W2, rel_ent2, '.-', label="$L=10$")
 
     if _file3 is not None:
 
         with open(os.path.join(proj_root, 'data/rel_ent_W_flow', _model, _file3), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
-            W3, r3 = [], []
+            W3, rel_ent3 = [], []
             for i, row in enumerate(plots):
                 W3.append(float(row[0]))
-                r3.append(float(row[1]))
-        ax0.plot(W3, r3, '.-', label="$L=12$")
+                rel_ent3.append(float(row[1]))
+        ax0.plot(W3, rel_ent3, '.-', label="$L=12$")
 
     ax0.legend()
 
