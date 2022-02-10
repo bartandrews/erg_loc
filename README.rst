@@ -19,6 +19,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
+	* rel_ent_W_flow -- disorder-averaged relative entropy against disorder amplitude
 * **L_flow** -- length evolution
 	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
@@ -54,6 +55,12 @@ The ``plot`` scripts:
 * **ent_W_flow** -- entanglement entropy disorder evolution
 
 .. image:: figures/ent_W_flow/heisenberg/ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
+	:align: center
+	:width: 80%
+
+* **rel_ent_W_flow** -- relative entropy disorder evolution (cf. Fig.2b of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
+
+.. image:: figures/rel_ent_W_flow/heisenberg/rel_ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_W_0.2_4.9_23_comparison.png
 	:align: center
 	:width: 80%
 

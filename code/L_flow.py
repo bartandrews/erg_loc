@@ -7,7 +7,20 @@ from joblib import delayed, Parallel
 import functions.func_ham as fh
 import functions.func_args as fa
 import functions.func_proc as fp
-from models.heisenberg import heisenberg
+
+
+def page_value(_model, _leaf_args):
+
+    _leaf_args['L'] = _leaf_args['L']//2
+    _leaf_args['Nup'] = None
+    d = fh.chosen_hamiltonian(_model, _leaf_args).Ns
+
+    S_page = 0
+    for k in range(d+1, d*d+1):
+        S_page += 1/k
+    S_page -= (d-1)/(2*d)
+
+    return S_page
 
 
 def my_L_flow(path_flag, threads, model, _leaf_args):
@@ -39,17 +52,14 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
             _leaf_args['Nup'] = _Nup
             H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-            d = heisenberg(_L//2, None, _leaf_args['pauli'],
-                           _leaf_args['J'][0], _leaf_args['J'][1], _leaf_args['J'][2],
-                           _leaf_args['W']).Ns
-            _S_page_array[i] = 0
-            for k in range(d+1, d*d+1):
-                _S_page_array[i] += 1/k
-            _S_page_array[i] -= (d-1)/(2*d)
+            if itr == 0:
+                _S_page_array[i] = page_value(_model, _leaf_args)
+            else:
+                _S_page_array[i] = None
 
-            Emin, Emax = H.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
-            Etarget = Emin + 0.5*(Emax - Emin)
-            _, psi = H.eigsh(k=1, sigma=Etarget, maxiter=1E4)
+            E_min, E_max = H.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
+            E_target = E_min + 0.5*(E_max - E_min)
+            _, psi = H.eigsh(k=1, sigma=E_target, maxiter=1E4)
             _S_array[i] = float(H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2), density=False)["Sent_A"])
 
         return _S_array, _S_page_array
@@ -71,7 +81,7 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
         S = np.mean(ent_array, axis=0)
 
         ent_page_array = array[:, 1]
-        S_page = np.mean(ent_page_array, axis=0)
+        S_page = ent_page_array[0]
 
         for i, S_val in enumerate(S):
             data['ent_mid_L_flow'].write(f"{L_list[i]}\t{S_val}\t{S_page[i]}\n")

@@ -26,12 +26,12 @@ def plot_r_W_flow(_model, _file, _save=False):
     ax0.plot([min(W), max(W)], [0.39, 0.39], label="Poisson", c='r')
     ax0.legend()
     ax0.set_xlabel("$W$")
-    ax0.set_xscale('log', basex=2)
+    # ax0.set_xscale('log', basex=2)
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
     ax0.set_ylabel("$[r^{(n)}_\\alpha]$")
     ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
     ax0.set_title(_file.replace('r_W_flow_', '').replace('_', '\_').replace('.dat', ''))
-    ax0.axvline(x=3, ls='--', c='k')
+    # ax0.axvline(x=3, ls='--', c='k')
 
     if _save:
         os.makedirs(os.path.join(proj_root, 'figures/r_W_flow', _model), exist_ok=True)
@@ -44,6 +44,6 @@ def plot_r_W_flow(_model, _file, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file = 'r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_11000_J_1_1_1_W_0.5_12.5_24.dat'
+    file = 'r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_W_0.2_4.9_23.dat'
 
-    plot_r_W_flow(model, file, _save=True)
+    plot_r_W_flow(model, file, _save=False)
