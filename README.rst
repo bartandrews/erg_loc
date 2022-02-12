@@ -99,9 +99,10 @@ The ``programs`` along with their corresponding ``tools``:
 * **T_flow** -- Floquet time evolution
 	* PR_T_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against T
 * **delta_flow** -- drive period evolution
+	* q_ener_delta_flow -- disorder-averaged quasi-energy spectrum against delta
 	* loc_len_delta_flow -- disorder-averaged Floquet-eigenstate-averaged localization length against delta
 	* PR_delta_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against delta
-	* ent_delta_flow -- disorder-averaged Floquet-eigenstate-average entanglement entropy against delta
+	* ent_delta_flow -- disorder-averaged entanglement entropy against delta
 
 The ``plot`` scripts:
 
@@ -147,6 +148,12 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
+* **q_ener_delta_flow** -- quasi-energy spectrum delta evolution
+
+.. image:: figures/q_ener_delta_flow/spin2021/q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_0.png
+	:align: center
+	:width: 80%
+
 * **loc_len_delta_flow** -- localization length delta evolution
 
 .. image:: figures/loc_len_delta_flow/spin2021/loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1_comparison.png
@@ -161,7 +168,7 @@ The ``plot`` scripts:
 
 * **ent_delta_flow** -- entanglement entropy delta evolution
 
-.. image:: figures/ent_delta_flow/spin2021/
+.. image:: figures/ent_delta_flow/spin2021/ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.png
 	:align: center
 	:width: 80%
 

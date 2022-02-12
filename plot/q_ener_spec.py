@@ -9,7 +9,7 @@ plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 
-def plot_q_ener_spec(_model, _file1, _file2=None, _save=False):
+def plot_q_ener_spec(_model, _file1, _file2=None, _file3=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
@@ -34,9 +34,8 @@ def plot_q_ener_spec(_model, _file1, _file2=None, _save=False):
             plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model,
                                      _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "")+".png"),
                         bbox_inches='tight', dpi=300)
-        plt.show()
 
-    else:
+    elif _file3 is None:
 
         with open(os.path.join(proj_root, 'data/q_ener', _model, _file2), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
@@ -67,13 +66,61 @@ def plot_q_ener_spec(_model, _file1, _file2=None, _save=False):
             plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model,
                                      _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "")+"_comparison.png"),
                         bbox_inches='tight', dpi=300)
-        plt.show()
+
+    else:
+
+        with open(os.path.join(proj_root, 'data/q_ener', _model, _file2), 'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter='\t')
+            E_2 = []
+            for i, row in enumerate(plots):
+                E_2.append(float(row[0]))
+
+        with open(os.path.join(proj_root, 'data/q_ener', _model, _file3), 'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter='\t')
+            E_3 = []
+            for i, row in enumerate(plots):
+                E_3.append(float(row[0]))
+
+        plt.figure(figsize=(10, 5))
+        gs = gridspec.GridSpec(1, 3, hspace=0, wspace=0)
+        ax0 = plt.subplot(gs[0])
+        ax1 = plt.subplot(gs[1], sharey=ax0)
+        ax2 = plt.subplot(gs[2], sharey=ax1)
+
+        ax0.plot([0] * len(E_1), E_1, '.', marker='_', c='k', lw=1)
+        ax0.xaxis.set_visible(False)
+        ax0.set_ylabel('$E$')
+        ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
+        ax0.set_title(_file1.replace('q_ener_', '').replace('_', '\_').replace('.dat', ''))
+
+        ax1.yaxis.set_visible(False)
+        ax1.plot([0] * len(E_2), E_2, '.', marker='_', c='k', lw=1)
+        ax1.xaxis.set_visible(False)
+        ax1.set_ylabel('$E$')
+        ax1.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
+        ax1.set_title(_file2.replace('q_ener_', '').replace('_', '\_').replace('.dat', ''))
+
+        ax2.yaxis.set_visible(False)
+        ax2.plot([0] * len(E_2), E_2, '.', marker='_', c='k', lw=1)
+        ax2.xaxis.set_visible(False)
+        ax2.set_ylabel('$E$')
+        ax2.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
+        ax2.set_title(_file2.replace('q_ener_', '').replace('_', '\_').replace('.dat', ''))
+
+        if _save:
+            os.makedirs(os.path.join(proj_root, 'figures/q_ener_spec', _model), exist_ok=True)
+            plt.savefig(os.path.join(proj_root, 'figures/q_ener_spec', _model,
+                                     _file1.replace("q_ener_", "q_ener_spec_").replace(".dat", "") + "_comparison.png"),
+                        bbox_inches='tight', dpi=300)
+
+    plt.show()
 
 
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'q_ener_spin2021_L_60_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.dat'
-    file2 = 'q_ener_spin2021_L_60_Nup_2_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.dat'
+    file1 = 'q_ener_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_W_0.dat'
+    # file2 = 'q_ener_spin2021_L_20_Nup_2_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.dat'
+    # file3 = 'q_ener_spin2021_L_20_Nup_3_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.dat'
 
-    plot_q_ener_spec(model, file1, file2, _save=False)
+    plot_q_ener_spec(model, file1, _save=False)

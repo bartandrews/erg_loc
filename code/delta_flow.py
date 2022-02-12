@@ -18,7 +18,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("delta_flow", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("delta_flow", path, model, leaf)
 
-    # "loc_len_delta_flow", "PR_delta_flow", "ent_delta_flow"
+    # "q_ener_delta_flow", "loc_len_delta_flow", "PR_delta_flow", "ent_delta_flow"
     tools = ["ent_delta_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -27,7 +27,8 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     def realization(itr, _delta_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        av_loc_len, _PR, av_ent = [], [], []
+        _S_array = np.zeros(_leaf_args['delta_samp'], dtype=object)
+        qE, av_loc_len, _PR, av_ent = [], [], [], []
         for i, _delta in enumerate(_delta_list):
             if model == "ponte2015":
                 H = fh.chosen_hamiltonian(_model, _leaf_args)
@@ -60,6 +61,10 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
             _, alpha = H_init.eigh(time=T_init)
             psi = Floq.VF
 
+            # --- q_ener_delta_flow
+            # print("delta = ", _delta)
+            qE.append(Floq.EF)
+
             # --- loc_len_delta_flow
             # i_array = unit cell index [0,0,1,1,2,2,...]
             i_array = np.zeros(H_init.Ns)
@@ -85,13 +90,15 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
             _PR.append(np.mean(_PR_temp))
 
             # --- ent_delta_flow
-            _S_array = np.zeros(H_init.Ns)
+            # _S_array = np.zeros(H_init.Ns)
+            _S_array[i] = []
             for j in range(H_init.Ns):
-                _S_array[j] = float(H_init.basis.ent_entropy(psi[:, j], sub_sys_A=range(H_init.basis.L//2),
-                                                             density=False)["Sent_A"])
-            av_ent.append(np.mean(_S_array))
+                _S_array[i].append(float(H_init.basis.ent_entropy(psi[:, j], sub_sys_A=range(H_init.basis.L//2),
+                                                                  density=False)["Sent_A"]))
+            # av_ent.append(np.mean(_S_array))
+            #print(np.shape(_S_array))
 
-        return av_loc_len, _PR, av_ent
+        return qE, av_loc_len, _PR, _S_array
 
     ###################################################################################################################
 
@@ -99,13 +106,26 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
     array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, delta_list, model, leaf_args)
                                                 for i in range(leaf_args['dis'])), dtype=object)
 
+    #####################
+    # q_ener_delta_flow #
+    #####################
+
+    if "q_ener_delta_flow" in tools:
+
+        q_ener_array = array[:, 0]
+        q_ener = np.mean(q_ener_array, axis=0)
+
+        for i, q_ener_val in enumerate(q_ener):
+            for j in range(len(q_ener_val)):
+                data['q_ener_delta_flow'].write(f"{delta_list[i]:g}\t{q_ener_val[j]}\n")
+
     ######################
     # loc_len_delta_flow #
     ######################
 
     if "loc_len_delta_flow" in tools:
 
-        loc_len_array = array[:, 0]
+        loc_len_array = array[:, 1]
         loc_len = np.mean(loc_len_array, axis=0)
 
         for i, loc_len_val in enumerate(loc_len):
@@ -117,7 +137,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
     if "PR_delta_flow" in tools:
 
-        PR_array = array[:, 1]
+        PR_array = array[:, 2]
         PR = np.mean(PR_array, axis=0)
 
         for i, PR_val in enumerate(PR):
@@ -129,11 +149,21 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
 
     if "ent_delta_flow" in tools:
 
-        ent_array = array[:, 2]
-        ent = np.mean(ent_array, axis=0)
-        
-        for i, ent_val in enumerate(ent):
-            data['ent_delta_flow'].write(f"{delta_list[i]:g}\t{ent_val}\n")
+        ent_array = array[:, 3, :]
+
+        new_ent_array = np.zeros((np.shape(ent_array)[0], np.shape(ent_array)[1], len(ent_array[0][0])), dtype=float)
+        for disorder in range(np.shape(ent_array)[0]):
+            for samp in range(np.shape(ent_array)[1]):
+                for state in range(len(ent_array[0][0])):
+                    new_ent_array[disorder, samp, state] = ent_array[disorder][samp][state]
+
+        ent = np.mean(new_ent_array, axis=0)
+
+        for samp in range(np.shape(ent)[0]):
+            string = f"{delta_list[samp]:g}"
+            for state in range(np.shape(ent)[1]):
+                string += f"\t{ent[samp][state]}"
+            data['ent_delta_flow'].write(f"{string}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 
