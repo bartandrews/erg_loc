@@ -150,7 +150,7 @@ The ``plot`` scripts:
 
 * **q_ener_delta_flow** -- quasi-energy spectrum delta evolution
 
-.. image:: figures/q_ener_delta_flow/spin2021/q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_0.png
+.. image:: figures/q_ener_delta_flow/spin2021/q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_24_W_0.png
 	:align: center
 	:width: 80%
 

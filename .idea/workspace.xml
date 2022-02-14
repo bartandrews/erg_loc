@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/plot/q_ener_delta_flow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/ener_superposition_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/q_ener_superposition_check.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/delta_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/delta_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ent_delta_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_delta_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/q_ener_spec.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/q_ener_spec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/q_ener_delta_flow/spin2021/q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_0.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +231,10 @@
       <workItem from="1643818716598" duration="17889000" />
       <workItem from="1643909147209" duration="4008000" />
       <workItem from="1644001272256" duration="11000" />
-      <workItem from="1644424853652" duration="58462000" />
+      <workItem from="1644424853652" duration="58821000" />
+      <workItem from="1644806329224" duration="667000" />
+      <workItem from="1644858339131" duration="216000" />
+      <workItem from="1644866195210" duration="347000" />
     </task>
     <servers />
   </component>
