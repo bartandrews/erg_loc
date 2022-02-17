@@ -4,8 +4,8 @@ import os
 
 proj_root = '/home/bart/PycharmProjects/erg_loc'
 
-input_file_1 = "data/q_ener/spin2021/q_ener_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.1.dat"
-input_file_2 = "data/q_ener/spin2021/q_ener_spin2021_L_20_Nup_2_obc_J_1_1_1_T0_1_T1_1_delta_0.1_W_0.1.dat"
+input_file_1 = "data/q_ener/spin2021/q_ener_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_W_0.dat"
+input_file_2 = "data/q_ener/spin2021/q_ener_spin2021_L_20_Nup_2_obc_J_1_1_1_T0_1_T1_1_delta_0_W_0.dat"
 
 with open(os.path.join(proj_root, input_file_1), 'r') as csvfile:
     plots = csv.reader(csvfile, delimiter='\t')

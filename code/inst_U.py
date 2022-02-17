@@ -19,7 +19,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
 
     # "q_ener", "q_ener_spac", "floq_struc", "loc_len"
-    tools = ["q_ener", "q_ener_spac", "floq_struc", "loc_len"]
+    tools = ["q_ener"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################

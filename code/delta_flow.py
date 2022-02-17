@@ -3,6 +3,7 @@ import numpy as np
 from time import perf_counter
 import sys
 from joblib import delayed, Parallel
+# --- QuSpin imports
 from quspin.tools.Floquet import Floquet
 # --- driven_systems imports
 import functions.func_ham as fh
@@ -56,7 +57,7 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
                 dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _delta*_leaf_args['T0']/4.0])
                 Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
             else:
-                raise ValueError("model not implemented in inst_U")
+                raise ValueError("model not implemented in delta_flow")
 
             _, alpha = H_init.eigh(time=T_init)
             psi = Floq.VF
