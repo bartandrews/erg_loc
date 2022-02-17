@@ -17,6 +17,8 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _mult
         plots = csv.reader(csvfile, delimiter='\t')
         nrow = len(list(plots))
         csvfile.seek(0)
+        for j in range(nrow-1):  # find number of columns in last row
+            next(plots)
         ncol = len(next(plots))-1
         csvfile.seek(0)
         L = []
@@ -24,8 +26,15 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _mult
         for i, row in enumerate(plots):
             L.append(float(row[0]))
             for j in range(ncol):
-                ent[i][j] = float(row[j+1])
-        mean_ent = np.mean(ent, axis=1)
+                if j+1 > len(row)-1:
+                    ent[i][j] = None
+                else:
+                    ent[i][j] = float(row[j+1])
+
+    mean_ent = []
+    for i in range(nrow):
+        ent_strip = ent[i, 1:]
+        mean_ent.append(np.mean(ent_strip[np.logical_not(np.isnan(ent_strip))]))
 
     plt.figure(figsize=(10, 5))
     ax0 = plt.subplot(111)
@@ -109,9 +118,9 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _mult
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'ent_L_flow_spin2021_L_8_24_5_Nup_4_12_5_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0.1_W_2.dat'
+    file1 = 'ent_L_flow_spin2021_L_6_20_8_Nup_1_1_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2.dat'
     # file2 = 'ent_L_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file3 = 'ent_L_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file4 = 'ent_L_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
 
-    plot_ent_L_flow(model, file1, _multi=True, _save=False)
+    plot_ent_L_flow(model, file1, _multi=True, _save=True)

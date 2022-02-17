@@ -155,10 +155,10 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
 
         ent_array = array[:, 0, :]
 
-        new_ent_array = np.zeros((np.shape(ent_array)[0], np.shape(ent_array)[1], len(ent_array[0][0])), dtype=float)
+        new_ent_array = np.zeros((np.shape(ent_array)[0], np.shape(ent_array)[1], len(ent_array[0][-1])), dtype=float)
         for disorder in range(np.shape(ent_array)[0]):
             for samp in range(np.shape(ent_array)[1]):
-                for state in range(len(ent_array[0][0])):
+                for state in range(len(ent_array[0][samp])):
                     new_ent_array[disorder, samp, state] = ent_array[disorder][samp][state]
 
         ent = np.mean(new_ent_array, axis=0)
@@ -166,7 +166,10 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
         for samp in range(np.shape(ent)[0]):
             string = f"{L_list[samp]:g}"
             for state in range(np.shape(ent)[1]):
-                string += f"\t{ent[samp][state]}"
+                if ent[samp][state] != 0.0:
+                    string += f"\t{ent[samp][state]}"
+                else:
+                    continue
             data['ent_L_flow'].write(f"{string}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
