@@ -67,7 +67,7 @@ The ``plot`` scripts:
 
 * **ent_mid_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
 
-.. image:: figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison.png
+.. image:: figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison_original.png
 	:align: center
 	:width: 80%
 

@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/L_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/ent_L_flow/spin2021/ent_L_flow_spin2021_L_6_20_8_Nup_1_1_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2_comparison.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison_original.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot/ent_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_L_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
       <recent name="$PROJECT_DIR$/spin_model/energy_absorbed" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ent_L_flow">
+  <component name="RunManager" selected="Python.ent_mid_L_flow">
     <configuration name="ener_superposition_check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -173,8 +176,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ent_L_flow" />
         <item itemvalue="Python.ent_mid_L_flow" />
+        <item itemvalue="Python.ent_L_flow" />
         <item itemvalue="Python.ent_delta_flow" />
         <item itemvalue="Python.ener_superposition_check" />
         <item itemvalue="Python.q_ener_superposition_check" />
@@ -238,6 +241,8 @@
       <workItem from="1644867257787" duration="3419000" />
       <workItem from="1645033661462" duration="17562000" />
       <workItem from="1645118983894" duration="9410000" />
+      <workItem from="1645133052703" duration="318000" />
+      <workItem from="1645489556528" duration="2246000" />
     </task>
     <servers />
   </component>
@@ -312,7 +317,7 @@
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_PR.coverage" NAME="Ponte2015_PR Coverage Results" MODIFIED="1635207989644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/erg_loc$rel_ent_W_flow.coverage" NAME="rel_ent_W_flow Coverage Results" MODIFIED="1644530153754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$example0.coverage" NAME="example0 Coverage Results" MODIFIED="1634855393836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/erg_loc$ent_mid_L_flow.coverage" NAME="ent_mid_L_flow Coverage Results" MODIFIED="1645052021789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$ent_mid_L_flow.coverage" NAME="ent_mid_L_flow Coverage Results" MODIFIED="1645490418242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$info_ent_N_flow.coverage" NAME="info_ent_N_flow Coverage Results" MODIFIED="1643244080271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_Qinf.coverage" NAME="Ponte2015_Qinf Coverage Results" MODIFIED="1635207987208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2_Parallel.coverage" NAME="Ponte2015_QN Coverage Results" MODIFIED="1635357229090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -326,7 +331,7 @@
     <SUITE FILE_PATH="coverage/erg_loc$XXZ_energy_spacing_statistics_hist.coverage" NAME="XXZ_energy_spacing_statistics_hist Coverage Results" MODIFIED="1637784873658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/standalone/XXZ/energy_spacing_statistics" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_start_V.coverage" NAME="Ponte2015_QN_start_V Coverage Results" MODIFIED="1636677137488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_S_comparison.coverage" NAME="Ponte2015_S_comparison Coverage Results" MODIFIED="1637110586081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
-    <SUITE FILE_PATH="coverage/erg_loc$ent_L_flow.coverage" NAME="ent_L_flow Coverage Results" MODIFIED="1645128598473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$ent_L_flow.coverage" NAME="ent_L_flow Coverage Results" MODIFIED="1645489760298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model.coverage" NAME="spin_model Coverage Results" MODIFIED="1635353398752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_experiment.coverage" NAME="Ponte2015_QN_experiment Coverage Results" MODIFIED="1636677304549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015.coverage" NAME="Ponte2015_QN Coverage Results" MODIFIED="1635207991869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

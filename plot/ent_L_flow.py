@@ -118,7 +118,7 @@ def plot_ent_L_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _mult
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'ent_L_flow_spin2021_L_6_20_8_Nup_1_1_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2.dat'
+    file1 = 'ent_L_flow_spin2021_L_6_24_10_Nup_1_1_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2.dat'
     # file2 = 'ent_L_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file3 = 'ent_L_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file4 = 'ent_L_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
