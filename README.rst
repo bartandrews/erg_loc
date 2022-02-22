@@ -178,7 +178,7 @@ The ``plot`` scripts:
 
 * **ent_L_flow** -- entanglement entropy length evolution
 
-.. image:: figures/ent_L_flow/spin2021/ent_L_flow_spin2021_L_6_10_3_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2_comparison.png
+.. image:: figures/ent_L_flow/spin2021/ent_L_flow_spin2021_L_6_12_4_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2_comparison.png
 	:align: center
 	:width: 80%
 

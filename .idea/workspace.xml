@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/ent_L_flow/spin2021/ent_L_flow_spin2021_L_6_20_8_Nup_1_1_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2_comparison.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison_original.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ent_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_L_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_mid_L_flow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +237,7 @@
       <workItem from="1645033661462" duration="17562000" />
       <workItem from="1645118983894" duration="9410000" />
       <workItem from="1645133052703" duration="318000" />
-      <workItem from="1645489556528" duration="2246000" />
+      <workItem from="1645489556528" duration="2844000" />
     </task>
     <servers />
   </component>
