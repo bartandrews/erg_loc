@@ -34,6 +34,67 @@ def find_max_Ns(_model, _leaf_args):
     return H_init.Ns
 
 
+def find_eigensystem(_model, _leaf_args, _tools):
+
+    if _model == "ponte2015":
+        H = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2
+        t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
+        dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
+        Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
+        psi_array = Floq.VF
+        if "ent_L_flow" in _tools:
+            psi = psi_array
+        else:  # "ent_mid_L_flow" in tools
+            psi = psi_array[:, len(psi_array) // 2]
+    elif _model == "ponte2015_2":
+        V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H_0, 0
+        H_list = [V, H_0]
+        dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
+        Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
+        psi_array = Floq.VF
+        if "ent_L_flow" in _tools:
+            psi = psi_array
+        else:  # "ent_mid_L_flow" in tools
+            psi = psi_array[:, len(psi_array) // 2]
+    elif _model == "spin2021":
+        H = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H, _leaf_args['T1'] / 2 + _leaf_args['T0'] / 8
+        t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) \
+            + np.finfo(float).eps
+        dt_list = np.array(
+            [_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
+        Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
+        psi_array = Floq.VF
+        if "ent_L_flow" in _tools:
+            psi = psi_array
+        else:  # "ent_mid_L_flow" in tools
+            psi = psi_array[:, len(psi_array) // 2]
+    elif _model == "spin2021_2":
+        V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H_1, 0
+        H_list = [V, H_1, H_2]
+        dt_list = np.array(
+            [_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
+        Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
+        psi_array = Floq.VF
+        if "ent_L_flow" in _tools:
+            psi = psi_array
+        else:  # "ent_mid_L_flow" in tools
+            psi = psi_array[:, len(psi_array) // 2]
+    else:
+        H_init = fh.chosen_hamiltonian(_model, _leaf_args)
+        if "ent_L_flow" in _tools:
+            _, psi = H_init.eigh()
+        else:  # "ent_mid_L_flow" in tools
+            E_min, E_max = H_init.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
+            E_target = E_min + 0.5 * (E_max - E_min)
+            _, psi = H_init.eigsh(k=1, sigma=E_target, maxiter=1E4)
+
+    return H_init, psi
+
+
 def page_value(_model, _leaf_args):
 
     _leaf_args['L'] = _leaf_args['L']//2
@@ -83,69 +144,14 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
             _leaf_args['L'] = _L
             _leaf_args['Nup'] = _Nup
 
-            if model == "ponte2015":
-                H = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0']/2
-                t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
-                dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
-                Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
-                psi_array = Floq.VF
-                if "ent_L_flow" in tools:
-                    psi = psi_array
-                else:  # "ent_mid_L_flow" in tools
-                    psi = psi_array[:, len(psi_array)//2]
-            elif model == "ponte2015_2":
-                V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init, T_init = H_0, 0
-                H_list = [V, H_0]
-                dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
-                Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
-                psi_array = Floq.VF
-                if "ent_L_flow" in tools:
-                    psi = psi_array
-                else:  # "ent_mid_L_flow" in tools
-                    psi = psi_array[:, len(psi_array)//2]
-            elif model == "spin2021":
-                H = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init, T_init = H, _leaf_args['T1']/2 + _leaf_args['T0']/8
-                t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
-                    + np.finfo(float).eps
-                dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-                Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)
-                psi_array = Floq.VF
-                if "ent_L_flow" in tools:
-                    psi = psi_array
-                else:  # "ent_mid_L_flow" in tools
-                    psi = psi_array[:, len(psi_array)//2]
-            elif model == "spin2021_2":
-                V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
-                H_init, T_init = H_1, 0
-                H_list = [V, H_1, H_2]
-                dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-                Floq = Floquet({'H_list': H_list, 'dt_list': dt_list}, VF=True)
-                psi_array = Floq.VF
-                if "ent_L_flow" in tools:
-                    psi = psi_array
-                else:  # "ent_mid_L_flow" in tools
-                    psi = psi_array[:, len(psi_array)//2]
-            else:
-                H_init = fh.chosen_hamiltonian(_model, _leaf_args)
-                if "ent_L_flow" in tools:
-                    _, psi = H_init.eigh()
-                else:  # "ent_mid_L_flow" in tools
-                    E_min, E_max = H_init.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
-                    E_target = E_min + 0.5 * (E_max - E_min)
-                    _, psi = H_init.eigsh(k=1, sigma=E_target, maxiter=1E4)
+            H_init, psi = find_eigensystem(_model, _leaf_args, tools)
 
             if "ent_L_flow" in tools:
-
                 for j in range(H_init.Ns):
                     _ent_array[i, j] = float(H_init.basis.ent_entropy(psi[:, j],
                                                                       sub_sys_A=range(H_init.basis.L//2),
                                                                       density=False)["Sent_A"])
-
             else:  # "ent_mid_L_flow" in tools
-
                 _ent_array[i, 0] = float(H_init.basis.ent_entropy(psi,
                                                                   sub_sys_A=range(H_init.basis.L//2),
                                                                   density=False)["Sent_A"])
