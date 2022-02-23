@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/erg_loc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/erg_loc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/L_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/L_flow.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,15 +35,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/plot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/code" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/code" />
       <recent name="$PROJECT_DIR$/plot" />
       <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/code/models" />
-      <recent name="$PROJECT_DIR$/code" />
       <recent name="$PROJECT_DIR$/plot/old" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -238,6 +241,8 @@
       <workItem from="1645118983894" duration="9410000" />
       <workItem from="1645133052703" duration="318000" />
       <workItem from="1645489556528" duration="2844000" />
+      <workItem from="1645557347080" duration="4623000" />
+      <workItem from="1645636482569" duration="11056000" />
     </task>
     <servers />
   </component>

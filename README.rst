@@ -21,8 +21,8 @@ The ``programs`` along with their corresponding ``tools``:
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
 	* rel_ent_W_flow -- disorder-averaged relative entropy against disorder amplitude
 * **L_flow** -- length evolution (mutually exclusive tools)
-	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 	* ent_L_flow -- disorder-averaged entanglement entropy against length
+	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
 	* ent_t_flow -- disorder-averaged entanglement entropy of a given state against time
 	* numb_fluc_t_flow -- disorder-averaged particle number fluctuations against time
@@ -105,8 +105,8 @@ The ``programs`` along with their corresponding ``tools``:
 	* PR_delta_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against delta
 	* ent_delta_flow -- disorder-averaged entanglement entropy against delta
 * **L_flow** -- length evolution (mutually exclusive tools)
-	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 	* ent_L_flow -- disorder-averaged entanglement entropy against length
+	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
 
 The ``plot`` scripts:
 
