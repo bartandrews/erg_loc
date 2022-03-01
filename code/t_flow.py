@@ -28,7 +28,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("t_flow", path, model, leaf)
 
     # "ent_t_flow", "numb_fluc_t_flow"
-    tools = ["ent_t_flow"]
+    tools = ["numb_fluc_t_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -36,12 +36,12 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     def realization(itr, _t_list, _model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        _S_array = np.zeros(_leaf_args['t_samp'], dtype=float)
-        _numb_fluc_array = np.zeros(_leaf_args['t_samp'], dtype=float)
+        _ent_array = np.zeros(_leaf_args['t_samp'])
+        _numb_fluc_array = np.zeros(_leaf_args['t_samp'])
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
-        # - initial bloch product state
+        # --- initial bloch product state
         v = 1
         psi_prod = 1
         for i in range(_leaf_args['L']):
@@ -58,18 +58,17 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         total_spin_half_chain = 0.5*hamiltonian(static, dynamic, basis=basis, dtype=np.float64,
                                                 check_symm=False, check_herm=False, check_pcon=False)
 
-        for i in range(psi.shape[1]):  # t_samp
-            _S_array[i] = float(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"])
+        for i in range(_leaf_args['t_samp']):
+            _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
             _numb_fluc_array[i] = np.real(total_spin_half_chain.quant_fluct(psi[:, i]))
 
-        return _S_array, _numb_fluc_array
+        return _ent_array, _numb_fluc_array
 
     ###################################################################################################################
 
     t_list = np.logspace(_leaf_args['t_min'], _leaf_args['t_max'], _leaf_args['t_samp'])
-
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, t_list, model, leaf_args)
-                                                for i in range(leaf_args['dis'])), dtype=object)
+    array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, t_list, model, leaf_args)
+                                              for i in range(leaf_args['dis'])), axis=0)  # (disorder, tool, samp)
 
     ##############
     # ent_t_flow #
@@ -78,10 +77,10 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     if "ent_t_flow" in tools:
 
         ent_array = array[:, 0]
-        S = np.mean(ent_array, axis=0)
+        ent = np.mean(ent_array, axis=0)
 
-        for i, S_val in enumerate(S):
-            data['ent_t_flow'].write(f"{t_list[i]:g}\t{S[i]}\n")
+        for i, ent_val in enumerate(ent):
+            data['ent_t_flow'].write(f"{t_list[i]:g}\t{ent_val}\n")
 
     ####################
     # numb_fluc_t_flow #
@@ -93,7 +92,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         numb_fluc = np.mean(numb_fluc_array, axis=0)
 
         for i, numb_fluc_val in enumerate(numb_fluc):
-            data['numb_fluc_t_flow'].write(f"{t_list[i]:g}\t{numb_fluc[i]}\n")
+            data['numb_fluc_t_flow'].write(f"{t_list[i]:g}\t{numb_fluc_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

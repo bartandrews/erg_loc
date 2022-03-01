@@ -163,7 +163,6 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
     ###################################################################################################################
 
     L_list = list(map(int, np.linspace(_leaf_args['L_min'], _leaf_args['L_max'], _leaf_args['L_samp'])))
-
     array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, L_list, model, leaf_args)
                                               for i in range(leaf_args['dis'])), axis=0)  # (disorder, samp, state)
 

@@ -128,8 +128,8 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
 
 if __name__ == "__main__":
 
-    model = 'ising_2'
-    file1 = 'ent_t_flow_ising_2_L_10_obc_dis_1000_t_-1_3_100_J_1_0_1_h0_2.3_T0_1.5708_W_1.dat.v_1'
+    model = 'heisenberg'
+    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_3_51_J_1_1_0.2_W_0.5.dat'
     # file2 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
     # file3 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
     # file4 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'

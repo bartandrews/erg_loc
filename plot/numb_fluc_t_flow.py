@@ -129,9 +129,9 @@ def plot_numb_fluc_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None,
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file1 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.dat.v_1'
-    file2 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.01_W_5.dat.v_1'
-    file3 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.1_W_5.dat.v_1'
-    file4 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.2_W_5.dat.v_1'
+    file1 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.dat'
+    # file2 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.01_W_5.dat.v_1'
+    # file3 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.1_W_5.dat.v_1'
+    # file4 = 'numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0.2_W_5.dat.v_1'
 
-    plot_numb_fluc_t_flow(model, file1, file4, _save=True)
+    plot_numb_fluc_t_flow(model, file1, _save=False)

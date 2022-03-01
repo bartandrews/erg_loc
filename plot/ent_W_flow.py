@@ -49,6 +49,6 @@ def plot_ent_W_flow(_model, _file, _save=False):
 if __name__ == "__main__":
 
     model = 'heisenberg'
-    file = 'ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.dat'
+    file = 'ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_W_0.5_12.5_24.dat'
 
-    plot_ent_W_flow(model, file, _save=True)
+    plot_ent_W_flow(model, file, _save=False)

@@ -19,7 +19,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
-	* rel_ent_W_flow -- disorder-averaged relative entropy against disorder amplitude
+	* ent_rel_W_flow -- disorder-averaged relative entropy against disorder amplitude
 * **L_flow** -- length evolution (mutually exclusive tools)
 	* ent_L_flow -- disorder-averaged entanglement entropy against length
 	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
@@ -49,19 +49,29 @@ The ``plot`` scripts:
 
 * **r_W_flow** -- first moment of the energy spacings disorder evolution (cf. Fig.3 of `[Pal2010] <https://arxiv.org/pdf/1010.1992.pdf>`__)
 
+``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 11000 -W_min 0.5 -W_max 12.5 -W_samp 24``
+
 .. image:: figures/r_W_flow/heisenberg/r_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_11000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
 	:width: 80%
 
 * **ent_W_flow** -- entanglement entropy disorder evolution
 
+``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 12.5 -W_samp 24``
+
 .. image:: figures/ent_W_flow/heisenberg/ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_12.5_24.png
 	:align: center
 	:width: 80%
 
-* **rel_ent_W_flow** -- relative entropy disorder evolution (cf. Fig.2b of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
+* **ent_rel_W_flow** -- relative entropy disorder evolution (cf. Fig.2b of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
 
-.. image:: figures/rel_ent_W_flow/heisenberg/rel_ent_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_W_0.2_4.9_23_comparison.png
+``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 1000 -W_min 0.2 -W_max 4.9 -W_samp 23``
+
+``python code/W_flow.py -mod heisenberg -L 10 -Nup 5 -pauli 0 -bc o -dis 1000 -W_min 0.2 -W_max 4.9 -W_samp 23``
+
+``python code/W_flow.py -mod heisenberg -L 12 -Nup 6 -pauli 0 -bc o -dis 1000 -W_min 0.2 -W_max 4.9 -W_samp 23``
+
+.. image:: figures/ent_rel_W_flow/heisenberg/ent_rel_W_flow_heisenberg_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_W_0.2_4.9_23_comparison.png
 	:align: center
 	:width: 80%
 
@@ -73,11 +83,23 @@ The ``plot`` scripts:
 
 * **ent_t_flow** -- entanglement entropy time evolution (cf. Fig.2 of `[Nanduri2014] <https://arxiv.org/pdf/1404.5216.pdf>`__)
 
+With ``v=0`` in the initial Bloch state.
+
+``python code/t_flow.py -mod heisenberg -L 6 -J 1 1 0.2 -t_min -1 -t_max 6 -t_samp 100 -dis 100 -bc o -W 0.5``
+
+``python code/t_flow.py -mod heisenberg -L 6 -J 1 1 0.2 -t_min -1 -t_max 6 -t_samp 100 -dis 100 -bc o -W 10``
+
 .. image:: figures/ent_t_flow/heisenberg/ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_6_100_J_1_1_0.2_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **numb_fluc_t_flow** -- particle number fluctuation time evolution (cf. Fig.2a of `[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__)
+
+With ``v=1`` in the initial Bloch state.
+
+``python code/t_flow.py -mod heisenberg -L 8 -pauli 0 -J 1 1 0 -t_min -2 -t_max 3 -t_samp 50 -dis 1000 -bc o -W 5 -tag ".v_1"``
+
+``python code/t_flow.py -mod heisenberg -L 8 -pauli 0 -J 1 1 0.2 -t_min -2 -t_max 3 -t_samp 50 -dis 1000 -bc o -W 5 -tag ".v_1"``
 
 .. image:: figures/numb_fluc_t_flow/heisenberg/numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.v_1_comparison.png
 	:align: center
@@ -147,6 +169,10 @@ The ``plot`` scripts:
 	:width: 80%
 
 * **PR_T_flow** -- participation ratio T evolution (cf. Fig.2b of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
+
+``python code/T_flow.py -mod ponte2015 -pauli 0 -L 8 -h0 2 -T0 7 -dis 5 -bc o -W 0.5 -T_min 0 -T_max 3 -T_samp 16``
+
+``python code/T_flow.py -mod ponte2015 -pauli 0 -L 8 -h0 2 -T0 7 -dis 5 -bc o -W 8 -T_min 0 -T_max 3 -T_samp 16``
 
 .. image:: figures/PR_T_flow/ponte2015/PR_T_flow_ponte2015_L_8_pauli_0_obc_dis_10_J_1_1_1_h0_2_T0_7_T_0_3_16_W_0.5_comparison.png
 	:align: center
