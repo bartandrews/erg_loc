@@ -31,17 +31,29 @@ The ``plot`` scripts:
 
 * **ener_spec** -- energy spectrum
 
+``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 0.5``
+
+``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 8``
+
 .. image:: figures/ener_spec/heisenberg/ener_spec_heisenberg_L_8_obc_J_1_1_1_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **ent_arc** -- entanglement entropy arc
 
+``python code/inst_ham.py -mod heisenberg -thr 1 -L 12 -bc o -dis 1 -W 0.5``
+
+``python code/inst_ham.py -mod heisenberg -thr 1 -L 12 -bc o -dis 1 -W 8``
+
 .. image:: figures/ent_arc/heisenberg/ent_arc_heisenberg_L_12_obc_J_1_1_1_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **ener_stat** -- energy spacing statistics
+
+``python code/inst_ham.py -mod heisenberg -Nup 4 -pauli 0 -L 8 -bc o -dis 10000 -W 0.5``
+
+``python code/inst_ham.py -mod heisenberg -Nup 4 -pauli 0 -L 8 -bc o -dis 10000 -W 8``
 
 .. image:: figures/ener_stat/heisenberg/ener_stat_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_comparison.png
 	:align: center
@@ -76,6 +88,10 @@ The ``plot`` scripts:
 	:width: 80%
 
 * **ent_mid_L_flow** -- entanglement entropy length evolution (cf. Fig.3c of `[Luitz2015] <https://arxiv.org/pdf/1411.0660.pdf>`__)
+
+``python code/L_flow.py -mod heisenberg -L_min 12 -L_max 16 -L_samp 3 -Nup_min 6 -Nup_max 8 -pauli 0 -bc o -dis 100 -W 0.5``
+
+``python code/L_flow.py -mod heisenberg -L_min 12 -L_max 16 -L_samp 3 -Nup_min 6 -Nup_max 8 -pauli 0 -bc o -dis 100 -W 8``
 
 .. image:: figures/ent_mid_L_flow/heisenberg/ent_mid_L_flow_heisenberg_L_12_16_3_Nup_6_8_3_pauli_0_obc_dis_100_J_1_1_1_W_0.5_comparison_original.png
 	:align: center
@@ -203,6 +219,8 @@ The ``plot`` scripts:
 	:width: 80%
 
 * **ent_L_flow** -- entanglement entropy length evolution
+
+``python code/L_flow.py -mod spin2021 -L_min 6 -L_max 12 -L_samp 4 -bc o -dis 100 -T0 1 -T1 1 -delta 0.1 -W 2``
 
 .. image:: figures/ent_L_flow/spin2021/ent_L_flow_spin2021_L_6_12_4_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0.1_W_2_comparison.png
 	:align: center

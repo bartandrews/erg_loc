@@ -120,7 +120,7 @@ def my_L_flow(path_flag, threads, model, _leaf_args):
     # "ent_L_flow", "ent_mid_L_flow"
     tools = ["ent_mid_L_flow"]
     if "ent_L_flow" in tools and "ent_mid_L_flow" in tools:
-        raise ValueError("The options ent_L_flow and ent_mid_L_flow in L_flow are mutually exclusive.")
+        raise ValueError("The tools ent_L_flow and ent_mid_L_flow in L_flow are mutually exclusive.")
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################

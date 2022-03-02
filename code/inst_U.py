@@ -10,6 +10,44 @@ import functions.func_args as fa
 import functions.func_proc as fp
 
 
+def find_eigensystem(_model, _leaf_args, _eigenstate):
+    if _model == "ponte2015":
+        H = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2
+        t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
+        dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
+        Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
+                       VF=_eigenstate, UF=_eigenstate, thetaF=_eigenstate)
+    elif _model == "ponte2015_2":
+        V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H_0, 0
+        H_list = [V, H_0]
+        dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
+        Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
+                       VF=_eigenstate, UF=_eigenstate, thetaF=_eigenstate)
+    elif _model == "spin2021":
+        H = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H, _leaf_args['T1'] / 2 + _leaf_args['T0'] / 8
+        t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) \
+                 + np.finfo(float).eps
+        dt_list = np.array(
+            [_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
+        Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
+                       VF=_eigenstate, UF=_eigenstate, thetaF=_eigenstate)
+    elif _model == "spin2021_2":
+        V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
+        H_init, T_init = H_1, 0
+        H_list = [V, H_1, H_2]
+        dt_list = np.array(
+            [_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
+        Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
+                       VF=_eigenstate, UF=_eigenstate, thetaF=_eigenstate)
+    else:
+        raise ValueError("model not implemented in inst_U")
+
+    return H_init, T_init, Floq
+
+
 def my_inst_U(path_flag, threads, model, _leaf_args):
 
     path = "/data/baandr" if path_flag else ""  # specify the custom path
@@ -27,37 +65,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     def realization(itr, _model, _leaf_args, eigenstate=False):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
-        if model == "ponte2015":
-            H = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init, T_init = H, _leaf_args['T1']+_leaf_args['T0']/2
-            t_list = np.array([0.0, _leaf_args['T1']]) + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
-                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
-        elif model == "ponte2015_2":
-            V, H_0 = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init, T_init = H_0, 0
-            H_list = [V, H_0]
-            dt_list = np.array([_leaf_args['T1'], _leaf_args['T0']])
-            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
-                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
-        elif model == "spin2021":
-            H = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init, T_init = H, _leaf_args['T1']/2+_leaf_args['T0']/8
-            t_list = np.array([0.0, _leaf_args['T1']/2.0, _leaf_args['T1']/2.0 + _leaf_args['T0']/4.0]) \
-                + np.finfo(float).eps
-            dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-            Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
-                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
-        elif model == "spin2021_2":
-            V, H_1, H_2 = fh.chosen_hamiltonian(_model, _leaf_args)
-            H_init, T_init = H_1, 0
-            H_list = [V, H_1, H_2]
-            dt_list = np.array([_leaf_args['T1']/2.0, _leaf_args['T0']/4.0, _leaf_args['delta']*_leaf_args['T0']/4.0])
-            Floq = Floquet({'H_list': H_list, 'dt_list': dt_list},
-                           VF=eigenstate, UF=eigenstate, thetaF=eigenstate)
-        else:
-            raise ValueError("model not implemented in inst_U")
+        H_init, T_init, Floq = find_eigensystem(_model, _leaf_args, eigenstate)
 
         if eigenstate:
 

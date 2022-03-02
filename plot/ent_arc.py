@@ -13,8 +13,8 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
-    ener_file1 = os.path.join(proj_root, 'data/ener_spec', _model, f"ener_spec_{_model}_{_params1}.dat")
-    ent_file1 = os.path.join(proj_root, 'data/ent_spec', _model, f"ent_spec_{_model}_{_params1}.dat")
+    ener_file1 = os.path.join(proj_root, 'data/ener', _model, f"ener_{_model}_{_params1}.dat")
+    ent_file1 = os.path.join(proj_root, 'data/ent', _model, f"ent_{_model}_{_params1}.dat")
 
     if os.path.exists(ener_file1) is False or os.path.exists(ent_file1) is False:
         raise ValueError("ener_file1 or ent_file1 do not exist")
@@ -49,8 +49,8 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
 
     else:
 
-        ener_file2 = os.path.join(proj_root, 'data/ener_spec', _model, f"ener_spec_{_model}_{_params2}.dat")
-        ent_file2 = os.path.join(proj_root, 'data/ent_spec', _model, f"ent_spec_{_model}_{_params2}.dat")
+        ener_file2 = os.path.join(proj_root, 'data/ener', _model, f"ener_{_model}_{_params2}.dat")
+        ent_file2 = os.path.join(proj_root, 'data/ent', _model, f"ent_{_model}_{_params2}.dat")
 
         if os.path.exists(ener_file2) is False or os.path.exists(ent_file2) is False:
             raise ValueError("ener_file2 or ent_file2 do not exist")
@@ -97,4 +97,4 @@ if __name__ == "__main__":
     params1 = 'L_12_obc_J_1_1_1_W_0.5'
     params2 = 'L_12_obc_J_1_1_1_W_8'
 
-    plot_ent_arc(model, params1, params2, _save=True)
+    plot_ent_arc(model, params1, params2, _save=False)

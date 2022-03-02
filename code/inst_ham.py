@@ -19,6 +19,9 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
     # "ener", "ener_spac", "ent", "ent_mid"
     tools = ["ener", "ener_spac", "ent"]
+    if "ent_mid" in tools and len(tools) != 1:
+        raise ValueError("The tool ent_mid can only be used in isolation.")
+
     if "ent_mid" not in tools:
         data = fp.prepare_output_files(tools, path, model, leaf)
     else:
@@ -31,27 +34,44 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
+        _ener_array = np.zeros(H.Ns)
+        _ener_spac_array = np.zeros(H.Ns)
+        _ent_array = np.zeros(H.Ns)
+
         if entropy == 2:  # ent
-            _E, psi = H.eigh()
-            _E_spac = []
-            for i in range(len(_E)-1):
-                _E_spac.append(_E[i+1]-_E[i])
-            _E_spac = np.asarray(_E_spac)
-            _S = []
-            for i in range(psi.shape[1]):
-                _S.append(H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L // 2))["Sent_A"])
-            return _E, _E_spac, _S
+            E, psi = H.eigh()
+
+            # --- ener
+            for i, ener_val in enumerate(E):
+                _ener_array[i] = ener_val
+            # --- ener_spac
+            _ener_spac_array[H.Ns-1] = None
+            for i in range(H.Ns-1):
+                _ener_spac_array[i] = E[i+1]-E[i]
+            # --- ent
+            for i in range(H.Ns):
+                _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
+
+            return _ener_array, _ener_spac_array, _ent_array
         elif entropy == 1:  # ent_mid
             _, psi = H.eigsh(k=1, sigma=0.5, maxiter=1E4)
-            _S = H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2))["Sent_A"]
-            return None, None, _S
+
+            # --- ent_mid
+            _ent_mid = H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2))["Sent_A"]
+
+            return None, None, _ent_mid
         elif entropy == 0:  # no ent
-            _E = H.eigvalsh()
-            _E_spac = []
-            for i in range(len(_E)-1):
-                _E_spac.append(_E[i+1]-_E[i])
-            _E_spac = np.asarray(_E_spac)
-            return _E, _E_spac, None
+            E = H.eigvalsh()
+
+            # --- ener
+            for i, ener_val in enumerate(E):
+                _ener_array[i] = ener_val
+            # --- ener_spac
+            _ener_spac_array[H.Ns - 1] = None
+            for i in range(H.Ns - 1):
+                _ener_spac_array = E[i + 1] - E[i]
+
+            return _ener_array, _ener_spac_array, None
         else:
             raise ValueError("ent_flag not defined in realization")
 
@@ -64,44 +84,44 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
         elif "ent" in tools:
             ent_flag = 2
 
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, entropy=ent_flag)
-                                                for i in range(leaf_args['dis'])), dtype=object)
+    array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, entropy=ent_flag)
+                                              for i in range(leaf_args['dis'])), axis=0)  # (disorder, tool, state)
 
     ########
     # ener #
     ########
 
-    if "ener" in tools and "ent_mid" not in tools:
+    if "ener" in tools:
 
-        E_array = array[:, 0]
-        E = np.mean(E_array, axis=0)
+        ener_array = array[:, 0]
+        ener = np.mean(ener_array, axis=0)
 
-        for i in E:
-            data['ener'].write(f"{i}\n")
+        for ener_state_val in ener:
+            data['ener'].write(f"{ener_state_val}\n")
 
     #############
     # ener_spac #
     #############
 
-    if "ener_spac" in tools and "ent_mid" not in tools:
+    if "ener_spac" in tools:
 
-        E_spac_array = array[:, 1]
-        E_spac = np.concatenate(E_spac_array).ravel().tolist()
+        ener_spac_array = array[:, 1, :-1]  # truncate last None value
 
-        for i in E_spac:
-            data['ener_spac'].write(f"{i}\n")
+        for i in range(np.shape(ener_spac_array)[0]):
+            for j in range(np.shape(ener_spac_array)[1]):
+                data['ener_spac'].write(f"{ener_spac_array[i, j]}\n")
 
     #######
     # ent #
     #######
 
-    if "ent" in tools and "ent_mid" not in tools:
+    if "ent" in tools:
 
-        S_array = array[:, 2]
-        S = np.mean(S_array, axis=0)
+        ent_array = array[:, 2]
+        ent = np.mean(ent_array, axis=0)
 
-        for i in S:
-            data['ent'].write(f"{i}\n")
+        for ent_val in ent:
+            data['ent'].write(f"{ent_val}\n")
 
     ###########
     # ent_mid #
@@ -109,10 +129,10 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
     if "ent_mid" in tools:
 
-        S_array = array[:, 2]
-        S = np.mean(S_array, axis=0)
+        ent_mid_array = array[:, 2]
+        ent_mid = np.mean(ent_mid_array, axis=0)
 
-        data['ent_mid'].write(f"{_leaf_args['L']}\t{S}\n")
+        data['ent_mid'].write(f"{_leaf_args['L']}\t{ent_mid}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 
