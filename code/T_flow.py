@@ -50,7 +50,7 @@ def find_eigensystem(_model, _leaf_args):
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] / 2 + _leaf_args['T0'] / 8
         t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) \
-                 + np.finfo(float).eps
+            + np.finfo(float).eps
         dt_list = np.array([_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0,
                             _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
         Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list}, VF=True)

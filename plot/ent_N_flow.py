@@ -58,7 +58,7 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _file
 
         ax0.plot(ent_1, '.-', lw=1)
         ax0.set_xlabel('$N$')
-        ax0.set_xlim([0, len(ent_1)])
+        ax0.set_xlim([0, 200])
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_ylabel('$S$')
         ax0.set_ylim([0, 0.6])
@@ -68,7 +68,7 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _file
         ax1.yaxis.set_visible(False)
         ax1.plot(ent_2, '.-', lw=1)
         ax1.set_xlabel('$N$')
-        ax1.set_xlim([0, len(ent_2)])
+        ax1.set_xlim([0, 200])
         ax1.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax1.set_title(_file2.replace('ent_N_flow_', '').replace('_', '\_').replace('.dat', ''))
 
@@ -138,11 +138,11 @@ def plot_ent_N_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _file
 
 if __name__ == "__main__":
 
-    model = 'ising_2'
-    file1 = 'ent_N_flow_ising_2_L_10_obc_dis_100_J_1_0_1_h0_2.3_T0_1.5708_N_101_W_1.dat'
-    # file2 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2.dat'
+    model = 'spin2021'
+    file1 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2.dat'
+    file2 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.1_W_2.dat'
     # file3 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.99_W_2.dat'
     # file4 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_1_W_2.dat'
     # file5 = 'ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.99_W_2.dat'
 
-    plot_ent_N_flow(model, file1, _save=False)
+    plot_ent_N_flow(model, file1, file2, _save=False)

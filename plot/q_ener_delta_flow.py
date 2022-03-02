@@ -65,8 +65,8 @@ def plot_q_ener_delta_flow(_model, _file1, _file2=None, _file3=None, _save=False
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'q_ener_delta_flow_spin2021_L_20_Nup_2_obc_J_1_1_1_T0_1_T1_1_delta_0_1_24_W_0.dat'
+    file1 = 'q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_24_W_0.dat.new'
     # file2 = 'q_ener_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file3 = 'q_ener_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_3.dat'
 
-    plot_q_ener_delta_flow(model, file1, _save=True)
+    plot_q_ener_delta_flow(model, file1, _save=False)

@@ -88,11 +88,11 @@ def plot_PR_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _f
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'PR_delta_flow_spin2021_L_100_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
-    file2 = 'PR_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
-    file3 = 'PR_delta_flow_spin2021_L_300_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
-    file4 = 'PR_delta_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
-    file5 = 'PR_delta_flow_spin2021_L_500_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
-    file6 = 'PR_delta_flow_spin2021_L_600_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
+    file1 = 'PR_delta_flow_spin2021_L_100_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat.new'
+    # file2 = 'PR_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
+    # file3 = 'PR_delta_flow_spin2021_L_300_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
+    # file4 = 'PR_delta_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
+    # file5 = 'PR_delta_flow_spin2021_L_500_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
+    # file6 = 'PR_delta_flow_spin2021_L_600_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2.dat'
 
-    plot_PR_delta_flow(model, file1, file2, file3, file4, file5, file6, _save=True)
+    plot_PR_delta_flow(model, file1, _save=False)

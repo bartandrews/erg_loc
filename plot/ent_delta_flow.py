@@ -109,9 +109,9 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    file2 = 'ent_delta_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    file3 = 'ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    file4 = 'ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat.new'
+    # file2 = 'ent_delta_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    # file3 = 'ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    # file4 = 'ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
 
-    plot_ent_delta_flow(model, file1, file2, file3, file4, _multi=False, _save=True)
+    plot_ent_delta_flow(model, file1, _multi=True, _save=False)

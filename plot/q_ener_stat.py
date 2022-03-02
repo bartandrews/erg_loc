@@ -97,8 +97,8 @@ def plot_q_ener_stat(_model, _file1, _file2=None, _save=False):
 
 if __name__ == "__main__":
 
-    model = 'spin2021'
-    file1 = 'q_ener_spac_spin2021_L_200_Nup_1_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_1_W_3.dat'
-    # file2 = 'q_ener_spac_spin2021_L_8_Nup_4_obc_dis_100_J_1_1_1_T0_10_W_8.dat'
+    model = 'ponte2015'
+    file1 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_2000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5.dat'
+    file2 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_2000_J_1_1_1_h0_2_T0_7_T1_1.5_W_8.dat'
 
-    plot_q_ener_stat(model, file1, _save=True)
+    plot_q_ener_stat(model, file1, file2, _save=False)

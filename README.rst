@@ -14,18 +14,20 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener -- disorder-averaged energy spectrum
 	* ener_spac -- disorder-concatenated energy spacings
 	* ent -- disorder-averaged entanglement entropy spectrum
-	* ent_mid -- disorder-averaged entanglement entropy for a mid state only
+	* ent_mid* -- disorder-averaged entanglement entropy for a mid state only
 * **W_flow** -- disorder evolution
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
 	* ent_rel_W_flow -- disorder-averaged relative entropy against disorder amplitude
-* **L_flow** -- length evolution (mutually exclusive tools)
-	* ent_L_flow -- disorder-averaged entanglement entropy against length
-	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
+* **L_flow** -- length evolution
+	* ent_L_flow* -- disorder-averaged entanglement entropy against length
+	* ent_mid_L_flow* -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
 	* ent_t_flow -- disorder-averaged entanglement entropy of a given state against time
 	* numb_fluc_t_flow -- disorder-averaged particle number fluctuations against time
+
+*mutually exclusive tools
 
 The ``plot`` scripts:
 
@@ -134,21 +136,27 @@ The ``programs`` along with their corresponding ``tools``:
 * **N_flow** -- Floquet cycle evolution
 	* ener_abs_N_flow -- disorder-averaged energy absorbed against N
 	* ent_N_flow -- disorder-averaged entanglement entropy against N
-	* info_ent_N_flow -- disorder-averaged Floquet-eigenstate-average information entropy against N
+	* info_ent_N_flow* -- disorder-averaged Floquet-eigenstate-average information entropy against N
 * **T_flow** -- Floquet time evolution
 	* PR_T_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against T
 * **delta_flow** -- drive period evolution
 	* q_ener_delta_flow -- disorder-averaged quasi-energy spectrum against delta
 	* loc_len_delta_flow -- disorder-averaged Floquet-eigenstate-averaged localization length against delta
 	* PR_delta_flow -- disorder-averaged Floquet-eigenstate-average participation ratio against delta
-	* ent_delta_flow -- disorder-averaged entanglement entropy against delta
-* **L_flow** -- length evolution (mutually exclusive tools)
-	* ent_L_flow -- disorder-averaged entanglement entropy against length
-	* ent_mid_L_flow -- disorder-averaged entanglement entropy of a mid state against length
+	* ent_delta_flow* -- disorder-averaged entanglement entropy against delta
+* **L_flow** -- length evolution
+	* ent_L_flow* -- disorder-averaged entanglement entropy against length
+	* ent_mid_L_flow* -- disorder-averaged entanglement entropy of a mid state against length
+
+*mutually exclusive tools
 
 The ``plot`` scripts:
 
 * **q_ener_spec** -- quasi-energy spectrum
+
+``python code/inst_U.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5``
+
+``python code/inst_U.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5``
 
 .. image:: figures/q_ener_spec/ponte2015/q_ener_spec_ponte2015_L_8_pauli_0_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
 	:align: center
@@ -156,11 +164,19 @@ The ``plot`` scripts:
 
 * **q_ener_stat** -- quasi-energy spacing statistics
 
+``python code/inst_U.py -mod ponte2015 -L 8 -Nup 4 -pauli 0 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -dis 10000``
+
+``python code/inst_U.py -mod ponte2015 -L 8 -Nup 4 -pauli 0 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -dis 10000``
+
 .. image:: figures/q_ener_stat/ponte2015/q_ener_stat_ponte2015_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **floq_struc** -- Floquet eigenstate structure (cf. Fig.2a of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
+
+``python code/inst_U.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5``
+
+``python code/inst_U.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5``
 
 .. image:: figures/floq_struc/ponte2015/floq_struc_ponte2015_L_8_pauli_0_obc_J_1_1_1_h0_2_T0_7_T1_1.5_W_8_comparison.png
 	:align: center
@@ -168,19 +184,33 @@ The ``plot`` scripts:
 
 * **ener_abs_N_flow** -- energy absorbed N evolution (cf. Fig.2c of `[Ponte2015] <https://arxiv.org/abs/1403.6480>`__)
 
+``python code/N_flow.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -N 31 -dis 100``
+
+``python code/N_flow.py -mod ponte2015 -L 8 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5 -N 31 -dis 100``
+
 .. image:: figures/ener_abs_N_flow/ponte2015/ener_abs_N_flow_ponte2015_L_8_pauli_0_obc_dis_100_J_1_1_1_h0_2_T0_7_T1_1.5_N_31_W_0.5_comparison.png
 	:align: center
 	:width: 80%
 
 * **ent_N_flow** -- entanglement entropy N evolution
 
+With ``v=0`` in the initial Bloch state.
+
+``python code/N_flow.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -N 201 -dis 10 -delta 0.9``
+
+``python code/N_flow.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -N 201 -dis 10 -delta 0.1``
+
 .. image:: figures/ent_N_flow/spin2021/ent_N_flow_spin2021_L_8_obc_dis_10_J_1_1_1_T0_1_T1_1_N_1001_delta_0.9_W_2_comparison.png
 	:align: center
 	:width: 80%
 
-* **info_ent_N_flow** -- information entropy N evolution (cf. Fig.4 of `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__)
+* **ent_info_N_flow** -- information entropy N evolution (cf. Fig.4 of `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__)
 
-.. image:: figures/info_ent_N_flow/spin2021/info_ent_N_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_N_60_delta_0.9_W_2_comparison.png
+``python code/N_flow.py -mod spin2021 -L 400 -Nup 1 -bc o -W 2 -T0 1 -T1 1 -N 60 -dis 10 -delta 0.9``
+
+``python code/N_flow.py -mod spin2021 -L 400 -Nup 1 -bc o -W 2 -T0 1 -T1 1 -N 60 -dis 10 -delta 0.1``
+
+.. image:: figures/ent_info_N_flow/spin2021/ent_info_N_flow_spin2021_L_400_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_N_60_delta_0.9_W_2_comparison.png
 	:align: center
 	:width: 80%
 
@@ -196,11 +226,15 @@ The ``plot`` scripts:
 
 * **q_ener_delta_flow** -- quasi-energy spectrum delta evolution
 
+``python code/delta_flow.py -mod spin2021 -Nup 1 -L 20 -bc o -T0 1 -T1 1 -W 0 -delta_min 0 -delta_max 1 -delta_samp 24``
+
 .. image:: figures/q_ener_delta_flow/spin2021/q_ener_delta_flow_spin2021_L_20_Nup_1_obc_J_1_1_1_T0_1_T1_1_delta_0_1_24_W_0.png
 	:align: center
 	:width: 80%
 
 * **loc_len_delta_flow** -- localization length delta evolution
+
+``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 200 -bc o -T0 1 -T1 1 -W 1 -delta_min 0 -delta_max 1 -delta_samp 11``
 
 .. image:: figures/loc_len_delta_flow/spin2021/loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1_comparison.png
 	:align: center
@@ -208,11 +242,19 @@ The ``plot`` scripts:
 
 * **PR_delta_flow** -- participation ratio delta evolution
 
+``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 100 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 21``
+
+``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 200 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 21``
+
+``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 300 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 21``
+
 .. image:: figures/PR_delta_flow/spin2021/PR_delta_flow_spin2021_L_100_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_21_W_2_comparison.png
 	:align: center
 	:width: 80%
 
 * **ent_delta_flow** -- entanglement entropy delta evolution
+
+``python code/delta_flow.py -mod spin2021 -dis 100 -L 10 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 11``
 
 .. image:: figures/ent_delta_flow/spin2021/ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.png
 	:align: center
@@ -291,18 +333,6 @@ Private resources:
 
 * ``qstat -q *.q@n{6..7}06{1..4}`` -- view all running jobs on bhaumik nodes (fast)
 * ``qstat -f | sed -n -e '/q@n[6-7]06[1-4]/,/---/ p'`` -- view the full status of all bhaumik nodes (slow)
-
-Example Commands
-----------------
-
-* ``python code/inst_ham.py -mod heisenberg -thr 1 -L 8 -bc o -dis 1 -W 0.5``
-* ``python code/W_flow.py -mod heisenberg -L 8 -Nup 4 -pauli 0 -bc o -dis 10000 -W_min 0.5 -W_max 25 -W_samp 24``
-* ``python code/L_flow.py -mod heisenberg -L_min 8 -L_max 12 -L_samp 3 -bc o -dis 10 -W 0``
-* ``python code/t_flow.py -mod heisenberg -L 6 -J 1 1 0.2 -t_min -1 -t_max 6 -t_samp 100 -dis 100 -bc o -W 0.5``
-* ``python code/inst_U.py -mod ponte2015 -L 8 -Nup 4 -pauli 0 -bc o -W 8 -h0 2 -T0 7 -T1 1.5 -dis 10000``
-* ``python code/N_flow.py -mod ponte2015 -L 8 -bc o -W 0.5 -h0 2 -T0 7 -T1 1.5 -N 31 -dis 100``
-* ``python code/T_flow.py -mod ponte2015 -L 8 -h0 2 -T0 7 -dis 20 -bc o -W 0.5 -T_min 0 -T_max 3 -T_samp 11``
-* ``python code/delta_flow.py -mod spin2021 -dis 10 -Nup 1 -L 200 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 11``
 
 References
 ----------

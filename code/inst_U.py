@@ -29,7 +29,7 @@ def find_eigensystem(_model, _leaf_args, _eigenstate):
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] / 2 + _leaf_args['T0'] / 8
         t_list = np.array([0.0, _leaf_args['T1'] / 2.0, _leaf_args['T1'] / 2.0 + _leaf_args['T0'] / 4.0]) \
-                 + np.finfo(float).eps
+            + np.finfo(float).eps
         dt_list = np.array(
             [_leaf_args['T1'] / 2.0, _leaf_args['T0'] / 4.0, _leaf_args['delta'] * _leaf_args['T0'] / 4.0])
         Floq = Floquet({'H': H, 't_list': t_list, 'dt_list': dt_list},
@@ -57,7 +57,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("inst_U", path, model, leaf)
 
     # "q_ener", "q_ener_spac", "floq_struc", "loc_len"
-    tools = ["q_ener"]
+    tools = ["floq_struc"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -66,6 +66,11 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         print(f"Iteration {itr + 1} of {_leaf_args['dis']}")
 
         H_init, T_init, Floq = find_eigensystem(_model, _leaf_args, eigenstate)
+
+        _q_ener_array = np.zeros(H_init.Ns)
+        _q_ener_spac_array = np.zeros(H_init.Ns)
+        _floq_struc_array = np.zeros(H_init.Ns)
+        _loc_len_array = np.zeros(H_init.Ns)
 
         if eigenstate:
 
@@ -90,49 +95,48 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
             # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
             # plt.show()
 
-            # --- q_ener
             qE = Floq.EF
-            # --- q_ener_spac
-            qE_spac = []
-            for i in range(len(qE)-1):
-                qE_spac.append(qE[i+1]-qE[i])
-            qE_spac = np.asarray(qE_spac)
-
             psi = Floq.VF
 
-            # --- floq_struc
-            _A2 = np.zeros((len(psi), len(alpha)))
-            for i_idx in range(len(psi)):
-                for alpha_idx in range(len(alpha)):
-                    _A2[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**2
-            # --- loc_len
-            # i_array = unit cell index [0,0,1,1,2,2,...]
-            i_array = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
-                i_array[j] = j//2
-            i_0 = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
-                i_0[j] = i_array.dot(np.abs(psi[:, j]) ** 2)
-            _loc_len = np.zeros(H_init.basis.Ns)
-            for j in range(H_init.basis.Ns):
-                _loc_len[j] = np.sqrt(np.dot((i_array - i_0[j]) ** 2, np.abs(psi[:, j]) ** 2))
-
-            return qE, qE_spac, _A2[:, 0], _loc_len
-        else:
             # --- q_ener
-            qE = Floq.EF
+            for i, q_ener_val in enumerate(qE):
+                _q_ener_array[i] = q_ener_val
             # --- q_ener_spac
-            qE_spac = []
-            for i in range(len(qE) - 1):
-                qE_spac.append(qE[i + 1] - qE[i])
-            qE_spac = np.asarray(qE_spac)
-            return qE, qE_spac, None, None
+            _q_ener_spac_array[H_init.Ns-1] = None
+            for i in range(H_init.Ns-1):
+                _q_ener_spac_array[i] = qE[i+1] - qE[i]
+            # --- floq_struc
+            for i in range(H_init.Ns):
+                _floq_struc_array[i] = np.abs(np.dot(psi[:, 0], alpha[:, i]))**2
+            # --- loc_len
+            i_array = np.array([k//2 for k in range(H_init.Ns)])
+            i_0_array = np.array([i_array.dot(np.abs(psi[:, k])**2) for k in range(H_init.Ns)])
+            for k in range(H_init.Ns):
+                _loc_len_array[k] = np.sqrt(np.dot((i_array-i_0_array[k])**2, np.abs(psi[:, k])**2))
+
+            return _q_ener_array, _q_ener_spac_array, _floq_struc_array, _loc_len_array
+        else:
+            qE = Floq.EF
+
+            # --- q_ener
+            for i, q_ener_val in enumerate(qE):
+                _q_ener_array[i] = q_ener_val
+            # --- q_ener_spac
+            _q_ener_spac_array[H_init.Ns-1] = None
+            for i in range(H_init.Ns-1):
+                _q_ener_spac_array[i] = qE[i+1] - qE[i]
+
+            return _q_ener_array, _q_ener_spac_array
 
     ###################################################################################################################
 
-    eig_flag = True if "floq_struc" in tools or "loc_len" in tools else False
-    array = np.asarray(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, eigenstate=eig_flag)
-                                                for i in range(leaf_args['dis'])), dtype=object)
+    if any(item in ["floq_struc", "loc_len"] for item in tools):
+        eig_flag = True
+    else:
+        eig_flag = False
+
+    array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, eigenstate=eig_flag)
+                                              for i in range(leaf_args['dis'])), axis=0)  # (disorder, tool, state)
 
     ##########
     # q_ener #
@@ -140,11 +144,11 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
     if "q_ener" in tools:
 
-        E_array = array[:, 0]
-        E = np.mean(E_array, axis=0)
+        q_ener_array = array[:, 0]
+        q_ener = np.mean(q_ener_array, axis=0)
 
-        for i in E:
-            data['q_ener'].write(f"{i}\n")
+        for q_ener_state_val in q_ener:
+            data['q_ener'].write(f"{q_ener_state_val}\n")
 
     ###############
     # q_ener_spac #
@@ -152,11 +156,11 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
     if "q_ener_spac" in tools:
 
-        E_spac_array = array[:, 1]
-        E_spac = np.concatenate(E_spac_array).ravel().tolist()
+        q_ener_spac_array = array[:, 1, :-1]  # truncate last None value
 
-        for i in E_spac:
-            data['q_ener_spac'].write(f"{i}\n")
+        for i in range(np.shape(q_ener_spac_array)[0]):
+            for j in range(np.shape(q_ener_spac_array)[1]):
+                data['q_ener_spac'].write(f"{q_ener_spac_array[i, j]}\n")
 
     ##############
     # floq_struc #
@@ -164,11 +168,11 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
     if "floq_struc" in tools:
 
-        A2_array = array[:, 2]
-        A2 = np.mean(A2_array, axis=0)
+        floq_struc_array = array[:, 2]
+        floq_struc = np.mean(floq_struc_array, axis=0)
 
-        for i in A2:
-            data['floq_struc'].write(f"{i}\n")
+        for floq_struc_state_val in floq_struc:
+            data['floq_struc'].write(f"{floq_struc_state_val}\n")
 
     ###########
     # loc_len #
@@ -179,10 +183,8 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         loc_len_array = array[:, 3]
         loc_len = np.mean(loc_len_array, axis=0)
 
-        for i in loc_len:
-            data['loc_len'].write(f"{i}\n")
-
-        print(f"average localization length = {np.mean(loc_len)}")
+        for loc_len_state_val in loc_len:
+            data['loc_len'].write(f"{loc_len_state_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 

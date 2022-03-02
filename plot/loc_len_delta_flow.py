@@ -65,8 +65,8 @@ def plot_loc_len_delta_flow(_model, _file1, _file2=None, _file3=None, _save=Fals
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1.dat'
-    file2 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    file3 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_3.dat'
+    file1 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_1.dat.new'
+    # file2 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    # file3 = 'loc_len_delta_flow_spin2021_L_200_Nup_1_obc_dis_10_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_3.dat'
 
-    plot_loc_len_delta_flow(model, file1, file2, file3, _save=True)
+    plot_loc_len_delta_flow(model, file1, _save=False)

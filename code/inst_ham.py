@@ -22,10 +22,7 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     if "ent_mid" in tools and len(tools) != 1:
         raise ValueError("The tool ent_mid can only be used in isolation.")
 
-    if "ent_mid" not in tools:
-        data = fp.prepare_output_files(tools, path, model, leaf)
-    else:
-        data = fp.prepare_output_files(["ent_mid"], path, model, leaf)
+    data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
 
@@ -120,8 +117,8 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
         ent_array = array[:, 2]
         ent = np.mean(ent_array, axis=0)
 
-        for ent_val in ent:
-            data['ent'].write(f"{ent_val}\n")
+        for ent_state_val in ent:
+            data['ent'].write(f"{ent_state_val}\n")
 
     ###########
     # ent_mid #
