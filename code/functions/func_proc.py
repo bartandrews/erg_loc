@@ -1,6 +1,7 @@
 # --- python imports
 import sys
 import os
+import h5py
 
 
 def file_name_stem(tool, model):
@@ -25,6 +26,11 @@ def file_name_leaf(program, model, ham_params):
         dis = ""
     else:
         dis = f"dis_{ham_params['dis']:g}_"
+
+    if program == "eig_U" and ham_params['batch'] is not None:
+        batch = f"batch_{ham_params['batch']}_"
+    else:
+        batch = ""
 
     if program == "t_flow":
         t = f"t_{ham_params['t_min']:g}_{ham_params['t_max']:g}_{ham_params['t_samp']}_"
@@ -70,9 +76,12 @@ def file_name_leaf(program, model, ham_params):
     else:
         W = f"W_{ham_params['W']:g}"
 
-    ext = ".dat"
+    if program == "eig_U":
+        ext = ".h5"
+    else:
+        ext = ".dat"
 
-    leaf = f"{L}{Nup}{pauli}{bc}{dis}{t}{J}{h0}{T0}{T1}{N}{T}{delta}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{batch}{t}{J}{h0}{T0}{T1}{N}{T}{delta}{W}{ext}{ham_params['tag']}"
 
     return leaf
 
@@ -99,10 +108,17 @@ def prepare_output_files(tools, path, model, leaf):
 
     stem, file, data = [dict()]*3
     for tool in tools:
+        if tool is "eig_U":
+            directory = "hdf5"
+        else:
+            directory = "data"
         stem.update({tool: file_name_stem(tool, model)})
-        os.makedirs(os.path.join(path, "data", f"{tool}", f"{model}", ""), exist_ok=True)
-        file.update({tool: os.path.join(path, "data", f"{tool}", f"{model}", stem[tool] + leaf)})
-        open(file[tool], "w")
-        data[tool] = open(file[tool], "a", buffering=1)
+        os.makedirs(os.path.join(path, directory, f"{tool}", f"{model}", ""), exist_ok=True)
+        file.update({tool: os.path.join(path, directory, f"{tool}", f"{model}", stem[tool] + leaf)})
+        if tool is "eig_U":
+            data = h5py.File(file[tool], 'w')
+        else:
+            open(file[tool], "w")
+            data[tool] = open(file[tool], "a", buffering=1)
 
     return data

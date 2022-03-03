@@ -3,6 +3,8 @@ import numpy as np
 from time import perf_counter
 import sys
 from joblib import delayed, Parallel
+import matplotlib.pyplot as plt
+# --- QuSpin imports
 from quspin.tools.Floquet import Floquet
 # --- driven_systems imports
 import functions.func_ham as fh
@@ -60,6 +62,8 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
     tools = ["floq_struc"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
+    plot_unitary = False
+
     ###################################################################################################################
 
     def realization(itr, _model, _leaf_args, eigenstate=False):
@@ -76,24 +80,25 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
             _, alpha = H_init.eigh(time=T_init)
 
-            # import matplotlib.pyplot as plt
-            # fig = plt.figure()
-            # ax = fig.add_subplot(111)
-            # mat = ax.matshow(np.abs(Floq.UF), cmap='Greys')
-            # ax.set_xlabel("$i$")
-            # ax.set_ylabel("$j$")
-            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
-            # cbar = plt.colorbar(mat)
-            # cbar.set_label("$|U_{\mathrm{F}, i, j}|$")
-            # plt.show()
-            #
-            # fig = plt.figure()
-            # ax = fig.add_subplot(111)
-            # ax.plot([np.angle(i)/np.pi for i in Floq.thetaF], '.')
-            # ax.set_xlabel("$i$")
-            # ax.set_ylabel("$\\theta_{\mathrm{F},i}/\pi$")
-            # ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
-            # plt.show()
+            if plot_unitary:
+
+                fig = plt.figure()
+                ax = fig.add_subplot(111)
+                mat = ax.matshow(np.abs(Floq.UF), cmap='Greys')
+                ax.set_xlabel("$i$")
+                ax.set_ylabel("$j$")
+                ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
+                cbar = plt.colorbar(mat)
+                cbar.set_label("$|U_{\mathrm{F}, i, j}|$")
+                plt.show()
+
+                fig = plt.figure()
+                ax = fig.add_subplot(111)
+                ax.plot([np.angle(i)/np.pi for i in Floq.thetaF], '.')
+                ax.set_xlabel("$i$")
+                ax.set_ylabel("$\\theta_{\mathrm{F},i}/\pi$")
+                ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
+                plt.show()
 
             qE = Floq.EF
             psi = Floq.VF
