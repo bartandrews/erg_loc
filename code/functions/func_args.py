@@ -42,7 +42,7 @@ def parse_input_arguments(program):
                       help="boundary conditions")
     leaf.add_argument("-dis", type=int, default=1, help="number of disorders")
     if program == "eig_U":
-        leaf.add_argument("-batch", type=int, default=None, help="batch number")
+        leaf.add_argument("-bat", "--batch", type=int, default=1, help="batch number")
 
     if program == "t_flow":
         leaf.add_argument("-t_min", type=float, default=0, required=True, help="start time")

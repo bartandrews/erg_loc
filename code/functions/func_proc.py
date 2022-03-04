@@ -28,9 +28,9 @@ def file_name_leaf(program, model, ham_params):
         dis = f"dis_{ham_params['dis']:g}_"
 
     if program == "eig_U" and ham_params['batch'] is not None:
-        batch = f"batch_{ham_params['batch']}_"
+        bat = f"bat_{ham_params['batch']}_"
     else:
-        batch = ""
+        bat = ""
 
     if program == "t_flow":
         t = f"t_{ham_params['t_min']:g}_{ham_params['t_max']:g}_{ham_params['t_samp']}_"
@@ -81,7 +81,7 @@ def file_name_leaf(program, model, ham_params):
     else:
         ext = ".dat"
 
-    leaf = f"{L}{Nup}{pauli}{bc}{dis}{batch}{t}{J}{h0}{T0}{T1}{N}{T}{delta}{W}{ext}{ham_params['tag']}"
+    leaf = f"{L}{Nup}{pauli}{bc}{dis}{bat}{t}{J}{h0}{T0}{T1}{N}{T}{delta}{W}{ext}{ham_params['tag']}"
 
     return leaf
 
@@ -117,6 +117,7 @@ def prepare_output_files(tools, path, model, leaf):
         file.update({tool: os.path.join(path, directory, f"{tool}", f"{model}", stem[tool] + leaf)})
         if tool is "eig_U":
             data = h5py.File(file[tool], 'w')
+            # data = open(file[tool], 'wb')
         else:
             open(file[tool], "w")
             data[tool] = open(file[tool], "a", buffering=1)

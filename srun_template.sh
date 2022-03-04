@@ -1,0 +1,24 @@
+#!/bin/bash
+#$ -l h_rt=3:00:00:00
+#$ -l h_data=16G
+#$ -l h_vmem=512G
+#$ -cwd
+#$ -o stdout.$JOB_ID
+#$ -j y
+#$ -pe shared 32
+#$ -l highp
+
+source /u/home/b/baandr12/.bash_profile
+source /u/home/b/baandr12/.bashrc
+
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.1;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.2;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.3;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.4;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.5;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.6;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.7;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.8;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 0.9;
+python code/eig_U.py -mod spin2021 -L 8 -bc o -W 2 -T0 1 -T1 1 -dis 100 -bat 1 -delta 1;

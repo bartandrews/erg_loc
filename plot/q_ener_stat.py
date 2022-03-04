@@ -5,20 +5,34 @@ import numpy as np
 from matplotlib.ticker import FormatStrFormatter
 import matplotlib.gridspec as gridspec
 import os
+import h5py
+import glob
 
 plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
 
 
-def plot_q_ener_stat(_model, _file1, _file2=None, _save=False):
+def plot_q_ener_stat(_model, _file1, _file2=None, _save=False, _h5_flag=False):
 
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
-    with open(os.path.join(proj_root, 'data/q_ener_spac', _model, _file1), 'r') as csvfile:
-        plots = csv.reader(csvfile, delimiter='\t')
+    if _h5_flag:
+        _file1 = _file1.replace("q_ener_spac", "eig_U").replace(".dat", ".h5")
+        _path1 = os.path.join(proj_root, 'hdf5/eig_U', _model, _file1)
+        _path1_list = glob.glob(_path1.replace("_J", "_bat_*_J"))
         E_spac_1 = []
-        for i, row in enumerate(plots):
-            E_spac_1.append(float(row[0]))
+        for _path1_list_val in _path1_list:
+            hf = h5py.File(_path1_list_val, 'r')
+            U_array = hf['eig_U']
+            for i in range(np.shape(U_array)[0]):  # disorder
+                for j in range(np.shape(U_array)[2]-1):  # state
+                    E_spac_1.append(U_array[i, 0, j+1] - U_array[i, 0, j])
+    else:
+        with open(os.path.join(proj_root, 'data/q_ener_spac', _model, _file1), 'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter='\t')
+            E_spac_1 = []
+            for i, row in enumerate(plots):
+                E_spac_1.append(float(row[0]))
 
     r_1 = []
     for i in range(1, len(E_spac_1)):
@@ -49,12 +63,23 @@ def plot_q_ener_stat(_model, _file1, _file2=None, _save=False):
         plt.show()
 
     else:
-
-        with open(os.path.join(proj_root, 'data/q_ener_spac', _model, _file2), 'r') as csvfile:
-            plots = csv.reader(csvfile, delimiter='\t')
+        if _h5_flag:
+            _file2 = _file2.replace("q_ener_spac", "eig_U").replace(".dat", ".h5")
+            _path2 = os.path.join(proj_root, 'hdf5/eig_U', _model, _file2)
+            _path2_list = glob.glob(_path2.replace("_J", "_bat_*_J"))
             E_spac_2 = []
-            for i, row in enumerate(plots):
-                E_spac_2.append(float(row[0]))
+            for _path2_list_val in _path2_list:
+                hf = h5py.File(_path2_list_val, 'r')
+                U_array = hf['eig_U']
+                for i in range(np.shape(U_array)[0]):  # disorder
+                    for j in range(np.shape(U_array)[2] - 1):  # state
+                        E_spac_2.append(U_array[i, 0, j + 1] - U_array[i, 0, j])
+        else:
+            with open(os.path.join(proj_root, 'data/q_ener_spac', _model, _file2), 'r') as csvfile:
+                plots = csv.reader(csvfile, delimiter='\t')
+                E_spac_2 = []
+                for i, row in enumerate(plots):
+                    E_spac_2.append(float(row[0]))
 
         r_2 = []
         for i in range(1, len(E_spac_2)):
@@ -98,7 +123,7 @@ def plot_q_ener_stat(_model, _file1, _file2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'ponte2015'
-    file1 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_2000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5.dat'
-    file2 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_2000_J_1_1_1_h0_2_T0_7_T1_1.5_W_8.dat'
+    file1 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_h0_2_T0_7_T1_1.5_W_0.5.dat'
+    file2 = 'q_ener_spac_ponte2015_L_8_Nup_4_pauli_0_obc_dis_1000_J_1_1_1_h0_2_T0_7_T1_1.5_W_8.dat'
 
-    plot_q_ener_stat(model, file1, file2, _save=False)
+    plot_q_ener_stat(model, file1, file2, _save=False, _h5_flag=True)

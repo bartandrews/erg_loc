@@ -79,6 +79,7 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
         if eigenstate:
 
             _, alpha = H_init.eigh(time=T_init)
+            qE, psi = Floq.EF, Floq.VF
 
             if plot_unitary:
 
@@ -99,9 +100,6 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
                 ax.set_ylabel("$\\theta_{\mathrm{F},i}/\pi$")
                 ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
                 plt.show()
-
-            qE = Floq.EF
-            psi = Floq.VF
 
             # --- q_ener
             for i, q_ener_val in enumerate(qE):

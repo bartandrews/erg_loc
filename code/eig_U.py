@@ -3,7 +3,6 @@ import numpy as np
 from time import perf_counter
 import sys
 from joblib import delayed, Parallel
-import h5py
 # --- QuSpin imports
 from quspin.tools.Floquet import Floquet
 # --- driven_systems imports
@@ -77,7 +76,8 @@ def my_eig_U(path_flag, threads, model, _leaf_args):
     array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args)
                                               for i in range(leaf_args['dis'])), axis=0)  # (disorder, tool, state)
 
-    data.create_dataset('array', data=array)
+    data.create_dataset('eig_init', data=array[:, 0], compression='gzip', chunks=True)
+    data.create_dataset('eig_U', data=array[:, 1], compression='gzip', chunks=True)
     data.close()
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
