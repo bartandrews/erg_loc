@@ -25,3 +25,5 @@ scripts/**/*.out*
 nohup.out
 run.sh
 run_obs.sh
+
+sjobs/**/*.sh*

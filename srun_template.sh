@@ -1,12 +1,12 @@
 #!/bin/bash
-#$ -l h_rt=3:00:00:00
-#$ -l h_data=16G
-#$ -l h_vmem=512G
-#$ -cwd
-#$ -o stdout.$JOB_ID
-#$ -j y
-#$ -pe shared 32
-#$ -l highp
+#$ -l h_rt=336:00:00  # wall-clock time limit (max 336h)
+#$ -pe shared 32  # jobs per node
+#$ -l h_data=16G  # memory per job
+#$ -l h_vmem=512G  # total memory
+#$ -cwd  # use the current working directory
+#$ -o stdout.$JOB_ID  # file name of standard output
+#$ -j y  # combine stdout and stderr
+#$ -l highp  # for jobs up to 14 days
 
 source /u/home/b/baandr12/.bash_profile
 source /u/home/b/baandr12/.bashrc

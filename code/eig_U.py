@@ -76,8 +76,8 @@ def my_eig_U(path_flag, threads, model, _leaf_args):
     array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args)
                                               for i in range(leaf_args['dis'])), axis=0)  # (disorder, tool, state)
 
-    data.create_dataset('eig_init', data=array[:, 0], compression='gzip', chunks=True)
-    data.create_dataset('eig_U', data=array[:, 1], compression='gzip', chunks=True)
+    data.create_dataset('eig_init', data=np.around(array[:, 0], 12), compression='gzip', shuffle=True, chunks=True)
+    data.create_dataset('eig_U', data=np.around(array[:, 1], 12), compression='gzip', shuffle=True, chunks=True)
     data.close()
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")

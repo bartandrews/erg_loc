@@ -20,12 +20,18 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
     proj_root = '/home/bart/PycharmProjects/erg_loc'
 
     if _h5_file:
-        basis = spin_basis_1d(6)
+
+        L_pattern = re.search('L_(\d+)', _file1)
+        L = int(L_pattern.group(1))
+
+        basis = spin_basis_1d(L)
+
         delta_pattern = re.search('delta_(\d+)_(\d+)_(\d+)', _file1)
         delta_string = delta_pattern.group(0)
         delta_min = float(delta_pattern.group(1))
         delta_max = float(delta_pattern.group(2))
         delta_samp = int(delta_pattern.group(3))
+
         dis_pattern = re.search('dis_(\d+)', _file1)
         dis = int(dis_pattern.group(1))
 
@@ -35,7 +41,8 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
 
             delta.append(delta_val)
 
-            _file1_tmp = _file1.replace("ent_delta_flow", "eig_U").replace(".dat", ".h5").replace(delta_string, f"delta_{delta_val:g}")
+            _file1_tmp = _file1.replace("ent_delta_flow", "eig_U").replace(".dat", ".h5")\
+                .replace(delta_string, f"delta_{delta_val:g}")
             _path1 = os.path.join(proj_root, 'hdf5/eig_U', _model, _file1_tmp)
             _path1_list = glob.glob(_path1.replace("_J", "_bat_*_J"))
 
@@ -154,9 +161,9 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat.new'
     # file2 = 'ent_delta_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file3 = 'ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
     # file4 = 'ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
 
-    plot_ent_delta_flow(model, file1, _multi=False, _save=False, _h5_file=True)
+    plot_ent_delta_flow(model, file1, _multi=False, _save=False, _h5_file=False)

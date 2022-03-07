@@ -12,7 +12,6 @@ import functions.func_proc as fp
 
 
 def find_Ns(_model, _leaf_args):
-
     _leaf_args['delta'] = _leaf_args['delta_min']
 
     if _model == "ponte2015":
@@ -93,33 +92,33 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
         for i, _delta in enumerate(_delta_list):
 
             H_init, T_init, Floq = find_eigensystem(_model, _leaf_args, _delta)
+            psi = Floq.VF
 
-            _, alpha = H_init.eigh(time=T_init)
-            qE, psi = Floq.EF, Floq.VF
+            if "q_ener_delta_flow" in tools:
+                qE = Floq.EF
+                for k, q_ener_val in enumerate(qE):
+                    _q_ener_array[i, k] = q_ener_val
 
-            # --- q_ener_delta_flow
-            for k, q_ener_val in enumerate(qE):
-                _q_ener_array[i, k] = q_ener_val
-
-            # --- loc_len_delta_flow
-            i_array = np.array([k//2 for k in range(H_init.Ns)])
-            i_0_array = np.array([i_array.dot(np.abs(psi[:, k])**2) for k in range(H_init.Ns)])
-            for k in range(H_init.Ns):
-                _loc_len_array[i, k] = np.sqrt(np.dot((i_array-i_0_array[k])**2, np.abs(psi[:, k])**2))
-
-            # --- PR_delta_flow
-            A4 = np.zeros((len(alpha), len(psi)))
-            for i_idx in range(len(psi)):
-                for alpha_idx in range(len(alpha)):
-                    A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**4
-            for i_idx in range(len(psi)):
-                _PR_array[i, i_idx] = (1/H_init.Ns) * (1/np.sum(A4[:, i_idx]))
-
-            # --- ent_delta_flow
-            if not any(item in ["loc_len_delta_flow", "PR_delta_flow"] for item in tools):
+            if "loc_len_delta_flow" in tools:
+                i_array = np.array([k//2 for k in range(H_init.Ns)])
+                i_0_array = np.array([i_array.dot(np.abs(psi[:, k])**2) for k in range(H_init.Ns)])
                 for k in range(H_init.Ns):
-                    _ent_array[i, k] = H_init.basis.ent_entropy(psi[:, k], sub_sys_A=range(H_init.basis.L//2),
-                                                                density=False)["Sent_A"]
+                    _loc_len_array[i, k] = np.sqrt(np.dot((i_array-i_0_array[k])**2, np.abs(psi[:, k])**2))
+
+            if "PR_delta_flow" in tools:
+                _, alpha = H_init.eigh(time=T_init)
+                A4 = np.zeros((len(alpha), len(psi)))
+                for i_idx in range(len(psi)):
+                    for alpha_idx in range(len(alpha)):
+                        A4[alpha_idx, i_idx] = np.abs(np.dot(psi[:, i_idx], alpha[:, alpha_idx]))**4
+                for i_idx in range(len(psi)):
+                    _PR_array[i, i_idx] = (1/H_init.Ns) * (1/np.sum(A4[:, i_idx]))
+
+            if "ent_delta_flow" in tools:
+                if not any(item in ["loc_len_delta_flow", "PR_delta_flow"] for item in tools):
+                    for k in range(H_init.Ns):
+                        _ent_array[i, k] = H_init.basis.ent_entropy(psi[:, k], sub_sys_A=range(H_init.basis.L//2),
+                                                                    density=False)["Sent_A"]
 
         return _q_ener_array, _loc_len_array, _PR_array, _ent_array
 
@@ -181,8 +180,6 @@ def my_delta_flow(path_flag, threads, model, _leaf_args):
             for state in range(np.shape(ent)[1]):
                 if ent[samp][state] != 0.0:
                     string += f"\t{ent[samp][state]}"
-                else:
-                    continue
             data['ent_delta_flow'].write(f"{string}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")

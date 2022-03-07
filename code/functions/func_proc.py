@@ -117,7 +117,6 @@ def prepare_output_files(tools, path, model, leaf):
         file.update({tool: os.path.join(path, directory, f"{tool}", f"{model}", stem[tool] + leaf)})
         if tool is "eig_U":
             data = h5py.File(file[tool], 'w')
-            # data = open(file[tool], 'wb')
         else:
             open(file[tool], "w")
             data[tool] = open(file[tool], "a", buffering=1)
