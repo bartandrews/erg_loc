@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="5e510ca0-3913-432d-b057-1ff93f0c07ad" name="dirac" url="http://dirac.physik.uzh.ch">
+        <fileTransfer accessType="SFTP" host="dirac.physik.uzh.ch" port="22" sshConfigId="8f4c2ddf-d912-4183-9149-30402f74c8eb" sshConfig="bandrews@dirac.physik.uzh.ch:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

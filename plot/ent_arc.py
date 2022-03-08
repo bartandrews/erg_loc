@@ -4,6 +4,8 @@ import csv
 from matplotlib.ticker import FormatStrFormatter
 import matplotlib.gridspec as gridspec
 import os
+from scipy.stats import gaussian_kde
+import numpy as np
 
 plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
@@ -34,7 +36,18 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
 
         plt.figure(figsize=(5, 5))
         ax0 = plt.subplot(111)
-        ax0.plot(E_1, S_1, '.', c='k', lw=1)
+
+        # convert lists to arrays
+        E_1 = np.array(E_1)
+        S_1 = np.array(S_1)
+        # calculate the point density
+        E_1_S_1 = np.vstack([E_1, S_1])
+        z = gaussian_kde(E_1_S_1)(E_1_S_1)
+        # sort the points by density, so that the densest points are plotted last
+        idx = z.argsort()
+        E_1, S_1, z = E_1[idx], S_1[idx], z[idx]
+        # scatter plot
+        ax0.scatter(E_1, S_1, c=z, s=10, cmap='plasma')
         ax0.set_xlabel('$E$')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_ylabel('$S$')
@@ -71,7 +84,17 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
         ax0 = plt.subplot(gs[0])
         ax1 = plt.subplot(gs[1], sharey=ax0)
 
-        ax0.plot(E_1, S_1, '.', c='k', lw=1)
+        # convert lists to arrays
+        E_1 = np.array(E_1)
+        S_1 = np.array(S_1)
+        # calculate the point density
+        E_1_S_1 = np.vstack([E_1, S_1])
+        z = gaussian_kde(E_1_S_1)(E_1_S_1)
+        # sort the points by density, so that the densest points are plotted last
+        idx = z.argsort()
+        E_1, S_1, z = E_1[idx], S_1[idx], z[idx]
+        # scatter plot
+        ax0.scatter(E_1, S_1, c=z, s=10, cmap='plasma')
         ax0.set_xlabel('$E$')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_ylabel('$S$')
@@ -79,7 +102,17 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
         ax0.set_title(f"{_model}_{_params1}".replace('_', '\_'))
 
         ax1.yaxis.set_visible(False)
-        ax1.plot(E_2, S_2, '.', c='k', lw=1)
+        # convert lists to arrays
+        E_2 = np.array(E_2)
+        S_2 = np.array(S_2)
+        # calculate the point density
+        E_2_S_2 = np.vstack([E_2, S_2])
+        z = gaussian_kde(E_2_S_2)(E_2_S_2)
+        # sort the points by density, so that the densest points are plotted last
+        idx = z.argsort()
+        E_2, S_2, z = E_2[idx], S_2[idx], z[idx]
+        # scatter plot
+        ax1.scatter(E_2, S_2, c=z, s=10, cmap='plasma')
         ax1.set_xlabel('$E$')
         ax1.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax1.set_title(f"{_model}_{_params2}".replace('_', '\_'))
@@ -95,6 +128,6 @@ if __name__ == "__main__":
 
     model = 'heisenberg'
     params1 = 'L_12_obc_J_1_1_1_W_0.5'
-    params2 = 'L_12_obc_J_1_1_1_W_8'
+    # params2 = 'L_12_obc_J_1_1_1_W_8'
 
-    plot_ent_arc(model, params1, params2, _save=False)
+    plot_ent_arc(model, params1, _save=False)

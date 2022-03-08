@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="hoffman2" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" serverName="dirac" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="dirac">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/fkp/bandrews/PycharmProjects/erg_loc" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/hdf5" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
       <paths name="hoffman2">
         <serverdata>
           <mappings>
