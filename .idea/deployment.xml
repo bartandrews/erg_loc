@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="hoffman2" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="hoffman2">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/u/home/b/baandr12/PycharmProjects/erg_loc" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/u/home/b/baandr12/PycharmProjects/erg_loc/data" />
+            <excludedPath path="/u/home/b/baandr12/PycharmProjects/erg_loc/logs" />
+            <excludedPath path="/u/home/b/baandr12/PycharmProjects/erg_loc/pickles" />
+            <excludedPath local="true" path="$PROJECT_DIR$/hdf5" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

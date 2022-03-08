@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="login2.hoffman2.idre.ucla.edu" id="b28e44a3-3abb-41f9-9e76-dfa167248624" keyPath="$USER_HOME$/.ssh/barts_key" port="22" nameFormat="DESCRIPTIVE" username="baandr12" />
+    </configs>
+  </component>
+</project>

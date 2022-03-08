@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="310ee6de-934c-43ad-b9a7-bb39867be316" name="hoffman2" url="http://login2.hoffman2.idre.ucla.edu">
+        <fileTransfer accessType="SFTP" host="login2.hoffman2.idre.ucla.edu" port="22" sshConfigId="b28e44a3-3abb-41f9-9e76-dfa167248624" sshConfig="baandr12@login2.hoffman2.idre.ucla.edu:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
