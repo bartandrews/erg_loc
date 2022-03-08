@@ -82,13 +82,14 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
     plt.figure(figsize=(10, 5))
     ax0 = plt.subplot(111)
     if _multi:
-        for j in range(ncol):
-            ax0.plot(delta, ent[:, j], '-', lw=0.1)
+        for j, delta_val in enumerate(delta):
+            ax0.plot([delta_val]*np.shape(ent)[1], ent[j, :], '_', markeredgewidth=0.2, c=f"C{j}")
         ax0.plot(delta, mean_ent, 'x-', c='k')
     else:
-        ax0.plot(delta, mean_ent, '.-', label="$L=6$")
+        for j, delta_val in enumerate(delta):
+            ax0.errorbar(delta_val, np.mean(ent[j, :]), yerr=np.std(ent[j, :]), capsize=2, c="C0")
+        ax0.plot(delta, mean_ent, '.-', label="$L=6$", c="C0")
     ax0.set_xlabel("$\delta$")
-    ax0.set_xlim([0, 1])
     ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
     ax0.set_ylabel("$S$")
     ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
@@ -108,7 +109,9 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
                 for j in range(ncol):
                     ent2[i][j] = float(row[j + 1])
             mean_ent2 = np.mean(ent2, axis=1)
-        ax0.plot(delta2, mean_ent2, '.-', label="$L=8$")
+        for j, delta2_val in enumerate(delta2):
+            ax0.errorbar(delta2_val, np.mean(ent2[j, :]), yerr=np.std(ent2[j, :]), capsize=2, c="C1")
+        ax0.plot(delta2, mean_ent2, '.-', label="$L=8$", c="C1")
     if _file3 is not None:
         with open(os.path.join(proj_root, 'data/ent_delta_flow', _model, _file3), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
@@ -123,7 +126,9 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
                 for j in range(ncol):
                     ent3[i][j] = float(row[j + 1])
             mean_ent3 = np.mean(ent3, axis=1)
-        ax0.plot(delta3, mean_ent3, '.-', label="$L=10$")
+        for j, delta3_val in enumerate(delta3):
+            ax0.errorbar(delta3_val, np.mean(ent3[j, :]), yerr=np.std(ent3[j, :]), capsize=2, c="C2")
+        ax0.plot(delta3, mean_ent3, '.-', label="$L=10$", c="C2")
     if _file4 is not None:
         with open(os.path.join(proj_root, 'data/ent_delta_flow', _model, _file4), 'r') as csvfile:
             plots = csv.reader(csvfile, delimiter='\t')
@@ -138,13 +143,15 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
                 for j in range(ncol):
                     ent4[i][j] = float(row[j + 1])
             mean_ent4 = np.mean(ent4, axis=1)
-        ax0.plot(delta4, mean_ent4, '.-', label="$L=12$")
+        for j, delta4_val in enumerate(delta4):
+            ax0.errorbar(delta4_val, np.mean(ent4[j, :]), yerr=np.std(ent4[j, :]), capsize=2, c="C3")
+        ax0.plot(delta4, mean_ent4, '.-', label="$L=12$", c="C3")
 
     if not _multi:
         ax0.legend(loc='upper left')
 
     if _save:
-        if _file2 is None and _file3 is None and _file4 is not None:
+        if _file2 is None and _file3 is None and _file4 is None:
             os.makedirs(os.path.join(proj_root, 'figures/ent_delta_flow', _model), exist_ok=True)
             plt.savefig(os.path.join(proj_root, 'figures/ent_delta_flow', _model,
                                      _file1.replace(".dat", "")+".png"),
@@ -161,9 +168,9 @@ def plot_ent_delta_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _
 if __name__ == "__main__":
 
     model = 'spin2021'
-    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat.new'
-    # file2 = 'ent_delta_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    # file3 = 'ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
-    # file4 = 'ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file1 = 'ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file2 = 'ent_delta_flow_spin2021_L_8_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file3 = 'ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
+    file4 = 'ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.dat'
 
-    plot_ent_delta_flow(model, file1, _multi=False, _save=False, _h5_file=False)
+    plot_ent_delta_flow(model, file1, file2, file3, file4, _multi=False, _save=True, _h5_file=False)

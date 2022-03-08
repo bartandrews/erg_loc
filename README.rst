@@ -5,6 +5,11 @@ A numerical toolbox to distinguish between ergodic and localized phases in quant
 
 Prerequisites: Python 3.7.6+, QuSpin 0.3.6+
 
+1. `Static Systems`_
+2. `Driven Systems`_
+3. `Hoffman2 Cluster`_
+4. `References`_
+
 Static Systems
 --------------
 
@@ -254,9 +259,13 @@ With ``v=0`` in the initial Bloch state.
 
 * **ent_delta_flow** -- entanglement entropy delta evolution
 
-``python code/delta_flow.py -mod spin2021 -dis 100 -L 10 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 11``
+``python code/delta_flow.py -mod spin2021 -dis 100 -L 12 -bc o -T0 1 -T1 1 -W 2 -delta_min 0 -delta_max 1 -delta_samp 11``
 
-.. image:: figures/ent_delta_flow/spin2021/ent_delta_flow_spin2021_L_10_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.png
+.. image:: figures/ent_delta_flow/spin2021/ent_delta_flow_spin2021_L_12_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2.png
+	:align: center
+	:width: 80%
+
+.. image:: figures/ent_delta_flow/spin2021/ent_delta_flow_spin2021_L_6_obc_dis_100_J_1_1_1_T0_1_T1_1_delta_0_1_11_W_2_comparison.png
 	:align: center
 	:width: 80%
 
