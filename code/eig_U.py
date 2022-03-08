@@ -12,6 +12,7 @@ import functions.func_proc as fp
 
 
 def find_eigensystem(_model, _leaf_args):
+
     if _model == "ponte2015":
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2

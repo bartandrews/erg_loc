@@ -12,6 +12,7 @@ import functions.func_proc as fp
 
 
 def find_Ns(_model, _leaf_args):
+
     _leaf_args['delta'] = _leaf_args['delta_min']
 
     if _model == "ponte2015":
@@ -33,6 +34,7 @@ def find_Ns(_model, _leaf_args):
 
 
 def find_eigensystem(_model, _leaf_args, _delta):
+
     if _model == "ponte2015":
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2

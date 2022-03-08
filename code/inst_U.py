@@ -13,6 +13,7 @@ import functions.func_proc as fp
 
 
 def find_eigensystem(_model, _leaf_args, _eigenstate):
+
     if _model == "ponte2015":
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2
@@ -78,7 +79,6 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
 
         if eigenstate:
 
-            _, alpha = H_init.eigh(time=T_init)
             qE, psi = Floq.EF, Floq.VF
 
             if plot_unitary:
@@ -101,33 +101,34 @@ def my_inst_U(path_flag, threads, model, _leaf_args):
                 ax.set_title(f"$W={_leaf_args['W']}, T={_leaf_args['T0']}$, $L={_leaf_args['L']}$")
                 plt.show()
 
-            # --- q_ener
-            for i, q_ener_val in enumerate(qE):
-                _q_ener_array[i] = q_ener_val
-            # --- q_ener_spac
-            _q_ener_spac_array[H_init.Ns-1] = None
-            for i in range(H_init.Ns-1):
-                _q_ener_spac_array[i] = qE[i+1] - qE[i]
-            # --- floq_struc
-            for i in range(H_init.Ns):
-                _floq_struc_array[i] = np.abs(np.dot(psi[:, 0], alpha[:, i]))**2
-            # --- loc_len
-            i_array = np.array([k//2 for k in range(H_init.Ns)])
-            i_0_array = np.array([i_array.dot(np.abs(psi[:, k])**2) for k in range(H_init.Ns)])
-            for k in range(H_init.Ns):
-                _loc_len_array[k] = np.sqrt(np.dot((i_array-i_0_array[k])**2, np.abs(psi[:, k])**2))
+            if "q_ener" in tools:
+                for i, q_ener_val in enumerate(qE):
+                    _q_ener_array[i] = q_ener_val
+            if "q_ener_spac" in tools:
+                _q_ener_spac_array[H_init.Ns-1] = None
+                for i in range(H_init.Ns-1):
+                    _q_ener_spac_array[i] = qE[i+1] - qE[i]
+            if "floq_struc" in tools:
+                _, alpha = H_init.eigh(time=T_init)
+                for i in range(H_init.Ns):
+                    _floq_struc_array[i] = np.abs(np.dot(psi[:, 0], alpha[:, i]))**2
+            if "loc_len" in tools:
+                i_array = np.array([k//2 for k in range(H_init.Ns)])
+                i_0_array = np.array([i_array.dot(np.abs(psi[:, k])**2) for k in range(H_init.Ns)])
+                for k in range(H_init.Ns):
+                    _loc_len_array[k] = np.sqrt(np.dot((i_array-i_0_array[k])**2, np.abs(psi[:, k])**2))
 
             return _q_ener_array, _q_ener_spac_array, _floq_struc_array, _loc_len_array
         else:
             qE = Floq.EF
 
-            # --- q_ener
-            for i, q_ener_val in enumerate(qE):
-                _q_ener_array[i] = q_ener_val
-            # --- q_ener_spac
-            _q_ener_spac_array[H_init.Ns-1] = None
-            for i in range(H_init.Ns-1):
-                _q_ener_spac_array[i] = qE[i+1] - qE[i]
+            if "q_ener" in tools:
+                for i, q_ener_val in enumerate(qE):
+                    _q_ener_array[i] = q_ener_val
+            if "q_ener_spac" in tools:
+                _q_ener_spac_array[H_init.Ns-1] = None
+                for i in range(H_init.Ns-1):
+                    _q_ener_spac_array[i] = qE[i+1] - qE[i]
 
             return _q_ener_array, _q_ener_spac_array
 

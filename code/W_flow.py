@@ -47,47 +47,47 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
             if entropy:
                 E, psi = H.eigh()
 
-                # --- ener_W_flow
-                for j, ener_val in enumerate(E):
-                    _ener_array[i, j] = ener_val
+                if "ener_W_flow" in tools:
+                    for j, ener_val in enumerate(E):
+                        _ener_array[i, j] = ener_val
 
-                # --- r_W_flow
-                _r_array[i, 0] = None
-                _r_array[i, Ns-1] = None
-                for j in range(1, Ns-1):
-                    delta_n = E[j] - E[j-1]
-                    delta_n_plus_1 = E[j+1] - E[j]
-                    _r_array[i, j] = min(delta_n, delta_n_plus_1) / max(delta_n, delta_n_plus_1)
+                if "r_W_flow" in tools:
+                    _r_array[i, 0] = None
+                    _r_array[i, Ns-1] = None
+                    for j in range(1, Ns-1):
+                        delta_n = E[j] - E[j-1]
+                        delta_n_plus_1 = E[j+1] - E[j]
+                        _r_array[i, j] = min(delta_n, delta_n_plus_1) / max(delta_n, delta_n_plus_1)
 
-                # --- ent_W_flow
-                for j in range(Ns):
-                    _ent_array[i, j] = float(H.basis.ent_entropy(psi[:, j], sub_sys_A=range(H.basis.L//2))["Sent_A"])
+                if "ent_W_flow" in tools:
+                    for j in range(Ns):
+                        _ent_array[i, j] = float(H.basis.ent_entropy(psi[:, j],
+                                                                     sub_sys_A=range(H.basis.L//2))["Sent_A"])
 
-                # --- ent_rel_W_flow
-                E_min, E_max = H.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
-                E_target = E_min + 0.5 * (E_max - E_min)
-                _, psi = H.eigsh(k=2, sigma=E_target, maxiter=1E4)
-                p = np.empty(Ns, dtype=complex)
-                q = np.empty(Ns, dtype=complex)
-                H.basis.inplace_Op(psi[:, 0], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=p)
-                H.basis.inplace_Op(psi[:, 1], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=q)
-                for j in range(Ns):
-                    _ent_rel_array[i, j] = np.abs(psi[j, 0])**2 * 2 * np.log(np.abs(psi[j, 0]/psi[j, 1]))
-
+                if "ent_rel_W_flow" in tools:
+                    E_min, E_max = H.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
+                    E_target = E_min + 0.5 * (E_max - E_min)
+                    _, psi = H.eigsh(k=2, sigma=E_target, maxiter=1E4)
+                    p = np.empty(Ns, dtype=complex)
+                    q = np.empty(Ns, dtype=complex)
+                    H.basis.inplace_Op(psi[:, 0], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=p)
+                    H.basis.inplace_Op(psi[:, 1], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=q)
+                    for j in range(Ns):
+                        _ent_rel_array[i, j] = np.abs(psi[j, 0])**2 * 2 * np.log(np.abs(psi[j, 0]/psi[j, 1]))
             else:
                 E = H.eigvalsh()
 
-                # --- ener_W_flow
-                for j, ener_val in enumerate(E):
-                    _ener_array[i, j] = ener_val
+                if "ener_W_flow" in tools:
+                    for j, ener_val in enumerate(E):
+                        _ener_array[i, j] = ener_val
 
-                # --- r_W_flow
-                _r_array[i, 0] = None
-                _r_array[i, Ns-1] = None
-                for j in range(1, Ns-1):
-                    delta_n = E[j] - E[j-1]
-                    delta_n_plus_1 = E[j+1] - E[j]
-                    _r_array[i, j] = min(delta_n, delta_n_plus_1) / max(delta_n, delta_n_plus_1)
+                if "r_W_flow" in tools:
+                    _r_array[i, 0] = None
+                    _r_array[i, Ns-1] = None
+                    for j in range(1, Ns-1):
+                        delta_n = E[j] - E[j-1]
+                        delta_n_plus_1 = E[j+1] - E[j]
+                        _r_array[i, j] = min(delta_n, delta_n_plus_1) / max(delta_n, delta_n_plus_1)
 
         if entropy:
             return _ener_array, _r_array, _ent_array, _ent_rel_array

@@ -34,6 +34,7 @@ def find_Ns(_model, _leaf_args):
 
 
 def find_eigensystem(_model, _leaf_args):
+
     if _model == "ponte2015":
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, _leaf_args['T1'] + _leaf_args['T0'] / 2
@@ -87,6 +88,7 @@ def my_T_flow(path_flag, threads, model, _leaf_args):
         Ns = find_Ns(_model, _leaf_args)
 
         _PR_array = np.zeros((_leaf_args['T_samp'], Ns))
+
         for i, _T in enumerate(_T_list):
             _leaf_args['T1'] = _T
             H_init, T_init, Floq = find_eigensystem(_model, _leaf_args)

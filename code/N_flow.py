@@ -12,6 +12,7 @@ import functions.func_proc as fp
 
 
 def find_eigensystem(_model, _leaf_args):
+
     if _model == "ising_2":
         H = fh.chosen_hamiltonian(_model, _leaf_args)
         H_init, T_init = H, 0
@@ -85,7 +86,6 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
         E, phi = H_init.eigh(time=T_init)
         UF = Floq.UF
 
-        # --- ener_abs_N_flow / ent_N_flow
         if any(item in ["ener_abs_N_flow", "ent_N_flow"] for item in tools):
             E_Tinf = H_init.trace(time=T_init) / H_init.Ns
             E_0 = np.min(E)
@@ -98,7 +98,7 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
                     bloch = bloch_state(np.random.choice([-v, v]), np.random.uniform(0, 2*np.pi))
                     psi_prod = np.kron(psi_prod, bloch)
                 psi_prod_N = psi_prod
-            else:
+            else:  # ener_abs_N_flow
                 psi_prod_N = phi_0
 
             phi_N = phi_0
@@ -110,7 +110,6 @@ def my_N_flow(path_flag, threads, model, _leaf_args):
                 _ent_array[n] = float(H_init.basis.ent_entropy(psi_prod_N,
                                                                sub_sys_A=range(H_init.basis.L//2))["Sent_A"])
 
-        # --- ent_info_N_flow
         if "ent_info_N_flow" in tools:
             UF_new = UF
             VF = Floq.VF

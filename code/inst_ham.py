@@ -34,39 +34,40 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
         _ener_array = np.zeros(H.Ns)
         _ener_spac_array = np.zeros(H.Ns)
         _ent_array = np.zeros(H.Ns)
+        _ent_mid = 0
 
         if entropy == 2:  # ent
             E, psi = H.eigh()
 
-            # --- ener
-            for i, ener_val in enumerate(E):
-                _ener_array[i] = ener_val
-            # --- ener_spac
-            _ener_spac_array[H.Ns-1] = None
-            for i in range(H.Ns-1):
-                _ener_spac_array[i] = E[i+1]-E[i]
-            # --- ent
-            for i in range(H.Ns):
-                _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
+            if "ener" in tools:
+                for i, ener_val in enumerate(E):
+                    _ener_array[i] = ener_val
+            if "ener_spac" in tools:
+                _ener_spac_array[H.Ns-1] = None
+                for i in range(H.Ns-1):
+                    _ener_spac_array[i] = E[i+1]-E[i]
+            if "ent" in tools:
+                for i in range(H.Ns):
+                    _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
 
             return _ener_array, _ener_spac_array, _ent_array
         elif entropy == 1:  # ent_mid
             _, psi = H.eigsh(k=1, sigma=0.5, maxiter=1E4)
 
-            # --- ent_mid
-            _ent_mid = H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2))["Sent_A"]
+            if "ent_mid" in tools:
+                _ent_mid = H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2))["Sent_A"]
 
             return None, None, _ent_mid
         elif entropy == 0:  # no ent
             E = H.eigvalsh()
 
-            # --- ener
-            for i, ener_val in enumerate(E):
-                _ener_array[i] = ener_val
-            # --- ener_spac
-            _ener_spac_array[H.Ns - 1] = None
-            for i in range(H.Ns - 1):
-                _ener_spac_array = E[i + 1] - E[i]
+            if "ener" in tools:
+                for i, ener_val in enumerate(E):
+                    _ener_array[i] = ener_val
+            if "ener_spac" in tools:
+                _ener_spac_array[H.Ns - 1] = None
+                for i in range(H.Ns - 1):
+                    _ener_spac_array = E[i + 1] - E[i]
 
             return _ener_array, _ener_spac_array, None
         else:
