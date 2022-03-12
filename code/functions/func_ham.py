@@ -3,6 +3,7 @@ from models.heisenberg import heisenberg
 from models.ising import ising_2
 from models.ponte2015 import ponte2015, ponte2015_2
 from models.spin2021 import spin2021, spin2021_2
+from models.pxp import pxp
 
 
 def chosen_hamiltonian(model, leaf_args):
@@ -28,6 +29,9 @@ def chosen_hamiltonian(model, leaf_args):
     elif model == "spin2021_2":
         V, H_1, H_2 = spin2021_2(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'],
                                  leaf_args['J'][0], leaf_args['J'][1], leaf_args['W'])
+    elif model == "pxp":
+        H = pxp(leaf_args['L'], leaf_args['Nup'], leaf_args['pauli'], leaf_args['bc'],
+                leaf_args['J'][0])
     else:
         raise ValueError("model not implemented in func_ham")
 

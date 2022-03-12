@@ -9,7 +9,7 @@ def parse_input_arguments(program):
     stem = parser.add_argument_group("stem sub-arguments")
     leaf = parser.add_argument_group("leaf sub-arguments")
 
-    models = ["heisenberg", "ising_2", "ponte2015", "ponte2015_2", "spin2021", "spin2021_2"]
+    models = ["heisenberg", "ising_2", "ponte2015", "ponte2015_2", "spin2021", "spin2021_2", "pxp"]
 
     # program sub-arguments
 
@@ -68,7 +68,7 @@ def parse_input_arguments(program):
         leaf.add_argument("-W_max", type=float, default=10, required=True, help="maximum disorder strength")
         leaf.add_argument("-W_samp", type=int, default=11, required=True, help="number of disorder strength samples")
     else:
-        leaf.add_argument("-W", type=float, default=1, help="disorder strength")
+        leaf.add_argument("-W", type=float, default=0, help="disorder strength")
 
     if program == "delta_flow":
         leaf.add_argument("-delta_min", type=float, default=0, required=True, help="minimum delta")

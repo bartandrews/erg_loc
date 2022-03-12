@@ -20,6 +20,8 @@ The ``programs`` along with their corresponding ``tools``:
 	* ener_spac -- disorder-concatenated energy spacings
 	* ent -- disorder-averaged entanglement entropy spectrum
 	* ent_mid* -- disorder-averaged entanglement entropy for a mid state only
+	* overlap -- disorder-averaged overlap spectrum
+	* exp_val -- disorder-averaged expectation value
 * **W_flow** -- disorder evolution
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
@@ -63,6 +65,26 @@ The ``plot`` scripts:
 ``python code/inst_ham.py -mod heisenberg -Nup 4 -pauli 0 -L 8 -bc o -dis 10000 -W 8``
 
 .. image:: figures/ener_stat/heisenberg/ener_stat_heisenberg_L_8_Nup_4_pauli_0_obc_dis_10000_J_1_1_1_W_0.5_comparison.png
+	:align: center
+	:width: 80%
+
+* **overlap_spec** -- overlap-eigenenergy spectrum
+
+``python code/inst_ham.py -mod pxp -L 18 -bc o``
+
+``python code/inst_ham.py -mod pxp -L 20 -bc o``
+
+.. image:: figures/overlap_spec/pxp/overlap_spec_pxp_L_18_obc_J_1_1_1_W_0_comparison.png
+	:align: center
+	:width: 80%
+
+* **eth_arc** -- eigenstate thermalization hypothesis arc
+
+``python code/inst_ham.py -mod pxp -L 26 -bc o``
+
+``python code/inst_ham.py -mod pxp -L 28 -bc o``
+
+.. image:: figures/eth_arc/pxp/eth_arc_pxp_L_26_obc_J_1_1_1_W_0_comparison.png
 	:align: center
 	:width: 80%
 

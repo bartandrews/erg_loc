@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8812fd8-186a-41cb-9244-b8981df18240" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/models/pxp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/models/pxp_old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plot/eth_arc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plot/overlap_spec.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/ent_arc/heisenberg/ent_arc_heisenberg_L_12_obc_J_1_1_1_W_0.5_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/ent_arc/heisenberg/ent_arc_heisenberg_L_12_obc_J_1_1_1_W_0.5_comparison.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/functions/func_args.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_args.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/functions/func_ham.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/functions/func_ham.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/inst_ham.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/inst_ham.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot/ent_arc.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/ent_arc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,15 +44,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/hdf5" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/plot" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/code" />
       <recent name="$PROJECT_DIR$/plot" />
-      <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/code/models" />
+      <recent name="$PROJECT_DIR$/code" />
+      <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/plot/old" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -59,7 +63,7 @@
       <recent name="$PROJECT_DIR$/XXZ/entropy_scaling" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ent_arc">
+  <component name="RunManager" selected="Python.overlap_spec">
     <configuration name="ent_L_flow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,7 +130,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="q_ener_stat" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="eth_arc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -139,7 +143,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/q_ener_stat.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/eth_arc.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,7 +152,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sjobs_gen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="overlap_spec" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="erg_loc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -156,12 +160,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sjobs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sjobs/sjobs_gen.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/overlap_spec.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -172,18 +176,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.ent_delta_flow" />
-      <item itemvalue="Python.q_ener_stat" />
-      <item itemvalue="Python.sjobs_gen" />
       <item itemvalue="Python.ent_L_flow" />
       <item itemvalue="Python.ent_arc" />
+      <item itemvalue="Python.overlap_spec" />
+      <item itemvalue="Python.eth_arc" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.overlap_spec" />
+        <item itemvalue="Python.eth_arc" />
         <item itemvalue="Python.ent_arc" />
         <item itemvalue="Python.ent_delta_flow" />
         <item itemvalue="Python.ent_L_flow" />
-        <item itemvalue="Python.sjobs_gen" />
-        <item itemvalue="Python.q_ener_stat" />
       </list>
     </recent_temporary>
   </component>
@@ -252,7 +256,7 @@
       <workItem from="1646085156724" duration="67723000" />
       <workItem from="1646605698957" duration="1991000" />
       <workItem from="1646669953829" duration="23253000" />
-      <workItem from="1646763913925" duration="3457000" />
+      <workItem from="1646763913925" duration="46447000" />
     </task>
     <servers />
   </component>
@@ -294,6 +298,7 @@
     <SUITE FILE_PATH="coverage/erg_loc$inst_ham.coverage" NAME="inst_ham Coverage Results" MODIFIED="1638231241872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
     <SUITE FILE_PATH="coverage/driven_systems$XXZ_r_comparison.coverage" NAME="XXZ_r_comparison Coverage Results" MODIFIED="1637104838358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_mid_H0.coverage" NAME="Ponte2015_QN_mid_H0 Coverage Results" MODIFIED="1636736491546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
+    <SUITE FILE_PATH="coverage/erg_loc$overlap_spec.coverage" NAME="overlap_spec Coverage Results" MODIFIED="1647049001614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_new.coverage" NAME="Ponte2015_r_comparison_new Coverage Results" MODIFIED="1637105932648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_QN.coverage" NAME="spin_model_QN Coverage Results" MODIFIED="1635521860097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison.coverage" NAME="Ponte2015_r_comparison Coverage Results" MODIFIED="1637017666521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
@@ -301,7 +306,7 @@
     <SUITE FILE_PATH="coverage/erg_loc$sjobs_gen.coverage" NAME="sjobs_gen Coverage Results" MODIFIED="1646695943097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sjobs" />
     <SUITE FILE_PATH="coverage/erg_loc$ent_rel_W_flow.coverage" NAME="ent_rel_W_flow Coverage Results" MODIFIED="1646163574883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$q_ener_stat.coverage" NAME="q_ener_stat Coverage Results" MODIFIED="1646344940560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/erg_loc$ent_arc.coverage" NAME="ent_arc Coverage Results" MODIFIED="1646767479798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$ent_arc.coverage" NAME="ent_arc Coverage Results" MODIFIED="1647023801467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_r_comparison_parallel_new.coverage" NAME="Ponte2015_r_comparison_parallel_new Coverage Results" MODIFIED="1637020935130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_A2_comparison.coverage" NAME="Ponte2015_A2_comparison Coverage Results" MODIFIED="1636742659795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Ponte2015" />
     <SUITE FILE_PATH="coverage/erg_loc$XXZ_energy_spacing_statistics_plot.coverage" NAME="XXZ_energy_spacing_statistics_plot Coverage Results" MODIFIED="1637783582247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code/standalone/XXZ/energy_spacing_statistics" />
@@ -333,6 +338,7 @@
     <SUITE FILE_PATH="coverage/erg_loc$ent_mid_L_flow.coverage" NAME="ent_mid_L_flow Coverage Results" MODIFIED="1645490418242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$info_ent_N_flow.coverage" NAME="info_ent_N_flow Coverage Results" MODIFIED="1643244080271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/erg_loc$ent_info_N_flow.coverage" NAME="ent_info_N_flow Coverage Results" MODIFIED="1646247897072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/erg_loc$eth_arc.coverage" NAME="eth_arc Coverage Results" MODIFIED="1647048798657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_Qinf.coverage" NAME="Ponte2015_Qinf Coverage Results" MODIFIED="1635207987208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$Ponte2015_QN_Floquet_2_Parallel.coverage" NAME="Ponte2015_QN Coverage Results" MODIFIED="1635357229090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/driven_systems$spin_model_L_scaling.coverage" NAME="spin_model_L_scaling Coverage Results" MODIFIED="1635356414877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

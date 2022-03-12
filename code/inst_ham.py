@@ -3,6 +3,9 @@ import numpy as np
 from time import perf_counter
 import sys
 from joblib import delayed, Parallel
+# --- QuSpin imports
+from quspin.basis import spin_basis_1d
+from quspin.operators import hamiltonian
 # --- driven_systems imports
 import functions.func_ham as fh
 import functions.func_args as fa
@@ -17,8 +20,8 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("inst_ham", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("inst_ham", path, model, leaf)
 
-    # "ener", "ener_spac", "ent", "ent_mid"
-    tools = ["ener", "ener_spac", "ent"]
+    # "ener", "ener_spac", "ent", "ent_mid", "overlap", "exp_val"
+    tools = ["ener", "overlap"]
     if "ent_mid" in tools and len(tools) != 1:
         raise ValueError("The tool ent_mid can only be used in isolation.")
 
@@ -31,10 +34,17 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
+        if _model == "pxp":  # user_basis
+            L = H.basis.N
+        else:
+            L = H.basis.L
+
         _ener_array = np.zeros(H.Ns)
         _ener_spac_array = np.zeros(H.Ns)
         _ent_array = np.zeros(H.Ns)
         _ent_mid = 0
+        _overlap_array = np.zeros(H.Ns)
+        _exp_val_array = np.zeros(H.Ns)
 
         if entropy == 2:  # ent
             E, psi = H.eigh()
@@ -48,14 +58,28 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
                     _ener_spac_array[i] = E[i+1]-E[i]
             if "ent" in tools:
                 for i in range(H.Ns):
-                    _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
+                    _ent_array[i] = H.basis.ent_entropy(psi[:, i],
+                                                        sub_sys_A=range(L//2), density=False)["Sent_A"]
+            if "overlap" in tools:
+                Z2_state = np.zeros(H.Ns)
+                Z2_state[0] = 1
+                for i in range(H.Ns):
+                    _overlap_array[i] = np.abs(np.dot(Z2_state, psi[:, i]))**2
+            if "exp_val" in tools:
+                z_term = [[1, i] for i in range(L)]
+                static = [["z", z_term]]
+                dynamic = []
+                Z1 = (1/L)*hamiltonian(static, dynamic, basis=H.basis, dtype=np.float64,
+                                       check_symm=False, check_herm=False, check_pcon=False)
+                for i in range(H.Ns):
+                    _exp_val_array[i] = Z1.expt_value(psi[:, i])
 
-            return _ener_array, _ener_spac_array, _ent_array
+            return _ener_array, _ener_spac_array, _ent_array, _overlap_array, _exp_val_array
         elif entropy == 1:  # ent_mid
             _, psi = H.eigsh(k=1, sigma=0.5, maxiter=1E4)
 
             if "ent_mid" in tools:
-                _ent_mid = H.basis.ent_entropy(psi, sub_sys_A=range(H.basis.L//2))["Sent_A"]
+                _ent_mid = H.basis.ent_entropy(psi, sub_sys_A=range(L//2), density=False)["Sent_A"]
 
             return None, None, _ent_mid
         elif entropy == 0:  # no ent
@@ -76,10 +100,10 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     ###################################################################################################################
 
     ent_flag = 0
-    if any("ent" in i for i in tools):
+    if any(item in ["ent", "ent_mid", "overlap", "exp_val"] for item in tools):
         if "ent_mid" in tools:
             ent_flag = 1
-        elif "ent" in tools:
+        else:
             ent_flag = 2
 
     array = np.stack(Parallel(n_jobs=threads)(delayed(realization)(i, model, leaf_args, entropy=ent_flag)
@@ -131,6 +155,30 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
         ent_mid = np.mean(ent_mid_array, axis=0)
 
         data['ent_mid'].write(f"{_leaf_args['L']}\t{ent_mid}\n")
+
+    ###########
+    # overlap #
+    ###########
+
+    if "overlap" in tools:
+
+        overlap_array = array[:, 3]
+        overlap = np.mean(overlap_array, axis=0)
+
+        for overlap_val in overlap:
+            data['overlap'].write(f"{overlap_val}\n")
+
+    ###########
+    # exp_val #
+    ###########
+
+    if "exp_val" in tools:
+
+        exp_val_array = array[:, 4]
+        exp_val = np.mean(exp_val_array, axis=0)
+
+        for exp_val_val in exp_val:
+            data['exp_val'].write(f"{exp_val_val}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 
