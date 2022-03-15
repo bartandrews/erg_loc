@@ -22,6 +22,7 @@ The ``programs`` along with their corresponding ``tools``:
 	* ent_mid* -- disorder-averaged entanglement entropy for a mid state only
 	* overlap -- disorder-averaged overlap spectrum
 	* exp_val -- disorder-averaged expectation value spectrum
+	* spec_func* -- disorder-averaged spectral function
 * **W_flow** -- disorder evolution
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
@@ -180,6 +181,14 @@ With ``v=1`` in the initial Bloch state.
 ``python code/t_flow.py -mod pxp -L 24 -bc o -t_min 0 -t_max 30 -t_samp 1000 -tag ".Z4"``
 
 .. image:: figures/overlap_t_flow/pxp/overlap_t_flow_pxp_L_24_obc_t_0_30_1000_J_1_1_1_W_0.Z2_comparison.png
+	:align: center
+	:width: 80%
+
+* **spec_func** -- spectral function (cf. Fig.2c of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
+
+``python code/inst_ham.py -mod pxp -L 26 -bc o``
+
+.. image:: figures/spec_func/pxp/spec_func_pxp_L_26_obc_J_1_1_1_W_0.png
 	:align: center
 	:width: 80%
 

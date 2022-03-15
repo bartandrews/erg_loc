@@ -20,10 +20,12 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     leaf = fp.file_name_leaf("inst_ham", model, _leaf_args)
     sys.stdout = sys.stderr = fp.Logger("inst_ham", path, model, leaf)
 
-    # "ener", "ener_spac", "ent", "ent_mid", "overlap", "exp_val"
-    tools = ["ener"]
+    # "ener", "ener_spac", "ent", "ent_mid", "overlap", "exp_val", "spec_func"
+    tools = ["spec_func"]
     if "ent_mid" in tools and len(tools) != 1:
         raise ValueError("The tool ent_mid can only be used in isolation.")
+    if "spec_func" in tools and len(tools) != 1:
+        raise ValueError("The tool spec_func can only be used in isolation.")
 
     data = fp.prepare_output_files(tools, path, model, leaf)
 
@@ -73,6 +75,28 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
                                        check_symm=False, check_herm=False, check_pcon=False)
                 for i in range(H.Ns):
                     _exp_val_array[i] = Z1.expt_value(psi[:, i])
+            if "spec_func" in tools:
+                _omega_array = np.zeros((2*H.Ns//3, 2*H.Ns//3))
+                _spec_func_array = np.zeros((2*H.Ns//3, 2*H.Ns//3))
+                z_term = [[1, i] for i in range(L)]
+                static = [["z", z_term]]
+                dynamic = []
+                Z1 = (1/L) * hamiltonian(static, dynamic, basis=H.basis, dtype=np.float64,
+                                         check_symm=False, check_herm=False, check_pcon=False)
+                if 5*len(E)//6 - len(E)//6 > 2*H.Ns//3:
+                    upper_limit = 5*len(E)//6 - 1
+                else:
+                    upper_limit = 5*len(E)//6
+                for a_idx, alpha in enumerate(range(len(E)//6, upper_limit)):
+                    for b_idx, beta in enumerate(range(len(E)//6, upper_limit)):
+                        _omega_array[a_idx, b_idx] = E[alpha] - E[beta]
+                        # e^S(E) prefactor is not yet implemented
+                        _spec_func_array[a_idx, b_idx] = np.abs(np.dot(psi[:, beta], Z1.dot(psi[:, alpha])))**2
+
+                _omega_array = _omega_array.ravel()
+                _spec_func_array = _spec_func_array.ravel()
+
+                return _omega_array, _spec_func_array
 
             return _ener_array, _ener_spac_array, _ent_array, _overlap_array, _exp_val_array
         elif entropy == 1:  # ent_mid
@@ -100,7 +124,7 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     ###################################################################################################################
 
     ent_flag = 0
-    if any(item in ["ent", "ent_mid", "overlap", "exp_val"] for item in tools):
+    if any(item in ["ent", "ent_mid", "overlap", "exp_val", "spec_func"] for item in tools):
         if "ent_mid" in tools:
             ent_flag = 1
         else:
@@ -179,6 +203,20 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
 
         for exp_val_val in exp_val:
             data['exp_val'].write(f"{exp_val_val}\n")
+
+    #############
+    # spec_func #
+    #############
+
+    if "spec_func" in tools:
+
+        omega_array = array[:, 0]
+        omega = np.mean(omega_array, axis=0)
+        spec_func_array = array[:, 1]
+        spec_func = np.mean(spec_func_array, axis=0)
+
+        for i, omega_val in enumerate(omega):
+            data['spec_func'].write(f"{omega_val}\t{spec_func[i]}\n")
 
     print(f"Total time taken (seconds) = {perf_counter()-t0:.1f}")
 
