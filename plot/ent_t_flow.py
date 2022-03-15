@@ -4,6 +4,7 @@ import csv
 from matplotlib.ticker import FormatStrFormatter
 import matplotlib.gridspec as gridspec
 import os
+import numpy as np
 
 plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{braket}')
@@ -27,7 +28,7 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
         ax0 = plt.subplot(111)
         ax0.plot(t_1, S_1, '.-', label="mid state")
         ax0.set_xlabel("$t$")
-        ax0.set_xscale('log')
+        # ax0.set_xscale('log')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_ylabel("$S$")
         ax0.yaxis.set_major_formatter(FormatStrFormatter('$%g$'))
@@ -128,8 +129,8 @@ def plot_ent_t_flow(_model, _file1, _file2=None, _file3=None, _file4=None, _save
 
 if __name__ == "__main__":
 
-    model = 'heisenberg'
-    file1 = 'ent_t_flow_heisenberg_L_6_obc_dis_100_t_-1_3_51_J_1_1_0.2_W_0.5.dat'
+    model = 'pxp'
+    file1 = 'ent_t_flow_pxp_L_12_obc_t_0_50_1000_J_1_1_1_W_0.dat.S2'
     # file2 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.01_W_5.dat.v_1'
     # file3 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.1_W_5.dat.v_1'
     # file4 = 'ent_t_flow_heisenberg_L_8_obc_dis_100_t_-1_3_100_J_1_1_0.2_W_5.dat.v_1'

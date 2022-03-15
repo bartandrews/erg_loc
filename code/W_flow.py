@@ -44,6 +44,12 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
         for i, _W in enumerate(np.linspace(_leaf_args['W_min'], _leaf_args['W_max'], _leaf_args['W_samp'])):
             _leaf_args['W'] = _W
             H = fh.chosen_hamiltonian(_model, _leaf_args)
+
+            if _model == "pxp":  # user_basis
+                L = H.basis.N
+            else:
+                L = H.basis.L
+
             if entropy:
                 E, psi = H.eigh()
 
@@ -62,7 +68,7 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
                 if "ent_W_flow" in tools:
                     for j in range(Ns):
                         _ent_array[i, j] = float(H.basis.ent_entropy(psi[:, j],
-                                                                     sub_sys_A=range(H.basis.L//2))["Sent_A"])
+                                                                     sub_sys_A=range(L//2))["Sent_A"])
 
                 if "ent_rel_W_flow" in tools:
                     E_min, E_max = H.eigsh(k=2, which="BE", maxiter=1E4, return_eigenvectors=False)
@@ -70,8 +76,8 @@ def my_W_flow(path_flag, threads, model, _leaf_args):
                     _, psi = H.eigsh(k=2, sigma=E_target, maxiter=1E4)
                     p = np.empty(Ns, dtype=complex)
                     q = np.empty(Ns, dtype=complex)
-                    H.basis.inplace_Op(psi[:, 0], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=p)
-                    H.basis.inplace_Op(psi[:, 1], [["z", [i], 1] for i in range(H.basis.L)], dtype=complex, v_out=q)
+                    H.basis.inplace_Op(psi[:, 0], [["z", [i], 1] for i in range(L)], dtype=complex, v_out=p)
+                    H.basis.inplace_Op(psi[:, 1], [["z", [i], 1] for i in range(L)], dtype=complex, v_out=q)
                     for j in range(Ns):
                         _ent_rel_array[i, j] = np.abs(psi[j, 0])**2 * 2 * np.log(np.abs(psi[j, 0]/psi[j, 1]))
             else:

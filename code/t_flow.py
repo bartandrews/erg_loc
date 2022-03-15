@@ -28,7 +28,7 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("t_flow", path, model, leaf)
 
     # "ent_t_flow", "numb_fluc_t_flow", "overlap_t_flow"
-    tools = ["overlap_t_flow"]
+    tools = ["ent_t_flow"]
     data = fp.prepare_output_files(tools, path, model, leaf)
 
     ###################################################################################################################
@@ -43,6 +43,11 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         H = fh.chosen_hamiltonian(_model, _leaf_args)
 
+        if _model == "pxp":  # user_basis
+            L = H.basis.N
+        else:
+            L = H.basis.L
+
         initial_state = "custom"
 
         if initial_state is "bloch":
@@ -53,9 +58,9 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
                 psi_prod = np.kron(psi_prod, bloch)
         elif initial_state is "custom":
             psi_prod = np.zeros(H.Ns)
-            idx = H.basis.index(int('10'*12, 2))  # Z2
-            # idx = H.basis.index(int('100'*8, 2))  # Z3
-            # idx = H.basis.index(int('1000'*6, 2))  # Z4
+            idx = H.basis.index(int('10'*(L//2), 2))  # Z2
+            # idx = H.basis.index(int('100'*(L//3), 2))  # Z3
+            # idx = H.basis.index(int('1000'*(L//4), 2))  # Z4
             psi_prod[idx] = 1
         else:
             raise ValueError("initial state not implemented")
@@ -63,9 +68,9 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
         psi = H.evolve(psi_prod, 0.0, _t_list)
 
         if "numb_fluc_t_flow" in tools:
-            basis = spin_basis_1d(H.basis.L)
-            Id_term = [[1, i] for i in range(H.basis.L//2)]
-            Sz_term = [[1, i] for i in range(H.basis.L//2)]
+            basis = spin_basis_1d(L)
+            Id_term = [[1, i] for i in range(L//2)]
+            Sz_term = [[1, i] for i in range(L//2)]
             static = [["I", Id_term], ["z", Sz_term]]
             dynamic = []
             total_spin_half_chain = 0.5*hamiltonian(static, dynamic, basis=basis, dtype=np.float64,
@@ -73,7 +78,8 @@ def my_t_flow(path_flag, threads, model, _leaf_args):
 
         for i in range(_leaf_args['t_samp']):
             if "ent_t_flow" in tools:
-                _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(H.basis.L//2))["Sent_A"]
+                # sub_sys_A=range(L//2)
+                _ent_array[i] = H.basis.ent_entropy(psi[:, i], sub_sys_A=range(L//12))["Sent_A"]
             if "numb_fluc_t_flow" in tools:
                 _numb_fluc_array[i] = np.real(total_spin_half_chain.quant_fluct(psi[:, i]))
             if "overlap_t_flow" in tools:

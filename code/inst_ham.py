@@ -4,7 +4,6 @@ from time import perf_counter
 import sys
 from joblib import delayed, Parallel
 # --- QuSpin imports
-from quspin.basis import spin_basis_1d
 from quspin.operators import hamiltonian
 # --- driven_systems imports
 import functions.func_ham as fh
