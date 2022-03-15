@@ -75,7 +75,17 @@ The ``plot`` scripts:
 
 ``python code/inst_ham.py -mod pxp -L 20 -bc o``
 
-.. image:: figures/overlap_spec/pxp/overlap_spec_pxp_L_18_obc_J_1_1_1_W_0_comparison.png
+.. image:: figures/overlap_spec/pxp/overlap_spec_pxp_L_26_obc_J_1_1_1_W_0_comparison.png
+	:align: center
+	:width: 80%
+
+* **overlap_stat** -- overlap statistics (cf. Fig.2b of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
+
+``python code/inst_ham.py -mod pxp -L 10 -bc o``
+
+``python code/inst_ham.py -mod pxp -L 12 -bc o``
+
+.. image:: figures/overlap_stat/pxp/overlap_stat_pxp_obc_J_1_1_1_W_0.png
 	:align: center
 	:width: 80%
 
