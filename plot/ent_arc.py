@@ -127,7 +127,7 @@ def plot_ent_arc(_model, _params1, _params2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'pxp'
-    params1 = 'L_18_obc_J_1_1_1_W_0'
+    params1 = 'L_20_obc_J_1_1_1_W_0'
     # params2 = 'L_12_obc_J_1_1_1_W_8'
 
     plot_ent_arc(model, params1, _save=False)

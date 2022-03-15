@@ -53,7 +53,7 @@ def plot_eth_arc(_model, _params1, _params2=None, _save=False):
         L_pattern = re.search('L_(\d+)', _params1)
         L = int(L_pattern.group(1))
         old_frac = 0
-        for frac in np.linspace(0.05, 1.05, L//2 + 1):
+        for frac in np.linspace(0.0415, 1.0415, L//2 + 1):
             tmp_E_1_list, tmp_exp_val_list = [], []
             for i, E_1_val in enumerate(E_1):
                 if min(E_1)+old_frac*(max(E_1)-min(E_1)) <= E_1_val < min(E_1)+frac*(max(E_1)-min(E_1)):
@@ -145,4 +145,4 @@ if __name__ == "__main__":
     params1 = 'L_26_obc_J_1_1_1_W_0'
     # params2 = 'L_28_obc_J_1_1_1_W_0'
 
-    plot_eth_arc(model, params1, _save=True)
+    plot_eth_arc(model, params1, _save=False)

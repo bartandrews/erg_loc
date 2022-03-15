@@ -6,6 +6,7 @@ import matplotlib.gridspec as gridspec
 import os
 from scipy.stats import gaussian_kde
 import numpy as np
+import re
 
 plt.rc('text', usetex=True)
 plt.rc('text.latex', preamble=r'\usepackage{amsmath}\usepackage{amsfonts}\usepackage{braket}')
@@ -49,6 +50,19 @@ def plot_overlap_spec(_model, _params1, _params2=None, _save=False):
         # scatter plot
         ax0.scatter(E_1, np.log10(overlap_1), c=z, s=10, cmap='plasma')
         # ax0.plot(E_1, np.log10(overlap_1), '.')
+        # red crosses
+        L_pattern = re.search('L_(\d+)', _params1)
+        L = int(L_pattern.group(1))
+        old_frac = 0
+        for frac in np.linspace(0.0415, 1.0415, L // 2 + 1):
+            tmp_E_1_list, tmp_overlap_list = [], []
+            for i, E_1_val in enumerate(E_1):
+                if min(E_1) + old_frac * (max(E_1) - min(E_1)) <= E_1_val < min(E_1) + frac * (max(E_1) - min(E_1)):
+                    tmp_E_1_list.append(E_1_val)
+                    tmp_overlap_list.append(overlap_1[i])
+            ax0.axvline(min(E_1) + frac * (max(E_1) - min(E_1)), linewidth=0.1)
+            ax0.scatter(tmp_E_1_list[np.argmax(tmp_overlap_list)], np.log10(np.max(tmp_overlap_list)), c='r', marker='x', s=40)
+            old_frac = frac
         ax0.set_xlabel('$E$')
         ax0.xaxis.set_major_formatter(FormatStrFormatter('$%g$'))
         ax0.set_ylabel('$\log_{10} |\\braket{\mathbb{Z}_2|\psi}|^2$')
@@ -130,7 +144,7 @@ def plot_overlap_spec(_model, _params1, _params2=None, _save=False):
 if __name__ == "__main__":
 
     model = 'pxp'
-    params1 = 'L_26_obc_J_1_1_1_W_0'
+    params1 = 'L_19_obc_J_1_1_1_W_0'
     # params2 = 'L_20_obc_J_1_1_1_W_0'
 
-    plot_overlap_spec(model, params1, _save=True)
+    plot_overlap_spec(model, params1, _save=False)

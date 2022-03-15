@@ -21,18 +21,19 @@ The ``programs`` along with their corresponding ``tools``:
 	* ent -- disorder-averaged entanglement entropy spectrum
 	* ent_mid* -- disorder-averaged entanglement entropy for a mid state only
 	* overlap -- disorder-averaged overlap spectrum
-	* exp_val -- disorder-averaged expectation value
+	* exp_val -- disorder-averaged expectation value spectrum
 * **W_flow** -- disorder evolution
 	* ener_W_flow -- disorder-averaged energy spectrum against disorder amplitude
 	* r_W_flow -- disorder-averaged first moment of the energy spacings against disorder amplitude
 	* ent_W_flow -- disorder-averaged entanglement entropy spectrum against disorder amplitude
 	* ent_rel_W_flow -- disorder-averaged relative entropy against disorder amplitude
 * **L_flow** -- length evolution
-	* ent_L_flow* -- disorder-averaged entanglement entropy against length
+	* ent_L_flow* -- disorder-averaged entanglement entropy spectrum against length
 	* ent_mid_L_flow* -- disorder-averaged entanglement entropy of a mid state against length
 * **t_flow** -- time evolution
 	* ent_t_flow -- disorder-averaged entanglement entropy of a given state against time
 	* numb_fluc_t_flow -- disorder-averaged particle number fluctuations against time
+	* overlap_t_flow -- disorder-averaged overlap against time
 
 *mutually exclusive tools
 
@@ -68,7 +69,7 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **overlap_spec** -- overlap-eigenenergy spectrum
+* **overlap_spec** -- overlap-eigenenergy spectrum (cf. Fig.3b of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
 
 ``python code/inst_ham.py -mod pxp -L 18 -bc o``
 
@@ -78,13 +79,23 @@ The ``plot`` scripts:
 	:align: center
 	:width: 80%
 
-* **eth_arc** -- eigenstate thermalization hypothesis arc
+* **eth_arc** -- eigenstate thermalization hypothesis arc (cf. Fig.2a of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
 
 ``python code/inst_ham.py -mod pxp -L 26 -bc o``
 
 ``python code/inst_ham.py -mod pxp -L 28 -bc o``
 
 .. image:: figures/eth_arc/pxp/eth_arc_pxp_L_26_obc_J_1_1_1_W_0_comparison.png
+	:align: center
+	:width: 80%
+
+* **scar_gap_scal** -- scar state energy gap scaling (cf. Fig.4 of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
+
+``python code/inst_ham.py -mod pxp -L 10 -bc o``
+
+``python code/inst_ham.py -mod pxp -L 12 -bc o``
+
+.. image:: figures/scar_gap_scal/pxp/scar_gap_scal_pxp_obc_J_1_1_1_W_0.png
 	:align: center
 	:width: 80%
 
@@ -147,6 +158,18 @@ With ``v=1`` in the initial Bloch state.
 ``python code/t_flow.py -mod heisenberg -L 8 -pauli 0 -J 1 1 0.2 -t_min -2 -t_max 3 -t_samp 50 -dis 1000 -bc o -W 5 -tag ".v_1"``
 
 .. image:: figures/numb_fluc_t_flow/heisenberg/numb_fluc_t_flow_heisenberg_L_8_pauli_0_obc_dis_1000_t_-2_3_50_J_1_1_0_W_5.v_1_comparison.png
+	:align: center
+	:width: 80%
+
+* **overlap_t_flow** -- overlap time evolution (cf. Fig.6 of `[Turner2018] <https://arxiv.org/abs/1806.10933>`__)
+
+``python code/t_flow.py -mod pxp -L 24 -bc o -t_min 0 -t_max 30 -t_samp 1000 -tag ".Z2"``
+
+``python code/t_flow.py -mod pxp -L 24 -bc o -t_min 0 -t_max 30 -t_samp 1000 -tag ".Z3"``
+
+``python code/t_flow.py -mod pxp -L 24 -bc o -t_min 0 -t_max 30 -t_samp 1000 -tag ".Z4"``
+
+.. image:: figures/overlap_t_flow/pxp/overlap_t_flow_pxp_L_24_obc_t_0_30_1000_J_1_1_1_W_0.Z2_comparison.png
 	:align: center
 	:width: 80%
 
@@ -379,3 +402,5 @@ References
 `[DAlessio2014] <https://arxiv.org/abs/1402.5141>`__ "Long-time Behavior of Isolated Periodically Driven Interacting Lattice Systems"  by Luca D’Alessio and Marcos Rigol, PRX **4**, 041048 (2014).
 
 `[Bardarson2012] <https://arxiv.org/abs/1202.5532>`__ "Unbounded growth of entanglement in models of many-body localization" by Jens Bardarson, Frank Pollmann, Joel Moore, PRL **109**, 017202 (2012).
+
+`[Turner2018] <https://arxiv.org/abs/1806.10933>`__ "Quantum scarred eigenstates in a Rydberg atom chain: entanglement, breakdown of thermalization, and stability to perturbations", PRB **98**, 155134 (2018).

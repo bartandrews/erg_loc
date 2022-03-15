@@ -21,7 +21,7 @@ def my_inst_ham(path_flag, threads, model, _leaf_args):
     sys.stdout = sys.stderr = fp.Logger("inst_ham", path, model, leaf)
 
     # "ener", "ener_spac", "ent", "ent_mid", "overlap", "exp_val"
-    tools = ["ener", "overlap"]
+    tools = ["ener"]
     if "ent_mid" in tools and len(tools) != 1:
         raise ValueError("The tool ent_mid can only be used in isolation.")
 
